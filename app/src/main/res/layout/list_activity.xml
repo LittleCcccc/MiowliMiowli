@@ -1,0 +1,139 @@
+<android.support.constraint.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/messages_constraint_layout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/list_activity_messages_constraint_layout_background_color">
+
+	<android.support.constraint.ConstraintLayout
+		android:id="@+id/view_constraint_layout"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintHorizontal_weight="1"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_weight="1"
+		tools:layout_editor_absoluteX="0dp"
+		tools:layout_editor_absoluteY="0dp">
+	
+		<android.support.constraint.ConstraintLayout
+			android:id="@+id/tabview_constraint_layout"
+			android:layout_width="0dp"
+			android:layout_height="@dimen/list_activity_tabview_constraint_layout_height"
+			android:layout_marginEnd="@dimen/list_activity_tabview_constraint_layout_margin_end"
+			android:background="@color/list_activity_tabview_constraint_layout_background_color"
+			app:layout_constraintHorizontal_weight="1.01"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:layout_editor_absoluteX="0dp"
+			tools:layout_editor_absoluteY="0dp">
+		
+			<android.support.design.widget.TabLayout
+				android:id="@+id/news_type_tab_bar"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/list_activity_news_type_tab_bar_height"
+				android:layout_marginEnd="@dimen/list_activity_news_type_tab_bar_margin_end"
+				android:layout_marginStart="@dimen/list_activity_news_type_tab_bar_margin_start"
+				android:background="@color/list_activity_news_type_tab_bar_background_color"
+				app:layout_constraintHorizontal_weight="0.93"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:layout_editor_absoluteX="13dp"
+				tools:layout_editor_absoluteY="0dp">
+			
+				<android.support.design.widget.TabItem
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/list_activity_news_type_tab_bar_item_one_text"/>
+			
+				<android.support.design.widget.TabItem
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/list_activity_news_type_tab_bar_item_two_text"/>
+			
+				<android.support.design.widget.TabItem
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/list_activity_news_type_tab_bar_item_three_text"/>
+			
+				<android.support.design.widget.TabItem
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/list_activity_news_type_tab_bar_item_four_text"/>
+			</android.support.design.widget.TabLayout>
+		
+			<ImageButton
+				android:id="@+id/more_type_button"
+				android:layout_width="@dimen/list_activity_more_type_button_width"
+				android:layout_height="@dimen/list_activity_more_type_button_height"
+				android:layout_marginEnd="@dimen/list_activity_more_type_button_margin_end"
+				android:layout_marginTop="@dimen/list_activity_more_type_button_margin_top"
+				android:background="@drawable/list_activity_more_type_button_ripple"
+				android:src="@drawable/path_2"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:layout_editor_absoluteX="345dp"
+				tools:layout_editor_absoluteY="3dp"/>
+		</android.support.constraint.ConstraintLayout>
+	
+		<android.support.constraint.ConstraintLayout
+			android:id="@+id/view_two_constraint_layout"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintHorizontal_weight="1"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/tabview_constraint_layout"
+			app:layout_constraintVertical_weight="0.94"
+			tools:layout_editor_absoluteX="0dp"
+			tools:layout_editor_absoluteY="40dp">
+		
+			<android.support.v7.widget.RecyclerView
+				android:id="@+id/recommand_recycler_view"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintHorizontal_weight="1"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/news_search_constraint_layout"
+				app:layout_constraintVertical_weight="0.93"
+				tools:layout_editor_absoluteX="0dp"
+				tools:layout_editor_absoluteY="45dp"
+				tools:listitem="@layout/news_two_view_holder"/>
+		
+			<android.support.constraint.ConstraintLayout
+				android:id="@+id/news_search_constraint_layout"
+				android:layout_width="0dp"
+				android:layout_height="@dimen/list_activity_news_search_constraint_layout_height"
+				android:background="@color/list_activity_news_search_constraint_layout_background_color"
+				app:layout_constraintHorizontal_weight="1"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:layout_editor_absoluteX="0dp"
+				tools:layout_editor_absoluteY="0dp">
+			
+				<android.support.v7.widget.SearchView
+					android:id="@+id/news_search_bar_search_view"
+					android:layout_width="0dp"
+					android:layout_height="@dimen/list_activity_news_search_bar_search_view_height"
+					android:background="@drawable/list_activity_news_search_bar_search_view_background"
+					app:layout_constraintHorizontal_weight="1"
+					app:layout_constraintLeft_toLeftOf="parent"
+					app:layout_constraintRight_toRightOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					app:queryHint="@string/list_activity_news_search_bar_search_view_hint"
+					tools:layout_editor_absoluteX="0dp"
+					tools:layout_editor_absoluteY="0dp"/>
+			</android.support.constraint.ConstraintLayout>
+		</android.support.constraint.ConstraintLayout>
+	</android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

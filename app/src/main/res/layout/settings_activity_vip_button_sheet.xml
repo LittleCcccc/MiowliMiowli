@@ -1,0 +1,14 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
+
+	<TextView
+		android:text="@string/settings_activity_vip_button_sheet_title"
+		style="@style/BottomSheetTitle"/>
+
+	<TextView
+		android:text="@string/settings_activity_vip_button_sheet_item_one_text"
+		style="@style/BottomSheetItem"/>
+</LinearLayout>
