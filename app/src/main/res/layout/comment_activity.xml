@@ -1,5 +1,4 @@
-<android.support.constraint.ConstraintLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/profile_photos_constraint_layout"
@@ -11,76 +10,67 @@
 		android:id="@+id/view_constraint_layout"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
-		android:layout_marginTop="@dimen/comment_activity_view_constraint_layout_margin_top"
 		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintHorizontal_weight="1"
-		app:layout_constraintLeft_toLeftOf="parent"
-		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintVertical_weight="0.91"
-		tools:layout_editor_absoluteX="0dp"
-		tools:layout_editor_absoluteY="60dp">
-	
+		app:layout_constraintVertical_weight="0.91">
+
 		<android.support.constraint.ConstraintLayout
 			android:id="@+id/tab_constraint_layout"
 			android:layout_width="0dp"
 			android:layout_height="@dimen/comment_activity_tab_constraint_layout_height"
 			android:background="@color/comment_activity_tab_constraint_layout_background_color"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.0"
 			app:layout_constraintHorizontal_weight="1"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			tools:layout_editor_absoluteX="0dp"
-			tools:layout_editor_absoluteY="0dp">
-		
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+
 			<android.support.design.widget.TabLayout
 				android:id="@+id/collection_tab_bar"
 				android:layout_width="0dp"
-				android:layout_height="@dimen/comment_activity_collection_tab_bar_height"
-				android:layout_marginEnd="@dimen/comment_activity_collection_tab_bar_margin_end"
-				android:layout_marginStart="@dimen/comment_activity_collection_tab_bar_margin_start"
+				android:layout_height="37dp"
+				android:layout_marginBottom="8dp"
 				android:background="@color/comment_activity_collection_tab_bar_background_color"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHorizontal_bias="0.0"
 				app:layout_constraintHorizontal_weight="0.94"
 				app:layout_constraintLeft_toLeftOf="parent"
 				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toTopOf="parent"
-				tools:layout_editor_absoluteX="13dp"
-				tools:layout_editor_absoluteY="0dp">
-			
+				app:layout_constraintVertical_bias="0.0"
+				app:tabIndicatorColor="@color/advertisement_two_view_holder_pinktext_text_view_text_color"
+				app:tabSelectedTextColor="@color/advertisement_three_view_holder_ad_title_text_view_text_color">
+
 				<android.support.design.widget.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="@string/comment_activity_collection_tab_bar_item_one_text"/>
-			
+					android:text="@string/comment_activity_collection_tab_bar_item_one_text" />
+
 				<android.support.design.widget.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="@string/comment_activity_collection_tab_bar_item_two_text"/>
-			
+					android:text="@string/comment_activity_collection_tab_bar_item_two_text" />
+
 				<android.support.design.widget.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="@string/comment_activity_collection_tab_bar_item_three_text"/>
-			
+					android:text="@string/comment_activity_collection_tab_bar_item_three_text" />
+
 				<android.support.design.widget.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:text="@string/comment_activity_collection_tab_bar_item_four_text"/>
+					android:text="@string/comment_activity_collection_tab_bar_item_four_text" />
 			</android.support.design.widget.TabLayout>
-		
-			<View
-				android:id="@+id/view_two_constraint_layout"
-				android:layout_width="@dimen/comment_activity_view_two_constraint_layout_width"
-				android:layout_height="@dimen/comment_activity_view_two_constraint_layout_height"
-				android:layout_marginBottom="@dimen/comment_activity_view_two_constraint_layout_margin_bottom"
-				android:layout_marginStart="@dimen/comment_activity_view_two_constraint_layout_margin_start"
-				android:background="@color/comment_activity_view_two_constraint_layout_background_color"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintLeft_toLeftOf="parent"
-				tools:layout_editor_absoluteX="87dp"
-				tools:layout_editor_absoluteY="472dp"/>
+
 		</android.support.constraint.ConstraintLayout>
-	
+
 		<android.support.v7.widget.RecyclerView
 			android:id="@+id/recommand_recycler_view"
 			android:layout_width="0dp"
@@ -89,19 +79,9 @@
 			app:layout_constraintHorizontal_weight="1"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/tab_constraint_layout"
+			app:layout_constraintTop_toBottomOf="@id/tab_constraint_layout"
 			app:layout_constraintVertical_weight="0.93"
-			tools:layout_editor_absoluteX="0dp"
-			tools:layout_editor_absoluteY="40dp"
-			tools:listitem="@layout/news_view_holder"/>
+			tools:listitem="@layout/news_view_holder" />
 	</android.support.constraint.ConstraintLayout>
 
-	<android.support.v7.widget.Toolbar
-		android:id="@+id/toolbar"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:background="@color/comment_activity_toolbar_background_color"
-		app:layout_constraintLeft_toLeftOf="parent"
-		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toTopOf="parent"/>
 </android.support.constraint.ConstraintLayout>

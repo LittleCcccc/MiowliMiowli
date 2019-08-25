@@ -7,7 +7,7 @@
 	<color name="color_primary">#000000</color>
 	<color name="color_primary_dark">#000000</color>
 	<color name="color_accent">#000000</color>
-	<color name="click_overlay">#555555</color>
+	<color name="click_overlay">#EFEFEF</color>
 	<color name="default_hint">#C6C6CB</color>
 	<color name="material_bottom_sheet_title">#8a000000</color>
 	<color name="material_bottom_sheet_item">#de000000</color>
