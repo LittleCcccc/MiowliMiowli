@@ -184,19 +184,17 @@
 						tools:layout_editor_absoluteY="23dp"/>
 				</android.support.constraint.ConstraintLayout>
 			</android.support.constraint.ConstraintLayout>
-		
+
 			<android.support.constraint.ConstraintLayout
 				android:id="@+id/information_constraint_layout"
 				android:layout_width="0dp"
-				android:layout_height="@dimen/settings_activity_information_constraint_layout_height"
-				android:layout_marginBottom="@dimen/settings_activity_information_constraint_layout_margin_bottom"
-				app:layout_constraintBottom_toBottomOf="parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/settings_activity_details_constraint_layout_margin_top"
 				app:layout_constraintHorizontal_weight="1"
 				app:layout_constraintLeft_toLeftOf="parent"
 				app:layout_constraintRight_toRightOf="parent"
-				tools:layout_editor_absoluteX="0dp"
-				tools:layout_editor_absoluteY="333dp">
-			
+				app:layout_constraintTop_toBottomOf="@+id/information_text_view">
+
 				<android.support.constraint.ConstraintLayout
 					android:id="@+id/clear_cache_constraint_layout"
 					android:layout_width="0dp"
@@ -208,7 +206,7 @@
 					app:layout_constraintTop_toTopOf="parent"
 					tools:layout_editor_absoluteX="0dp"
 					tools:layout_editor_absoluteY="0dp">
-				
+
 					<Button
 						android:id="@+id/clearcache_button"
 						android:layout_width="@dimen/settings_activity_clearcache_button_width"
@@ -223,8 +221,8 @@
 						app:layout_constraintLeft_toLeftOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="20dp"
-						tools:layout_editor_absoluteY="20dp"/>
-				
+						tools:layout_editor_absoluteY="20dp" />
+
 					<Button
 						android:id="@+id/cache_button"
 						android:layout_width="@dimen/settings_activity_cache_button_width"
@@ -239,9 +237,9 @@
 						app:layout_constraintRight_toRightOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="309dp"
-						tools:layout_editor_absoluteY="20dp"/>
+						tools:layout_editor_absoluteY="20dp" />
 				</android.support.constraint.ConstraintLayout>
-			
+
 				<android.support.constraint.ConstraintLayout
 					android:id="@+id/no_picture_constraint_layout"
 					android:layout_width="0dp"
@@ -250,10 +248,8 @@
 					app:layout_constraintHorizontal_weight="1"
 					app:layout_constraintLeft_toLeftOf="parent"
 					app:layout_constraintRight_toRightOf="parent"
-					app:layout_constraintTop_toBottomOf="@+id/clear_cache_constraint_layout"
-					tools:layout_editor_absoluteX="0dp"
-					tools:layout_editor_absoluteY="60dp">
-				
+					app:layout_constraintTop_toBottomOf="@+id/clear_cache_constraint_layout">
+
 					<TextView
 						android:id="@+id/nopicture_text_view"
 						android:layout_width="wrap_content"
@@ -267,8 +263,8 @@
 						app:layout_constraintLeft_toLeftOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="20dp"
-						tools:layout_editor_absoluteY="20dp"/>
-				
+						tools:layout_editor_absoluteY="20dp" />
+
 					<Switch
 						android:id="@+id/nopicture_switch"
 						android:layout_width="wrap_content"
@@ -281,21 +277,19 @@
 						app:layout_constraintRight_toRightOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="304dp"
-						tools:layout_editor_absoluteY="14dp"/>
+						tools:layout_editor_absoluteY="14dp" />
 				</android.support.constraint.ConstraintLayout>
-			
+
 				<android.support.constraint.ConstraintLayout
 					android:id="@+id/dark_mode_constraint_layout"
 					android:layout_width="0dp"
 					android:layout_height="@dimen/settings_activity_dark_mode_constraint_layout_height"
 					android:background="@color/settings_activity_dark_mode_constraint_layout_background_color"
-					app:layout_constraintBottom_toTopOf="@+id/vip_constraint_layout"
 					app:layout_constraintHorizontal_weight="1"
 					app:layout_constraintLeft_toLeftOf="parent"
 					app:layout_constraintRight_toRightOf="parent"
-					tools:layout_editor_absoluteX="0dp"
-					tools:layout_editor_absoluteY="120dp">
-				
+					app:layout_constraintTop_toBottomOf="@id/no_picture_constraint_layout">
+
 					<TextView
 						android:id="@+id/darkmode_text_view"
 						android:layout_width="wrap_content"
@@ -309,8 +303,8 @@
 						app:layout_constraintLeft_toLeftOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="20dp"
-						tools:layout_editor_absoluteY="20dp"/>
-				
+						tools:layout_editor_absoluteY="20dp" />
+
 					<Switch
 						android:id="@+id/darkmode_switch"
 						android:layout_width="wrap_content"
@@ -323,21 +317,20 @@
 						app:layout_constraintRight_toRightOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="304dp"
-						tools:layout_editor_absoluteY="14dp"/>
+						tools:layout_editor_absoluteY="14dp" />
 				</android.support.constraint.ConstraintLayout>
-			
+
 				<android.support.constraint.ConstraintLayout
 					android:id="@+id/vip_constraint_layout"
 					android:layout_width="0dp"
 					android:layout_height="@dimen/settings_activity_vip_constraint_layout_height"
 					android:background="@color/settings_activity_vip_constraint_layout_background_color"
-					app:layout_constraintBottom_toTopOf="@+id/log_out_constraint_layout"
 					app:layout_constraintHorizontal_weight="1"
 					app:layout_constraintLeft_toLeftOf="parent"
 					app:layout_constraintRight_toRightOf="parent"
-					tools:layout_editor_absoluteX="0dp"
-					tools:layout_editor_absoluteY="180dp">
-				
+					app:layout_constraintTop_toBottomOf="@id/dark_mode_constraint_layout"
+					tools:layout_constraintTop_toBottomOf="@id/dark_mode_constraint_layout">
+
 					<TextView
 						android:id="@+id/label_text_view"
 						android:layout_width="wrap_content"
@@ -352,8 +345,8 @@
 						app:layout_constraintLeft_toLeftOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="20dp"
-						tools:layout_editor_absoluteY="20dp"/>
-				
+						tools:layout_editor_absoluteY="20dp" />
+
 					<Button
 						android:id="@+id/vip_button"
 						android:layout_width="@dimen/settings_activity_vip_button_width"
@@ -368,9 +361,9 @@
 						app:layout_constraintRight_toRightOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="322dp"
-						tools:layout_editor_absoluteY="20dp"/>
+						tools:layout_editor_absoluteY="20dp" />
 				</android.support.constraint.ConstraintLayout>
-			
+
 				<android.support.constraint.ConstraintLayout
 					android:id="@+id/log_out_constraint_layout"
 					android:layout_width="0dp"
@@ -380,9 +373,8 @@
 					app:layout_constraintHorizontal_weight="1"
 					app:layout_constraintLeft_toLeftOf="parent"
 					app:layout_constraintRight_toRightOf="parent"
-					tools:layout_editor_absoluteX="0dp"
-					tools:layout_editor_absoluteY="240dp">
-				
+					app:layout_constraintTop_toBottomOf="@id/vip_constraint_layout">
+
 					<TextView
 						android:id="@+id/logged_as_text_view"
 						android:layout_width="wrap_content"
@@ -397,8 +389,8 @@
 						app:layout_constraintLeft_toLeftOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="20dp"
-						tools:layout_editor_absoluteY="20dp"/>
-				
+						tools:layout_editor_absoluteY="20dp" />
+
 					<TextView
 						android:id="@+id/loggedname_text_view"
 						android:layout_width="wrap_content"
@@ -412,8 +404,8 @@
 						app:layout_constraintLeft_toRightOf="@+id/logged_as_text_view"
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="99dp"
-						tools:layout_editor_absoluteY="20dp"/>
-				
+						tools:layout_editor_absoluteY="20dp" />
+
 					<Button
 						android:id="@+id/logout_button"
 						android:layout_width="@dimen/settings_activity_logout_button_width"
@@ -428,7 +420,7 @@
 						app:layout_constraintRight_toRightOf="parent"
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="300dp"
-						tools:layout_editor_absoluteY="20dp"/>
+						tools:layout_editor_absoluteY="20dp" />
 				</android.support.constraint.ConstraintLayout>
 			</android.support.constraint.ConstraintLayout>
 		

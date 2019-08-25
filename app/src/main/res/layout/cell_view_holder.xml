@@ -67,19 +67,23 @@
             app:layout_constraintTop_toBottomOf="@+id/news_photo_image_view"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="271dp"/>
-    
+
         <Button
             android:id="@+id/news_parent_button"
-            android:layout_width="@dimen/cell_view_holder_news_parent_button_width"
-            android:layout_height="@dimen/cell_view_holder_news_parent_button_height"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
             android:background="?attr/selectableItemBackground"
             android:gravity="start"
             android:text="@string/cell_view_holder_news_parent_button_text"
             android:textColor="@color/cell_view_holder_news_parent_button_text_color"
             android:textSize="@dimen/cell_view_holder_news_parent_button_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
