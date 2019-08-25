@@ -7,7 +7,7 @@
 	<color name="color_primary">#000000</color>
 	<color name="color_primary_dark">#000000</color>
 	<color name="color_accent">#000000</color>
-	<color name="click_overlay">#EFEFEF</color>
+	<color name="click_overlay">#F0F0F0</color>
 	<color name="default_hint">#C6C6CB</color>
 	<color name="material_bottom_sheet_title">#8a000000</color>
 	<color name="material_bottom_sheet_item">#de000000</color>
@@ -138,7 +138,7 @@
 	<color name="settings_activity_loggedname_text_view_text_color">#040C16</color>
 	<color name="settings_activity_logout_button_text_color">#D9676E</color>
 	<color name="settings_activity_information_text_view_text_color">#000000</color>
-	<color name="settings_activity_toolbar_background_color">#FFFFFF</color>
+	<color name="settings_activity_toolbar_background_color">#E19090</color>
 	<color name="settings_activity_toolbar_text_color">#FF6D6B</color>
 	
 	<!-- ListActivity -->
@@ -183,5 +183,5 @@
 	<!-- TwoActivity -->
 	<color name="two_activity_bottom_navigation_bar_background_color">#F8F8F8</color>
 	<color name="two_activity_bottom_navigation_bar_tint">#FF6D6B</color>
-	<color name="two_activity_bottom_navigation_bar_text_color">#6E6E6E</color>
+	<color name="two_activity_bottom_navigation_bar_text_color">#FF6D6B</color>
 </resources>

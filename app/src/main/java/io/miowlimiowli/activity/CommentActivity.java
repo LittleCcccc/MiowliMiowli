@@ -7,7 +7,6 @@ package io.miowlimiowli.activity;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import io.miowlimiowli.adapter.CommentActivityRecommandRecyclerViewAdapter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +14,8 @@ import android.view.View;
 import android.view.Menu;
 import android.support.v7.widget.RecyclerView;
 import io.miowlimiowli.R;
+import io.miowlimiowli.adapter.RecommandActivityRecommandRecyclerViewAdapter;
+
 import android.support.design.widget.TabLayout;
 import android.view.MenuItem;
 import android.os.Bundle;
@@ -55,10 +56,7 @@ public class CommentActivity extends AppCompatActivity {
 	}
 	
 	private void init() {
-	
-		// Configure Navigation Bar #2 component
-		toolbar = this.findViewById(R.id.toolbar);
-		
+
 		// Configure TabView component
 		tabConstraintLayout = this.findViewById(R.id.tab_constraint_layout);
 		
@@ -71,17 +69,8 @@ public class CommentActivity extends AppCompatActivity {
 		// Configure Recommand component
 		recommandRecyclerView = this.findViewById(R.id.recommand_recycler_view);
 		recommandRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-		recommandRecyclerView.setAdapter(new CommentActivityRecommandRecyclerViewAdapter());
-		
-		this.setupToolbar();
-	}
-	
-	public void setupToolbar() {
-	
-		setSupportActionBar(toolbar);
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		
-		// Additional Toolbar setup code can go here.
+		recommandRecyclerView.setAdapter(new RecommandActivityRecommandRecyclerViewAdapter());
+
 	}
 	
 	public void onOnlineValueChanged() {

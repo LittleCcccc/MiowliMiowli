@@ -5,7 +5,7 @@
 package io.miowlimiowli.fragment;
 
 import io.miowlimiowli.R;
-import android.support.v7.app.AppCompatActivity;
+
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.widget.TextView;
@@ -13,9 +13,7 @@ import io.miowlimiowli.activity.*;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.support.v4.app.Fragment;
-import java.util.*;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.view.View;
 
 
@@ -34,7 +32,7 @@ public class ProfileActivity extends Fragment {
 	private TextView myTitleTextView;
 	private TextView myIntroductionTextView;
 	private TextView collectSumTextView;
-	private Button clooectionButton;
+	private Button collectionButton;
 	private TextView commentSumTextView;
 	private Button commentButton;
 	private TextView brouseSumTextView;
@@ -99,8 +97,8 @@ public class ProfileActivity extends Fragment {
 		collectSumTextView = this.getView().findViewById(R.id.collect_sum_text_view);
 		
 		// Configure Collection component
-		clooectionButton = this.getView().findViewById(R.id.clooection_button);
-		clooectionButton.setOnClickListener((view) -> {
+		collectionButton = this.getView().findViewById(R.id.clooection_button);
+		collectionButton.setOnClickListener((view) -> {
 	this.onColletctionPressed();
 });
 		

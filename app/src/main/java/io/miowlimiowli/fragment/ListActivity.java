@@ -3,15 +3,19 @@
  */
 
 package io.miowlimiowli.fragment;
-
+import android.app.DialogFragment;
 import io.miowlimiowli.R;
+import io.miowlimiowli.dialog.ListActivityMoreTypeButtonSheet;
+import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
-import io.miowlimiowli.adapter.ListActivityRecommandRecyclerViewAdapter;
 import android.support.v7.widget.RecyclerView;
 import io.miowlimiowli.activity.*;
+import io.miowlimiowli.adapter.RecommandActivityRecommandRecyclerViewAdapter;
+
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -22,6 +26,10 @@ import android.support.v7.widget.SearchView;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
+
+
+
+
 
 
 public class ListActivity extends Fragment {
@@ -58,6 +66,8 @@ public class ListActivity extends Fragment {
 	}
 	
 	public void onMoreTypeButtonPressed() {
+
+		//new ListActivityMoreTypeButtonSheet().show(this.getSupportFragmentManager(),"ListActivityMoreTypeButtonSheet");
 	
 	}
 
@@ -83,7 +93,7 @@ public class ListActivity extends Fragment {
 		// Configure Recommand component
 		recommandRecyclerView = this.getView().findViewById(R.id.recommand_recycler_view);
 		recommandRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
-		recommandRecyclerView.setAdapter(new ListActivityRecommandRecyclerViewAdapter());
+		recommandRecyclerView.setAdapter(new RecommandActivityRecommandRecyclerViewAdapter());
 		DividerItemDecoration recommandRecyclerViewDecoration = new DividerItemDecoration(this.getContext(), LinearLayoutManager.VERTICAL);
 		recommandRecyclerViewDecoration.setDrawable(ContextCompat.getDrawable(this.getContext(), R.drawable.list_activity_recommand_recycler_view_separator));
 		recommandRecyclerView.addItemDecoration(recommandRecyclerViewDecoration);

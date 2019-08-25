@@ -46,7 +46,8 @@
 				app:layout_constraintTop_toTopOf="parent"
 				app:layout_constraintVertical_bias="0.0"
 				app:tabIndicatorColor="@color/advertisement_two_view_holder_pinktext_text_view_text_color"
-				app:tabSelectedTextColor="@color/advertisement_three_view_holder_ad_title_text_view_text_color">
+				app:tabSelectedTextColor="@color/advertisement_three_view_holder_ad_title_text_view_text_color"
+				app:tabTextColor="@color/common_google_signin_btn_text_light_default">
 
 				<android.support.design.widget.TabItem
 					android:layout_width="wrap_content"

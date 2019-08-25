@@ -4,6 +4,7 @@
 
 package io.miowlimiowli.activity;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.widget.Switch;
@@ -23,7 +24,7 @@ import android.widget.ScrollView;
 import android.view.MenuInflater;
 
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity{
 	
 	public static Intent newIntent(Context context) {
 	
@@ -178,6 +179,7 @@ public class SettingsActivity extends AppCompatActivity {
 	
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		
 		// Additional Toolbar setup code can go here.
 	}
@@ -222,6 +224,7 @@ public class SettingsActivity extends AppCompatActivity {
 	
 		new SettingsActivityVipButtonSheet().show(this.getSupportFragmentManager(), "SettingsActivityVipButtonSheet");
 	}
+
 	
 	public void onLogoutPressed() {
 	
