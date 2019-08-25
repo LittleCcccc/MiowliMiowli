@@ -60,6 +60,11 @@ public class ListActivity extends Fragment {
 	public void onMoreTypeButtonPressed() {
 	
 	}
+
+	private void startNewsdetailActivity() {
+
+		this.getActivity().startActivity(NewsdetailActivity.newIntent(this.getContext()));
+	}
 	
 	public void init() {
 	

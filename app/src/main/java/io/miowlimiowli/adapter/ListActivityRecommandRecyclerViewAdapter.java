@@ -4,6 +4,7 @@
 
 package io.miowlimiowli.adapter;
 
+import android.content.Intent;
 import android.view.View;
 import java.util.*;
 import android.support.v7.widget.RecyclerView;
@@ -78,18 +79,10 @@ public class ListActivityRecommandRecyclerViewAdapter extends RecyclerView.Adapt
 			
 			// Configure Time component
 			newsTimeTextView = this.itemView.findViewById(R.id.news_time_text_view);
-			
-			// Configure news Parent component
-			newsParentButton = this.itemView.findViewById(R.id.news_parent_button);
-			newsParentButton.setOnClickListener((view) -> {
-	this.onNewsParentButtonPressed();
-});
+
 		}
-		
-		public void onNewsParentButtonPressed() {
-		
-		//	this.startNewsdetailActivity();
-		}
+
+
 	}
 	
 	

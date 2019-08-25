@@ -75,17 +75,10 @@ public class RecommandActivityRecommandRecyclerViewAdapter extends RecyclerView.
 			// Configure Time component
 			newsTimeTextView = this.itemView.findViewById(R.id.news_time_text_view);
 			
-			// Configure Button component
-			newsParentButton = this.itemView.findViewById(R.id.news_parent_button);
-			newsParentButton.setOnClickListener((view) -> {
-	this.onNewsButtonPressed();
-});
+
 		}
 		
-		public void onNewsButtonPressed() {
-		
-		//	this.startNewsdetailActivity();
-		}
+
 	}
 	
 	
