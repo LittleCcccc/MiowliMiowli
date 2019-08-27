@@ -3,32 +3,25 @@
  */
 
 package io.miowlimiowli.fragment;
-import android.app.DialogFragment;
 import io.miowlimiowli.R;
-import io.miowlimiowli.dialog.ListActivityMoreTypeButtonSheet;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
-import android.support.v7.widget.RecyclerView;
-import io.miowlimiowli.activity.*;
+import androidx.recyclerview.widget.RecyclerView;
+
 import io.miowlimiowli.adapter.RecommandActivityRecommandRecyclerViewAdapter;
 import io.miowlimiowli.dialog.ListActivityTypeButtonSheet;
 
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
 import android.widget.ImageButton;
-import android.support.v4.content.ContextCompat;
-import java.util.*;
-import android.support.v7.widget.SearchView;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.SearchView;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.view.View;
 
 

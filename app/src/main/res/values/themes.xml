@@ -20,12 +20,10 @@
 	</style>
 	
 	<!-- RecommandActivity -->
-	<style name="RecommandActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
-	
-	<!-- ProfileActivity -->
-	<style name="ProfileActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
-	
-	<!-- CommentActivity -->
+
+    <!-- ProfileActivity -->
+
+    <!-- CommentActivity -->
 	<style name="CommentActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
 	
 	<!-- SettingsActivity -->
@@ -38,9 +36,8 @@
 	</style>
 	
 	<!-- ListActivity -->
-	<style name="ListActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
-	
-	<!-- NewsdetailActivity -->
+
+    <!-- NewsdetailActivity -->
 	<style name="NewsdetailActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
 	
 	<!-- TwoActivity -->

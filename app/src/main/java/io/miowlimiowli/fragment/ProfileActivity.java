@@ -12,7 +12,7 @@ import android.widget.TextView;
 import io.miowlimiowli.activity.*;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.View;
 

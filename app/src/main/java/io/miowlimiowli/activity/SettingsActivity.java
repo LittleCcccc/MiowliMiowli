@@ -4,24 +4,20 @@
 
 package io.miowlimiowli.activity;
 
-import android.app.DialogFragment;
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.widget.Switch;
 import android.widget.Button;
 import android.content.Intent;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.Menu;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import io.miowlimiowli.R;
 import android.widget.TextView;
 import android.widget.ImageButton;
 import android.os.Bundle;
 import android.view.MenuItem;
 import io.miowlimiowli.dialog.SettingsActivityVipButtonSheet;
-import android.widget.ScrollView;
-import android.view.MenuInflater;
 
 
 public class SettingsActivity extends AppCompatActivity implements SettingsActivityVipButtonSheet.BottomSheetListener {

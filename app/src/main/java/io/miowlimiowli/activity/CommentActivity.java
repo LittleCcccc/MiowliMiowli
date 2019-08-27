@@ -5,21 +5,18 @@
 package io.miowlimiowli.activity;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 import io.miowlimiowli.R;
 import io.miowlimiowli.adapter.RecommandActivityRecommandRecyclerViewAdapter;
 
-import android.support.design.widget.TabLayout;
+import com.google.android.material.tabs.TabLayout;
 import android.view.MenuItem;
 import android.os.Bundle;
-import android.view.MenuInflater;
 
 
 public class CommentActivity extends AppCompatActivity {

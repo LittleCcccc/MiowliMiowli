@@ -8,18 +8,16 @@ import android.content.Intent;
 import android.view.MenuItem;
 import io.miowlimiowli.R;
 import android.widget.TextView;
-import android.view.View;
-import android.view.MenuInflater;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.ScrollView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.SearchView;
 import android.content.Context;
-import android.view.Menu;
 
 
 public class NewsdetailActivity extends AppCompatActivity {

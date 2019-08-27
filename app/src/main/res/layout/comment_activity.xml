@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/profile_photos_constraint_layout"
@@ -6,7 +6,7 @@
 	android:layout_height="match_parent"
 	android:background="@color/comment_activity_profile_photos_constraint_layout_background_color">
 
-	<android.support.constraint.ConstraintLayout
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/view_constraint_layout"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
@@ -17,7 +17,7 @@
 		app:layout_constraintTop_toTopOf="parent"
 		app:layout_constraintVertical_weight="0.91">
 
-		<android.support.constraint.ConstraintLayout
+		<androidx.constraintlayout.widget.ConstraintLayout
 			android:id="@+id/tab_constraint_layout"
 			android:layout_width="0dp"
 			android:layout_height="@dimen/comment_activity_tab_constraint_layout_height"
@@ -30,7 +30,7 @@
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent">
 
-			<android.support.design.widget.TabLayout
+			<com.google.android.material.tabs.TabLayout
 				android:id="@+id/collection_tab_bar"
 				android:layout_width="0dp"
 				android:layout_height="37dp"
@@ -49,30 +49,30 @@
 				app:tabSelectedTextColor="@color/advertisement_three_view_holder_ad_title_text_view_text_color"
 				app:tabTextColor="@color/common_google_signin_btn_text_light_default">
 
-				<android.support.design.widget.TabItem
+				<com.google.android.material.tabs.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/comment_activity_collection_tab_bar_item_one_text" />
 
-				<android.support.design.widget.TabItem
+				<com.google.android.material.tabs.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/comment_activity_collection_tab_bar_item_two_text" />
 
-				<android.support.design.widget.TabItem
+				<com.google.android.material.tabs.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/comment_activity_collection_tab_bar_item_three_text" />
 
-				<android.support.design.widget.TabItem
+				<com.google.android.material.tabs.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/comment_activity_collection_tab_bar_item_four_text" />
-			</android.support.design.widget.TabLayout>
+			</com.google.android.material.tabs.TabLayout>
 
-		</android.support.constraint.ConstraintLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
 
-		<android.support.v7.widget.RecyclerView
+		<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/recommand_recycler_view"
 			android:layout_width="0dp"
 			android:layout_height="0dp"
@@ -83,6 +83,6 @@
 			app:layout_constraintTop_toBottomOf="@id/tab_constraint_layout"
 			app:layout_constraintVertical_weight="0.93"
 			tools:listitem="@layout/news_view_holder" />
-	</android.support.constraint.ConstraintLayout>
+	</androidx.constraintlayout.widget.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,13 +6,13 @@ package io.miowlimiowli.activity;
 
 import java.util.Arrays;
 import io.miowlimiowli.R;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
 import io.miowlimiowli.fragment.ListActivity;
-import android.support.design.widget.BottomNavigationView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import io.miowlimiowli.fragment.ProfileActivity;
 import android.view.MenuItem;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import io.miowlimiowli.adapter.TwoActivityPagerAdapter;
 import android.content.Context;
 import java.util.List;

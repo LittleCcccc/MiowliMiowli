@@ -4,21 +4,18 @@
 
 package io.miowlimiowli.activity;
 
-import io.supernova.uitoolkit.animation.ViewBackgroundProperties;
 import android.widget.TextView;
-import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
-import android.graphics.Color;
+import androidx.appcompat.app.AppCompatActivity;
+
 import io.miowlimiowli.R;
 import android.animation.*;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.content.Intent;
-import android.support.v4.view.animation.PathInterpolatorCompat;
+import androidx.core.view.animation.PathInterpolatorCompat;
 import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.support.constraint.ConstraintLayout;
 
 
 public class WelcomeActivity extends AppCompatActivity {
