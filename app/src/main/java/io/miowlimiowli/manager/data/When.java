@@ -1,4 +1,4 @@
-package io.miowlimiowli.manager;
+package io.miowlimiowli.manager.data;
 
 import java.util.Date;
 

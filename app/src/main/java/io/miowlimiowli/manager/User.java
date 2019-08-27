@@ -1,8 +1,17 @@
 package io.miowlimiowli.manager;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * 前端不应修改
+ */
 public class User {
-    private String username;
-    private String password;
+    public String username;
+    public String password;
+    public Set<String> read_news = new HashSet<>();
     public User(String username, String password){
         this.username = username;
         this.password = password;

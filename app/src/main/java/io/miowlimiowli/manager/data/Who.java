@@ -1,4 +1,4 @@
-package io.miowlimiowli.manager;
+package io.miowlimiowli.manager.data;
 
 public class Who {
     public Double score;

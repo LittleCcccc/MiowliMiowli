@@ -1,22 +1,20 @@
-package io.miowlimiowli.manager;
+package io.miowlimiowli.manager.data;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 后端使用，前端不应使用
+ */
 public class RawNews {
     public List<String> image_urls;
     public Date publishtime;
@@ -35,7 +33,17 @@ public class RawNews {
     public List<Where> wheres;
     public String catagory;
     public List<Who> whos;
-    public static List<RawNews> fetch_news_from_server(int size,int pagenum, final Date begin, final Date end, final String keyword, final String category) {
+
+    /**
+     * @param size
+     * @param pagenum
+     * @param begin 开始时间，null表示所有新闻
+     * @param end 结束时间，null表示最新新闻
+     * @param keyword
+     * @param category
+     * @return
+     */
+    public static List<RawNews> fetch_news_from_server(int size, int pagenum, final Date begin, final Date end, final String keyword, final String category) {
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -45,7 +53,7 @@ public class RawNews {
             }
             if (send != null)
                 send = format.format(end);
-            String url = "https://api2.newsminer.net/svc/news/queryNewsList?" +String.format("size=%d&startDate=%s&endDate=%s&words=%s&categories=%s&page=%d",
+            String url = "https://api2.newsminer.net/svc/news/queryNewsList?" + String.format("size=%d&startDate=%s&endDate=%s&words=%s&categories=%s&page=%d",
                     size,
                     sbegin,
                     send,
@@ -54,6 +62,7 @@ public class RawNews {
                     pagenum);
 
             URL cs = new URL(url);
+            System.out.println("fetching news from url:");
             System.out.println(cs.toString());
             URLConnection urlConn = cs.openConnection();
             urlConn.setConnectTimeout(10 * 1000);
@@ -61,7 +70,7 @@ public class RawNews {
             String inputLine, body = "";
             while ((inputLine = in.readLine()) != null)
                 body = body + inputLine;
-
+            System.out.println("length of data:" + body.length());
             String source;
             JSONObject all = new JSONObject(body);
             JSONArray jnewses = all.getJSONArray("data");
@@ -129,9 +138,9 @@ public class RawNews {
                     location.count = locations.getJSONObject(j).getInt("count");
                     location.url = locations.getJSONObject(j).getString("linkedURL");
                     location.name = locations.getJSONObject(j).getString("mention");
-                    if(locations.getJSONObject(j).has("lat"))
+                    if (locations.getJSONObject(j).has("lat"))
                         location.lat = locations.getJSONObject(j).getDouble("lat");
-                    if(locations.getJSONObject(j).has("lng"))
+                    if (locations.getJSONObject(j).has("lng"))
                         location.lng = locations.getJSONObject(j).getDouble("lng");
                     news.locations.add(location);
                 }
@@ -139,7 +148,7 @@ public class RawNews {
                 news.wheres = new ArrayList<>();
                 for (int j = 0; j < wheres.length(); ++j) {
                     Where where = new Where();
-                    System.out.println(wheres.getJSONObject(j).toString());
+                    //System.out.println(wheres.getJSONObject(j).toString());
                     where.score = wheres.getJSONObject(j).getDouble("score");
                     where.name = wheres.getJSONObject(j).getString("word");
                     news.wheres.add(where);
@@ -156,7 +165,7 @@ public class RawNews {
                 newses.add(news);
             }
             return newses;
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("error raised when fetching news from server!");
             System.out.println(e);
             e.printStackTrace();

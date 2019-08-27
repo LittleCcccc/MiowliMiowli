@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import io.miowlimiowli.manager.data.RawNews;
 
 public class RawNewsTest {
 

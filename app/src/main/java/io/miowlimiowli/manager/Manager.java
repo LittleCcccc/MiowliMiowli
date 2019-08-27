@@ -1,52 +1,79 @@
 package io.miowlimiowli.manager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import io.miowlimiowli.exceptions.UsernameAlreadExistError;
 import io.miowlimiowli.exceptions.UsernameorPasswordError;
-
+import io.miowlimiowli.manager.data.RawNews;
+import io.reactivex.Flowable;
+import io.reactivex.Single;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 /**
  * 使用 getManager 获取Manager单例
+ * 前端只可调用函数，不得直接访问成员
  */
 public class Manager {
 
     private static Manager manager = new Manager();
+
     private Manager() {
 
     }
-    public static Manager getInstance(){
+
+    public static Manager getInstance() {
         return manager;
     }
-    Map<String, User> users = new HashMap<>();
-    User user = null;
 
+    public Map<String, User> users = new HashMap<>();
+    public User user = null;
     /**
      * @param username 用户名
      * @param password 密码
      * @throws UsernameorPasswordError 登陆失败抛出异常
      */
     public void login(final String username, final String password) throws UsernameorPasswordError {
-        if(!users.containsKey(username))
+        if (!users.containsKey(username))
             throw new UsernameorPasswordError();
         User user = users.get(username);
-        if(user.getPassword() != password)
+        if (user.getPassword() != password)
             throw new UsernameorPasswordError();
         this.user = user;
     }
 
     /**
-     * 注册用户，注册完应登录！
+     * 注册用户，注册完不会自动登录！
+     *
      * @param username 用户名
      * @param password 密码
      * @throws UsernameAlreadExistError 注册失败（用户重名）抛出异常
      */
-    public void register(final String username, final String password) throws UsernameAlreadExistError{
-        if(users.containsKey(username))
+    public void register(final String username, final String password) throws UsernameAlreadExistError {
+        if (users.containsKey(username))
             throw new UsernameAlreadExistError();
         users.put(username, new User(username, password));
     }
+
+    /**
+     * @param size 一次获取的新闻数量，推荐100个，平均每个新闻3kb
+     * @param page 获取第几页的新闻。
+     * @param category 新闻的类别，共10个
+     * @return 返回的新闻是从第((pageNo - 1) * pageSize + 1)个的pageSize个最新新闻。若不到pageSize个，说明没有更多可用新闻
+     */
+    public Single<List<DisplayableNews>> fetchNewsbyCategory(final int size, final int page,  final String category) {
+        return Flowable.fromCallable(()->{
+            try {
+                return RawNews.fetch_news_from_server(size, page, null, null, "", category);
+            }catch (Exception e){
+                return new ArrayList<RawNews>();
+            }
+        }).flatMapIterable(item -> item)
+                .map(rawNews -> new DisplayableNews(rawNews))
+                .toList().subscribeOn(Schedulers.io()).observeOn((AndroidSchedulers.mainThread()));
+    }
+
 
 }
