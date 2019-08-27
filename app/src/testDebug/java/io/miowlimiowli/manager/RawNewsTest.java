@@ -15,10 +15,10 @@ public class RawNewsTest {
 
     @Test
     public void fetch_news_from_server() throws ParseException, IOException, JSONException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date date_begin = simpleDateFormat.parse("2018-09-09 00:00:00");
-        Date date_end = simpleDateFormat.parse("2019-09-09 00:00:00");
-        List<RawNews> news = RawNews.fetch_news_from_server(100, 2, date_begin,date_end,"","");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date_begin = simpleDateFormat.parse("2018-09-09");
+        Date date_end = simpleDateFormat.parse("2019-09-09");
+        List<RawNews> news = RawNews.fetch_news_from_server(100, 1, date_begin,date_end,"","");
         System.out.println(news.size());
     }
 }
