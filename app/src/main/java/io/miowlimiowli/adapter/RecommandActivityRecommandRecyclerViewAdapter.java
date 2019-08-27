@@ -58,6 +58,7 @@ public class RecommandActivityRecommandRecyclerViewAdapter extends RecyclerView.
 		private ImageView newsPhotoImageView;
 		private TextView newsTitleTextView;
 		private TextView newsTimeTextView;
+		private Button newsParentButton;
 		public CellViewHolder(View itemView) {
 			super(itemView);
 			init();

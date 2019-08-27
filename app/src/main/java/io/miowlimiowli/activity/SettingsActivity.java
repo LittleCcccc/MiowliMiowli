@@ -24,14 +24,22 @@ import android.widget.ScrollView;
 import android.view.MenuInflater;
 
 
-public class SettingsActivity extends AppCompatActivity{
-	
+public class SettingsActivity extends AppCompatActivity implements SettingsActivityVipButtonSheet.BottomSheetListener {
+	@Override
+	public void onButtonClicked(String text) {
+		if(text.equals("Yes"))
+		{
+			vipButton.setText("已办理");
+			vip=true;
+		}
+	}
+
 	public static Intent newIntent(Context context) {
 	
 		// Fill the created intent with the data you want to be passed to this Activity when it's opened.
 		return new Intent(context, SettingsActivity.class);
 	}
-	
+
 	private Toolbar toolbar;
 	private Button avatarButton;
 	private TextView detailsTextView;
@@ -53,7 +61,8 @@ public class SettingsActivity extends AppCompatActivity{
 	private TextView loggednameTextView;
 	private Button logoutButton;
 	private TextView informationTextView;
-	
+
+	private boolean vip;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	
@@ -75,7 +84,8 @@ public class SettingsActivity extends AppCompatActivity{
 	}
 	
 	private void init() {
-	
+
+		vip = false;
 		// Configure Navigation Bar #2 component
 		toolbar = this.findViewById(R.id.toolbar);
 		
@@ -221,8 +231,11 @@ public class SettingsActivity extends AppCompatActivity{
 	}
 	
 	public void onVipButtonPressed() {
-	
-		new SettingsActivityVipButtonSheet().show(this.getSupportFragmentManager(), "SettingsActivityVipButtonSheet");
+		if (!vip) {
+			SettingsActivityVipButtonSheet settingsActivityVipButtonSheet = new SettingsActivityVipButtonSheet();
+			settingsActivityVipButtonSheet.show(this.getSupportFragmentManager(), "SettingsActivityVipButtonSheet");
+
+		}
 	}
 
 	

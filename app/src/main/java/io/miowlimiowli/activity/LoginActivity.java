@@ -105,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
 	}
 	
 	public void onLoginPressed() {
+	
 		this.startTwoActivity();
 	}
 	

@@ -49,7 +49,8 @@ public class WelcomeActivity extends AppCompatActivity {
 	
 		// Configure logo component
 		logoImageView = this.findViewById(R.id.logo_image_view);
-		
+		logoImageView.setOnClickListener((view) -> {
+			this.onLogoPressed();});
 		// Configure TitleChinese component
 		titlechineseTextView = this.findViewById(R.id.titlechinese_text_view);
 		
@@ -68,7 +69,11 @@ public class WelcomeActivity extends AppCompatActivity {
 	this.onLogInPressed();
 });
 	}
-	
+
+	private void onLogoPressed() {
+		startAnimationTwo();
+	}
+
 	public void onSignUpPressed() {
 	
 		this.startSignupActivity();
@@ -88,7 +93,28 @@ public class WelcomeActivity extends AppCompatActivity {
 	
 		this.startActivity(SignupActivity.newIntent(this));
 	}
-	
+
+	public void startAnimationTwo(){
+		ObjectAnimator animator10 = ObjectAnimator.ofPropertyValuesHolder(logoImageView, PropertyValuesHolder.ofKeyframe(View.SCALE_X, Keyframe.ofFloat(0f, 0.5f), Keyframe.ofFloat(0.2f, 1.1f), Keyframe.ofFloat(0.4f, 0.9f), Keyframe.ofFloat(0.6f, 1.03f), Keyframe.ofFloat(0.8f, 0.97f), Keyframe.ofFloat(1f, 1f)), PropertyValuesHolder.ofKeyframe(View.SCALE_Y, Keyframe.ofFloat(0f, 0.3f), Keyframe.ofFloat(0.2f, 1.1f), Keyframe.ofFloat(0.4f, 0.9f), Keyframe.ofFloat(0.6f, 1.03f), Keyframe.ofFloat(0.8f, 0.97f), Keyframe.ofFloat(1f, 1f)));
+		animator10.setDuration(1000);
+		animator10.setInterpolator(PathInterpolatorCompat.create(0.22f, 0.61f, 0.36f, 1f));
+
+		ObjectAnimator animator11 = ObjectAnimator.ofPropertyValuesHolder(logoImageView, PropertyValuesHolder.ofKeyframe(View.ALPHA, Keyframe.ofFloat(0f, 0f), Keyframe.ofFloat(0.6f, 1f), Keyframe.ofFloat(1f, 1f)));
+		animator11.setDuration(1000);
+		animator11.setInterpolator(PathInterpolatorCompat.create(0.22f, 0.61f, 0.36f, 1f));
+
+
+		ObjectAnimator animator3 = ObjectAnimator.ofPropertyValuesHolder(logoImageView, PropertyValuesHolder.ofKeyframe(View.ROTATION, Keyframe.ofFloat(0f, 0f), Keyframe.ofFloat(0.2f, -375f),Keyframe.ofFloat(0.25f, -400f),Keyframe.ofFloat(0.3f, -350f), Keyframe.ofFloat(0.4f, -335f), Keyframe.ofFloat(0.6f, -363f),Keyframe.ofFloat(0.8f, -360f)));
+		animator3.setDuration(1000);
+		animator3.setInterpolator(PathInterpolatorCompat.create(0.42f, 0f, 0.58f, 1f));
+
+		AnimatorSet animatorSet1 = new AnimatorSet();
+		animatorSet1.playTogether(animator10,animator11, animator3);
+		animatorSet1.setTarget(logoImageView);
+
+		animatorSet1.start();
+	}
+
 	public void startAnimationOne() {
 	
 		ObjectAnimator animator1 = ObjectAnimator.ofPropertyValuesHolder(logoImageView, PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, 300f, 0f));

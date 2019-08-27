@@ -6,6 +6,9 @@ package io.miowlimiowli.fragment;
 import android.app.DialogFragment;
 import io.miowlimiowli.R;
 import io.miowlimiowli.dialog.ListActivityMoreTypeButtonSheet;
+
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +18,7 @@ import android.view.LayoutInflater;
 import android.support.v7.widget.RecyclerView;
 import io.miowlimiowli.activity.*;
 import io.miowlimiowli.adapter.RecommandActivityRecommandRecyclerViewAdapter;
+import io.miowlimiowli.dialog.ListActivityTypeButtonSheet;
 
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.design.widget.TabLayout;
@@ -66,14 +70,7 @@ public class ListActivity extends Fragment {
 	}
 	
 	public void onMoreTypeButtonPressed() {
-
-		//new ListActivityMoreTypeButtonSheet().show(this.getSupportFragmentManager(),"ListActivityMoreTypeButtonSheet");
-	
-	}
-
-	private void startNewsdetailActivity() {
-
-		this.getActivity().startActivity(NewsdetailActivity.newIntent(this.getContext()));
+		new ListActivityTypeButtonSheet().show(getFragmentManager(),"ListActivityTypeButtonSheet");
 	}
 	
 	public void init() {

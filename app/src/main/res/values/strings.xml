@@ -89,7 +89,7 @@
 	<string name="settings_activity_vip_button_sheet_item_two_text">取消</string>
 	<string name="settings_activity_logged_as_text_view_text">Logged as</string>
 	<string name="settings_activity_loggedname_text_view_text">Dr. Where</string>
-	<string name="settings_activity_logout_button_text">Log out</string>
+	<string name="settings_activity_logout_button_text">退出</string>
 	<string name="settings_activity_information_text_view_text">INFORMATION</string>
 	
 	<!-- ListActivity -->
