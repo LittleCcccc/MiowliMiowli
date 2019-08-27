@@ -1,13 +1,11 @@
 package io.miowlimiowli.dialog;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialogFragment;
+
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
-import android.widget.TextView;
 
 import io.miowlimiowli.R;
 public class ListActivityTypeButtonSheet  extends BottomSheetDialogFragment {

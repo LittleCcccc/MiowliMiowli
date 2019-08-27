@@ -7,10 +7,9 @@ package io.miowlimiowli.activity;
 import io.miowlimiowli.R;
 import android.view.MenuItem;
 import android.os.Bundle;
-import io.supernova.uitoolkit.animation.ViewBackgroundProperties;
-import android.graphics.Color;
-import android.support.v7.widget.Toolbar;
-import android.support.constraint.ConstraintLayout;
+
+import androidx.appcompat.widget.Toolbar;
+
 import android.animation.*;
 import android.content.Intent;
 import android.widget.Switch;
@@ -18,13 +17,10 @@ import android.content.Context;
 import android.widget.EditText;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.view.MenuInflater;
-import android.view.Menu;
 import android.widget.Button;
-import android.util.TypedValue;
 import android.widget.TextView;
-import android.support.v4.view.animation.PathInterpolatorCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.view.animation.PathInterpolatorCompat;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class SignupActivity extends AppCompatActivity {

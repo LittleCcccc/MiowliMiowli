@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/news_view_holder_news_height">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/view_constraint_layout"
         android:layout_width="0dp"
         android:layout_height="@dimen/news_view_holder_view_constraint_layout_height"
@@ -63,5 +63,5 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="271dp"
             tools:text="@string/news_view_holder_time_text_view_text" />
-    </android.support.constraint.ConstraintLayout>
-</android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,21 +5,20 @@
 package io.miowlimiowli.fragment;
 
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import io.miowlimiowli.R;
 import android.view.View;
 import android.view.ViewGroup;
-import java.util.*;
-import android.support.v4.app.Fragment;
+
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import io.miowlimiowli.adapter.RecommandActivityRecommandRecyclerViewAdapter;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.SearchView;
-import android.support.v7.app.AppCompatActivity;
-import io.miowlimiowli.activity.*;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.DividerItemDecoration;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
 
 
 public class RecommandActivity extends Fragment {

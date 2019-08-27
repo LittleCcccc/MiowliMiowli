@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +7,7 @@
 	android:layout_height="match_parent"
 	android:background="@color/profile_activity_profile_constraint_layout_background_color">
 
-	<android.support.constraint.ConstraintLayout
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/view_constraint_layout"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
@@ -21,7 +21,7 @@
 		tools:layout_editor_absoluteX="0dp"
 		tools:layout_editor_absoluteY="0dp">
 	
-		<android.support.constraint.ConstraintLayout
+		<androidx.constraintlayout.widget.ConstraintLayout
 			android:id="@+id/header_constraint_layout"
 			android:layout_width="0dp"
 			android:layout_height="@dimen/profile_activity_header_constraint_layout_height"
@@ -91,9 +91,9 @@
 				app:layout_constraintRight_toRightOf="parent"
 				tools:layout_editor_absoluteX="38dp"
 				tools:layout_editor_absoluteY="271dp"/>
-		</android.support.constraint.ConstraintLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
 
-		<android.support.constraint.ConstraintLayout
+		<androidx.constraintlayout.widget.ConstraintLayout
 			android:id="@+id/info_bar_constraint_layout"
 			android:layout_width="0dp"
 			android:layout_height="@dimen/profile_activity_info_bar_constraint_layout_height"
@@ -103,7 +103,7 @@
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintTop_toBottomOf="@+id/header_constraint_layout">
 
-			<android.support.constraint.ConstraintLayout
+			<androidx.constraintlayout.widget.ConstraintLayout
 				android:id="@+id/collectionview_constraint_layout"
 				android:layout_width="wrap_content"
 				android:layout_height="@dimen/profile_activity_collectionview_constraint_layout_height"
@@ -142,9 +142,9 @@
 					app:layout_constraintLeft_toLeftOf="parent"
 					app:layout_constraintRight_toRightOf="parent"
 					app:layout_constraintStart_toStartOf="parent" />
-			</android.support.constraint.ConstraintLayout>
+			</androidx.constraintlayout.widget.ConstraintLayout>
 
-			<android.support.constraint.ConstraintLayout
+			<androidx.constraintlayout.widget.ConstraintLayout
 				android:id="@+id/commentview_constraint_layout"
 				android:layout_width="wrap_content"
 				android:layout_height="@dimen/profile_activity_commentview_constraint_layout_height"
@@ -180,9 +180,9 @@
 					app:layout_constraintHorizontal_weight="1.02"
 					app:layout_constraintLeft_toLeftOf="parent"
 					app:layout_constraintRight_toRightOf="parent" />
-			</android.support.constraint.ConstraintLayout>
+			</androidx.constraintlayout.widget.ConstraintLayout>
 
-			<android.support.constraint.ConstraintLayout
+			<androidx.constraintlayout.widget.ConstraintLayout
 				android:id="@+id/brouseview_constraint_layout"
 				android:layout_width="wrap_content"
 				android:layout_height="@dimen/profile_activity_brouseview_constraint_layout_height"
@@ -221,8 +221,8 @@
 					app:layout_constraintHorizontal_weight="1.3"
 					app:layout_constraintLeft_toLeftOf="parent"
 					app:layout_constraintRight_toRightOf="parent" />
-			</android.support.constraint.ConstraintLayout>
-		</android.support.constraint.ConstraintLayout>
+			</androidx.constraintlayout.widget.ConstraintLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
 
 		<ImageButton
 			android:id="@+id/settings_button"
@@ -236,5 +236,5 @@
 			app:layout_constraintTop_toTopOf="parent"
 			tools:layout_editor_absoluteX="323dp"
 			tools:layout_editor_absoluteY="12dp"/>
-	</android.support.constraint.ConstraintLayout>
-</android.support.constraint.ConstraintLayout>
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -21,7 +21,7 @@
 		tools:layout_editor_absoluteX="0dp"
 		tools:layout_editor_absoluteY="65dp">
 	
-		<android.support.constraint.ConstraintLayout
+		<androidx.constraintlayout.widget.ConstraintLayout
 			android:id="@+id/setting_scroll_view_content"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content">
@@ -56,7 +56,7 @@
 				tools:layout_editor_absoluteX="20dp"
 				tools:layout_editor_absoluteY="133dp"/>
 		
-			<android.support.constraint.ConstraintLayout
+			<androidx.constraintlayout.widget.ConstraintLayout
 				android:id="@+id/details_constraint_layout"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/settings_activity_details_constraint_layout_height"
@@ -68,7 +68,7 @@
 				tools:layout_editor_absoluteX="0dp"
 				tools:layout_editor_absoluteY="158dp">
 			
-				<android.support.constraint.ConstraintLayout
+				<androidx.constraintlayout.widget.ConstraintLayout
 					android:id="@+id/nickname_constraint_layout"
 					android:layout_width="0dp"
 					android:layout_height="@dimen/settings_activity_nickname_constraint_layout_height"
@@ -123,9 +123,9 @@
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="348dp"
 						tools:layout_editor_absoluteY="23dp"/>
-				</android.support.constraint.ConstraintLayout>
+				</androidx.constraintlayout.widget.ConstraintLayout>
 			
-				<android.support.constraint.ConstraintLayout
+				<androidx.constraintlayout.widget.ConstraintLayout
 					android:id="@+id/mail_constraint_layout"
 					android:layout_width="0dp"
 					android:layout_height="@dimen/settings_activity_mail_constraint_layout_height"
@@ -180,10 +180,10 @@
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="348dp"
 						tools:layout_editor_absoluteY="23dp"/>
-				</android.support.constraint.ConstraintLayout>
-			</android.support.constraint.ConstraintLayout>
+				</androidx.constraintlayout.widget.ConstraintLayout>
+			</androidx.constraintlayout.widget.ConstraintLayout>
 
-			<android.support.constraint.ConstraintLayout
+			<androidx.constraintlayout.widget.ConstraintLayout
 				android:id="@+id/information_constraint_layout"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
@@ -193,7 +193,7 @@
 				app:layout_constraintRight_toRightOf="parent"
 				app:layout_constraintTop_toBottomOf="@+id/information_text_view">
 
-				<android.support.constraint.ConstraintLayout
+				<androidx.constraintlayout.widget.ConstraintLayout
 					android:id="@+id/clear_cache_constraint_layout"
 					android:layout_width="0dp"
 					android:layout_height="@dimen/settings_activity_clear_cache_constraint_layout_height"
@@ -234,9 +234,9 @@
 						app:layout_constraintBottom_toBottomOf="parent"
 						app:layout_constraintRight_toRightOf="parent"
 						app:layout_constraintTop_toTopOf="parent" />
-				</android.support.constraint.ConstraintLayout>
+				</androidx.constraintlayout.widget.ConstraintLayout>
 
-				<android.support.constraint.ConstraintLayout
+				<androidx.constraintlayout.widget.ConstraintLayout
 					android:id="@+id/no_picture_constraint_layout"
 					android:layout_width="0dp"
 					android:layout_height="@dimen/settings_activity_no_picture_constraint_layout_height"
@@ -274,9 +274,9 @@
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="304dp"
 						tools:layout_editor_absoluteY="14dp" />
-				</android.support.constraint.ConstraintLayout>
+				</androidx.constraintlayout.widget.ConstraintLayout>
 
-				<android.support.constraint.ConstraintLayout
+				<androidx.constraintlayout.widget.ConstraintLayout
 					android:id="@+id/dark_mode_constraint_layout"
 					android:layout_width="0dp"
 					android:layout_height="@dimen/settings_activity_dark_mode_constraint_layout_height"
@@ -314,9 +314,9 @@
 						app:layout_constraintTop_toTopOf="parent"
 						tools:layout_editor_absoluteX="304dp"
 						tools:layout_editor_absoluteY="14dp" />
-				</android.support.constraint.ConstraintLayout>
+				</androidx.constraintlayout.widget.ConstraintLayout>
 
-				<android.support.constraint.ConstraintLayout
+				<androidx.constraintlayout.widget.ConstraintLayout
 					android:id="@+id/vip_constraint_layout"
 					android:layout_width="0dp"
 					android:layout_height="@dimen/settings_activity_vip_constraint_layout_height"
@@ -356,9 +356,9 @@
 						app:layout_constraintBottom_toBottomOf="parent"
 						app:layout_constraintRight_toRightOf="parent"
 						app:layout_constraintTop_toTopOf="parent" />
-				</android.support.constraint.ConstraintLayout>
+				</androidx.constraintlayout.widget.ConstraintLayout>
 
-				<android.support.constraint.ConstraintLayout
+				<androidx.constraintlayout.widget.ConstraintLayout
 					android:id="@+id/log_out_constraint_layout"
 					android:layout_width="0dp"
 					android:layout_height="@dimen/settings_activity_log_out_constraint_layout_height"
@@ -413,8 +413,8 @@
 						app:layout_constraintBottom_toBottomOf="parent"
 						app:layout_constraintRight_toRightOf="parent"
 						app:layout_constraintTop_toTopOf="parent" />
-				</android.support.constraint.ConstraintLayout>
-			</android.support.constraint.ConstraintLayout>
+				</androidx.constraintlayout.widget.ConstraintLayout>
+			</androidx.constraintlayout.widget.ConstraintLayout>
 		
 			<TextView
 				android:id="@+id/information_text_view"
@@ -432,10 +432,10 @@
 				app:layout_constraintTop_toBottomOf="@+id/details_constraint_layout"
 				tools:layout_editor_absoluteX="20dp"
 				tools:layout_editor_absoluteY="308dp"/>
-		</android.support.constraint.ConstraintLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
 	</ScrollView>
 
-	<android.support.v7.widget.Toolbar
+	<androidx.appcompat.widget.Toolbar
 		android:id="@+id/toolbar"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
@@ -445,4 +445,4 @@
 		app:layout_constraintTop_toTopOf="parent"
 		app:navigationIcon="@drawable/back_icon"
 		app:titleTextColor="@color/advertisement_three_view_holder_ad_title_text_view_text_color" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

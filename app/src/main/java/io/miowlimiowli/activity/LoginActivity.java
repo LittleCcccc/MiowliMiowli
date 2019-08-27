@@ -5,23 +5,18 @@
 package io.miowlimiowli.activity;
 
 import android.animation.*;
-import android.view.MenuInflater;
 import android.widget.EditText;
 import android.view.View;
-import android.view.Menu;
-import android.support.v7.widget.Toolbar;
+
+import androidx.appcompat.widget.Toolbar;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.os.Bundle;
-import android.graphics.Color;
 import android.view.MenuItem;
-import android.support.v4.view.animation.PathInterpolatorCompat;
+import androidx.core.view.animation.PathInterpolatorCompat;
 import android.content.Intent;
-import io.supernova.uitoolkit.animation.ViewBackgroundProperties;
-import android.support.constraint.ConstraintLayout;
-import android.util.TypedValue;
 import android.widget.Button;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import io.miowlimiowli.R;
 import android.content.Context;
 

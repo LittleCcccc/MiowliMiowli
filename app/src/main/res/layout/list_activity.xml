@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +7,7 @@
 	android:layout_height="match_parent"
 	android:background="@color/list_activity_messages_constraint_layout_background_color">
 
-	<android.support.constraint.ConstraintLayout
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/view_constraint_layout"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
@@ -20,7 +20,7 @@
 		tools:layout_editor_absoluteX="0dp"
 		tools:layout_editor_absoluteY="0dp">
 	
-		<android.support.constraint.ConstraintLayout
+		<androidx.constraintlayout.widget.ConstraintLayout
 			android:id="@+id/tabview_constraint_layout"
 			android:layout_width="0dp"
 			android:layout_height="@dimen/list_activity_tabview_constraint_layout_height"
@@ -33,7 +33,7 @@
 			tools:layout_editor_absoluteX="0dp"
 			tools:layout_editor_absoluteY="0dp">
 
-			<android.support.design.widget.TabLayout
+			<com.google.android.material.tabs.TabLayout
 				android:id="@+id/news_type_tab_bar"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/list_activity_news_type_tab_bar_height"
@@ -47,26 +47,26 @@
 				app:tabSelectedTextColor="@color/advertisement_two_view_holder_pinktext_text_view_text_color"
 				app:tabTextColor="#7E7E7E">
 
-				<android.support.design.widget.TabItem
+				<com.google.android.material.tabs.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/list_activity_news_type_tab_bar_item_one_text" />
 
-				<android.support.design.widget.TabItem
+				<com.google.android.material.tabs.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/list_activity_news_type_tab_bar_item_two_text" />
 
-				<android.support.design.widget.TabItem
+				<com.google.android.material.tabs.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/list_activity_news_type_tab_bar_item_three_text" />
 
-				<android.support.design.widget.TabItem
+				<com.google.android.material.tabs.TabItem
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:text="@string/list_activity_news_type_tab_bar_item_four_text" />
-			</android.support.design.widget.TabLayout>
+			</com.google.android.material.tabs.TabLayout>
 
 			<ImageButton
 				android:id="@+id/more_type_button"
@@ -80,9 +80,9 @@
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintTop_toTopOf="parent"
 				app:layout_constraintVertical_bias="0.5" />
-		</android.support.constraint.ConstraintLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
 	
-		<android.support.constraint.ConstraintLayout
+		<androidx.constraintlayout.widget.ConstraintLayout
 			android:id="@+id/view_two_constraint_layout"
 			android:layout_width="0dp"
 			android:layout_height="0dp"
@@ -95,7 +95,7 @@
 			tools:layout_editor_absoluteX="0dp"
 			tools:layout_editor_absoluteY="40dp">
 		
-			<android.support.v7.widget.RecyclerView
+			<androidx.recyclerview.widget.RecyclerView
 				android:id="@+id/recommand_recycler_view"
 				android:layout_width="0dp"
 				android:layout_height="0dp"
@@ -109,7 +109,7 @@
 				tools:layout_editor_absoluteY="45dp"
 				tools:listitem="@layout/news_view_holder"/>
 		
-			<android.support.constraint.ConstraintLayout
+			<androidx.constraintlayout.widget.ConstraintLayout
 				android:id="@+id/news_search_constraint_layout"
 				android:layout_width="0dp"
 				android:layout_height="@dimen/list_activity_news_search_constraint_layout_height"
@@ -121,7 +121,7 @@
 				tools:layout_editor_absoluteX="0dp"
 				tools:layout_editor_absoluteY="0dp">
 
-				<android.support.v7.widget.SearchView
+				<androidx.appcompat.widget.SearchView
 					android:id="@+id/news_search_bar_search_view"
 					android:layout_width="0dp"
 					android:layout_height="@dimen/list_activity_news_search_bar_search_view_height"
@@ -133,7 +133,7 @@
 					app:layout_constraintTop_toTopOf="parent"
 					app:queryHint="@string/list_activity_news_search_bar_search_view_hint"
 					app:searchIcon="@drawable/search_icon" />
-			</android.support.constraint.ConstraintLayout>
-		</android.support.constraint.ConstraintLayout>
-	</android.support.constraint.ConstraintLayout>
-</android.support.constraint.ConstraintLayout>
+			</androidx.constraintlayout.widget.ConstraintLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

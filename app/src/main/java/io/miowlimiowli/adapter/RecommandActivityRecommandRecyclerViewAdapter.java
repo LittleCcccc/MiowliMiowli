@@ -7,13 +7,13 @@ package io.miowlimiowli.adapter;
 import android.widget.TextView;
 import android.widget.Button;
 import java.util.*;
-import android.support.constraint.ConstraintLayout;
+
 import android.view.View;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import io.miowlimiowli.R;
 import android.view.ViewGroup;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class RecommandActivityRecommandRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

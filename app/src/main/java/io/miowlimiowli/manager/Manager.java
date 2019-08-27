@@ -29,6 +29,7 @@ public class Manager {
     }
 
     public Map<String, User> users = new HashMap<>();
+    public Map<String, RawNews> newses = new HashMap<>();
     public User user = null;
     /**
      * @param username 用户名
@@ -63,7 +64,7 @@ public class Manager {
      * @param category 新闻的类别，共10个
      * @return 返回的新闻是从第((pageNo - 1) * pageSize + 1)个的pageSize个最新新闻。若不到pageSize个，说明没有更多可用新闻
      */
-    public Single<List<DisplayableNews>> fetchNewsbyCategory(final int size, final int page,  final String category) {
+    public Single<List<DisplayableNews>> FetchDisplayableNewsbyCategory(final int size, final int page,  final String category) {
         return Flowable.fromCallable(()->{
             try {
                 return RawNews.fetch_news_from_server(size, page, null, null, "", category);
@@ -71,6 +72,10 @@ public class Manager {
                 return new ArrayList<RawNews>();
             }
         }).flatMapIterable(item -> item)
+                .map(item ->{
+                    newses.put(item.id, item);
+                    return item;
+                })
                 .map(rawNews -> new DisplayableNews(rawNews))
                 .toList().subscribeOn(Schedulers.io()).observeOn((AndroidSchedulers.mainThread()));
     }
