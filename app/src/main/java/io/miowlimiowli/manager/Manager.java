@@ -1,5 +1,9 @@
 package io.miowlimiowli.manager;
 
+import android.content.Context;
+
+import androidx.room.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +12,7 @@ import java.util.Map;
 import io.miowlimiowli.exceptions.UsernameAlreadExistError;
 import io.miowlimiowli.exceptions.UsernameorPasswordError;
 import io.miowlimiowli.manager.data.RawNews;
+import io.miowlimiowli.manager.sql.AppDatabase;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
@@ -80,5 +85,12 @@ public class Manager {
                 .toList().subscribeOn(Schedulers.io()).observeOn((AndroidSchedulers.mainThread()));
     }
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
+    Context context;
+
+    AppDatabase db = Room.databaseBuilder(context,
+            AppDatabase.class, "user").build();
 }

@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import io.miowlimiowli.R;
+import io.miowlimiowli.manager.Manager;
+
 import android.animation.*;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -34,12 +36,15 @@ public class WelcomeActivity extends AppCompatActivity {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	
+
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.welcome_activity);
 		this.init();
 		
 		this.startAnimationOne();
+
+		//灰灰的代码
+		Manager.getInstance().setContext(getApplicationContext());
 	}
 	
 	private void init() {
