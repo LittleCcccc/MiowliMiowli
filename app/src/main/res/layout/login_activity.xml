@@ -113,27 +113,25 @@
 
 	<LinearLayout
 		android:id="@+id/login_button"
+		style="@style/Widget.AppCompat.Button"
 		android:layout_width="0dp"
 		android:layout_height="@dimen/login_activity_login_button_height"
-		android:layout_marginBottom="@dimen/login_activity_login_button_margin_bottom"
-		android:layout_marginEnd="@dimen/login_activity_login_button_margin_end"
-		android:layout_marginStart="@dimen/login_activity_login_button_margin_start"
+		android:layout_marginLeft="16dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginBottom="32dp"
 		android:background="@drawable/login_activity_login_button_ripple"
 		android:gravity="center"
 		android:orientation="horizontal"
-		app:layout_constraintBottom_toTopOf="@+id/forgot_your_password_button"
+		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintHorizontal_weight="0.89"
 		app:layout_constraintLeft_toLeftOf="parent"
-		app:layout_constraintRight_toRightOf="parent"
-		tools:layout_editor_absoluteX="20dp"
-		tools:layout_editor_absoluteY="559dp"
-		style="@style/Widget.AppCompat.Button">
-	
+		app:layout_constraintRight_toRightOf="parent">
+
 		<ImageView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:src="@drawable/icon_log_in"/>
-	
+			android:src="@drawable/icon_log_in" />
+
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -141,24 +139,25 @@
 			android:gravity="center"
 			android:text="@string/login_activity_login_button_text"
 			android:textColor="@color/login_activity_login_button_text_color"
-			android:textSize="@dimen/login_activity_login_button_text_size"/>
+			android:textSize="@dimen/login_activity_login_button_text_size" />
 	</LinearLayout>
 
-	<Button
+	<TextView
 		android:id="@+id/forgot_your_password_button"
 		android:layout_width="@dimen/login_activity_forgot_your_password_button_width"
 		android:layout_height="@dimen/login_activity_forgot_your_password_button_height"
-		android:layout_marginBottom="@dimen/login_activity_forgot_your_password_button_margin_bottom"
+		android:layout_marginTop="16dp"
 		android:background="?attr/selectableItemBackground"
 		android:gravity="center"
 		android:text="@string/login_activity_forgot_your_password_button_text"
 		android:textColor="@color/login_activity_forgot_your_password_button_text_color"
 		android:textSize="@dimen/login_activity_forgot_your_password_button_text_size"
-		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.498"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toRightOf="parent"
-		tools:layout_editor_absoluteX="113dp"
-		tools:layout_editor_absoluteY="630dp"/>
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/login_fields_constraint_layout" />
 
 	<androidx.appcompat.widget.Toolbar
 		android:id="@+id/toolbar"
