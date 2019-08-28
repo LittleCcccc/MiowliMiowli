@@ -83,7 +83,7 @@ public class Manager {
                     newses.put(item.id, item);
                     return item;
                 })
-                .map(rawNews ->  new DisplayableNews(rawNews))
+                .map(DisplayableNews::new)
                 .map(new WrapDisplayableNews())
                 .toList().subscribeOn(Schedulers.io()).observeOn((AndroidSchedulers.mainThread()));
     }
@@ -129,7 +129,7 @@ public class Manager {
                 AppDatabase.class).build();
     }
 
-    Context context;
+    private Context context;
 
     AppDatabase db ;
 }
