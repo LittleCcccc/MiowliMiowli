@@ -1,6 +1,0 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-
-	<solid android:color="@color/list_activity_recommand_recycler_view_separator_color"/>
-
-	<size android:height="1px"/>
-</shape>

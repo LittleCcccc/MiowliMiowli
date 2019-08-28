@@ -1,6 +1,0 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-
-	<corners android:radius="@dimen/newsdetail_activity_write_comment_search_view_radius"/>
-
-	<solid android:color="@color/newsdetail_activity_write_comment_search_view_background_color"/>
-</shape>
