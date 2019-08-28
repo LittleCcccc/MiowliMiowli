@@ -13,8 +13,8 @@ public interface SqlUserandNewsDao {
     @Query("Select news_id from usersnews where username = :username and islike = 1")
     List<SqlId> getLikeListByUsername(String username);
 
-    @Query("Select news_id from usersnews where username = :username and news_id = :id")
-    List<SqlId> getLikelistByUsernameAndId(String username, String id);
+    @Query("Select news_id from usersnews where username = :username and isread = 1")
+    List<SqlId> getReadListByUsername(String username);
 
     @Query("Select * from usersnews where username = :username and news_id = :id")
     List<SqlUserandNews> query(String username, String id);

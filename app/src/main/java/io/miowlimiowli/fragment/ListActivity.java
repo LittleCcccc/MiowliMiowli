@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
 
+import io.miowlimiowli.adapter.NewsPagerAdaptor;
 import io.miowlimiowli.adapter.RecommandActivityRecommandRecyclerViewAdapter;
 import io.miowlimiowli.dialog.ListActivityTypeButtonSheet;
 
@@ -24,6 +25,8 @@ import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.SearchView;
 import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
 
 import java.util.List;
@@ -31,11 +34,11 @@ import java.util.List;
 
 public class ListActivity extends Fragment implements ListActivityTypeButtonSheet.TypeDialogFragment_Listener {
 
-
+	NewsPagerAdaptor newsPagerAdaptor;
+	ViewPager viewPager;
 	private boolean type[];
 	
 	public static ListActivity newInstance() {
-	
 		ListActivity fragment = new ListActivity();
 		Bundle arguments = new Bundle();
 		fragment.setArguments(arguments);
@@ -58,12 +61,15 @@ public class ListActivity extends Fragment implements ListActivityTypeButtonShee
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		type = new boolean[12];
+
 		return inflater.inflate(R.layout.list_activity, container, false);
 	}
 	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
-	
+		newsPagerAdaptor = new NewsPagerAdaptor(getChildFragmentManager());
+		viewPager = view.findViewById(R.id.pager);
+		viewPager.setAdapter(newsPagerAdaptor);
 		super.onViewCreated(view, savedInstanceState);
 		init();
 	}
@@ -88,30 +94,13 @@ public class ListActivity extends Fragment implements ListActivityTypeButtonShee
 	
 	public void init() {
 	
-		// Configure Online component
-		newsTypeTabBar = this.getView().findViewById(R.id.news_type_tab_bar);
-		newsTypeTabBar.setOnClickListener((view) -> {
-	this.onNewsTypeValueChanged();
-});
+
 		
 		// Configure Button component
 		moreTypeButton = this.getView().findViewById(R.id.more_type_button);
 		moreTypeButton.setOnClickListener((view) -> {
 	this.onMoreTypeButtonPressed();
 });
-		
-		// Configure Recommand component
-		recommandRecyclerView = this.getView().findViewById(R.id.recommand_recycler_view);
-		recommandRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false));
-		recommandRecyclerView.setAdapter(new RecommandActivityRecommandRecyclerViewAdapter());
-		DividerItemDecoration recommandRecyclerViewDecoration = new DividerItemDecoration(this.getContext(), LinearLayoutManager.VERTICAL);
-		recommandRecyclerViewDecoration.setDrawable(ContextCompat.getDrawable(this.getContext(), R.drawable.list_activity_recommand_recycler_view_separator));
-		recommandRecyclerView.addItemDecoration(recommandRecyclerViewDecoration);
-		
-		// Configure SearchView component
-		newsSearchConstraintLayout = this.getView().findViewById(R.id.news_search_constraint_layout);
-		
-		// Configure Search component
-		newsSearchBarSearchView = this.getView().findViewById(R.id.news_search_bar_search_view);
+
 	}
 }

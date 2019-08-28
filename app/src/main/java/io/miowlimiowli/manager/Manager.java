@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.miowlimiowli.exceptions.UsernameEmpty;
 import io.reactivex.functions.Function;
 
 import io.miowlimiowli.exceptions.UsernameAlreadExistError;
@@ -59,9 +61,11 @@ public class Manager {
      * @param password 密码
      * @throws UsernameAlreadExistError 注册失败（用户重名）抛出异常
      */
-    public void register(final String username, final String password) throws UsernameAlreadExistError {
+    public void register(final String username, final String password) throws UsernameAlreadExistError, UsernameEmpty {
         if (users.containsKey(username))
             throw new UsernameAlreadExistError();
+        if(username.isEmpty())
+            throw new UsernameEmpty();
         users.put(username, new User(username, password));
     }
 
@@ -107,18 +111,35 @@ public class Manager {
                 .toList().subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
     }
 
+    /**
+     * @return 获取所有阅读过的新闻的列表
+     */
+    public Single<List<DisplayableNews>> fetch_read_list(){
+        return Flowable.fromCallable(()->{
+            return db.SqlUserandNewsDao().getReadListByUsername(user.username);
+        })
+                .flatMapIterable(item->item)
+                .map(item-> new DisplayableNews(newses.get(item.news_id)))
+                .map(new WrapDisplayableNews())
+                .toList().subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
+    }
+
     private class WrapDisplayableNews implements Function<DisplayableNews, DisplayableNews> {
         @Override
         public DisplayableNews apply(DisplayableNews news) {
             SqlUserandNews sql = new SqlUserandNews();
-            sql.islike = false;
             sql.username = user.username;
             sql.news_id = news.id;
+            sql.isread = false;
+            sql.islike = false;
             db.SqlUserandNewsDao().insert(sql);
-            news.read = !db.SqlUserandNewsDao().getLikelistByUsernameAndId(user.username, news.id).isEmpty();
-            news.isread_publisher.subscribe(stringBooleanPair -> {
-                SqlUserandNews t = db.SqlUserandNewsDao().query(user.username, stringBooleanPair.first).get(0);
-                t.islike = stringBooleanPair.second;
+            sql = db.SqlUserandNewsDao().query(user.username, news.id).get(0);
+            news.islike = sql.islike;
+            news.isread = sql.isread;
+            news.publisher.subscribe(displayableNews ->  {
+                SqlUserandNews t = db.SqlUserandNewsDao().query(user.username, displayableNews.id).get(0);
+                t.islike = displayableNews.islike;
+                t.isread = displayableNews.isread;
                 db.SqlUserandNewsDao().update(t);
             });
             return news;

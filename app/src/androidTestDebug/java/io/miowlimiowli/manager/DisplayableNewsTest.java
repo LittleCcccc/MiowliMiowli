@@ -11,8 +11,6 @@ import java.util.List;
 import io.miowlimiowli.manager.sql.SqlId;
 import io.reactivex.schedulers.Schedulers;
 
-import static org.junit.Assert.*;
-
 public class DisplayableNewsTest {
 
     @Test
@@ -27,7 +25,7 @@ public class DisplayableNewsTest {
             System.out.println(items.size());
             for(DisplayableNews news : items){
                 System.out.println("hehe");
-                news.setRead(true);
+                news.setIsread(true);
             }
         });
         Thread.sleep(5000);

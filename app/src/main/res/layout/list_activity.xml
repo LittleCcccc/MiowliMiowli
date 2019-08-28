@@ -19,69 +19,28 @@
 		app:layout_constraintVertical_weight="1"
 		tools:layout_editor_absoluteX="0dp"
 		tools:layout_editor_absoluteY="0dp">
-	
-		<androidx.constraintlayout.widget.ConstraintLayout
-			android:id="@+id/tabview_constraint_layout"
-			android:layout_width="0dp"
-			android:layout_height="@dimen/list_activity_tabview_constraint_layout_height"
-			android:layout_marginEnd="@dimen/list_activity_tabview_constraint_layout_margin_end"
-			android:background="@color/list_activity_tabview_constraint_layout_background_color"
-			app:layout_constraintHorizontal_weight="1.01"
-			app:layout_constraintLeft_toLeftOf="parent"
-			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			tools:layout_editor_absoluteX="0dp"
-			tools:layout_editor_absoluteY="0dp">
 
+		<androidx.viewpager.widget.ViewPager
+			android:id="@+id/pager"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
 			<com.google.android.material.tabs.TabLayout
-				android:id="@+id/news_type_tab_bar"
-				android:layout_width="0dp"
-				android:layout_height="@dimen/list_activity_news_type_tab_bar_height"
-				android:background="@color/list_activity_news_type_tab_bar_background_color"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintHorizontal_weight="0.93"
-				app:layout_constraintLeft_toLeftOf="parent"
-				app:layout_constraintRight_toRightOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				app:tabIndicatorColor="@color/advertisement_two_view_holder_pinktext_text_view_text_color"
-				app:tabSelectedTextColor="@color/advertisement_two_view_holder_pinktext_text_view_text_color"
-				app:tabTextColor="#7E7E7E">
+				android:id="@+id/tab_layout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" />
+		</androidx.viewpager.widget.ViewPager>
 
-				<com.google.android.material.tabs.TabItem
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/list_activity_news_type_tab_bar_item_one_text" />
-
-				<com.google.android.material.tabs.TabItem
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/list_activity_news_type_tab_bar_item_two_text" />
-
-				<com.google.android.material.tabs.TabItem
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/list_activity_news_type_tab_bar_item_three_text" />
-
-				<com.google.android.material.tabs.TabItem
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="@string/list_activity_news_type_tab_bar_item_four_text" />
-			</com.google.android.material.tabs.TabLayout>
-
-			<ImageButton
-				android:id="@+id/more_type_button"
-				android:layout_width="wrap_content"
-				android:layout_height="@dimen/list_activity_more_type_button_height"
-				android:layout_marginEnd="8dp"
-				android:alpha="0.5"
-				android:background="@drawable/list_activity_more_type_button_ripple"
-				android:src="@drawable/menu_icon"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				app:layout_constraintVertical_bias="0.5" />
-		</androidx.constraintlayout.widget.ConstraintLayout>
-	
+		<ImageButton
+			android:id="@+id/more_type_button"
+			android:layout_width="32dp"
+			android:layout_height="32dp"
+			android:layout_marginTop="8dp"
+			android:layout_marginEnd="8dp"
+			android:alpha="0.5"
+			android:background="@drawable/list_activity_more_type_button_ripple"
+			android:src="@drawable/menu_icon"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
