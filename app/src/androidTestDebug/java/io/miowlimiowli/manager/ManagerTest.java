@@ -24,7 +24,6 @@ public class ManagerTest {
                 .getTargetContext()
                 .getApplicationContext());
         Manager.getInstance().user = new User("sjb", "psd");
-        System.out.println("xixi");
         Manager.getInstance().FetchDisplayableNewsbyCategory(10, 1, "").observeOn(Schedulers.single()).subscribe(item->{
             System.out.println(item.get(0).title);
         });
