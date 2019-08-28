@@ -4,6 +4,7 @@ import android.app.Instrumentation;
 import android.test.mock.MockContext;
 
 import androidx.room.Room;
+import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
 
@@ -15,8 +16,8 @@ public class SqlUserandNewsDaoTest {
 
     @Test
     public void getLikeListByUsername() {
-        AppDatabase db = Room.databaseBuilder(new MockContext(),
-        AppDatabase.class, "user").build();
+        AppDatabase db = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getInstrumentation().getContext(),
+        AppDatabase.class).build();
         SqlNews news = new SqlNews();
         news.id = "1";
         db.SqlNewsDao().insert(news);
@@ -31,8 +32,22 @@ public class SqlUserandNewsDaoTest {
         SqlUserandNews s = new SqlUserandNews();
         s.news_id = "1";
         s.username = "a";
+        s.islike = true;
+        db.SqlUserandNewsDao().insert(s);
+        s = new SqlUserandNews();
+        s.news_id = "2";
+        s.username = "a";
+        s.islike = true;
+        db.SqlUserandNewsDao().insert(s);
+        s = new SqlUserandNews();
+        s.news_id = "2";
+        s.username = "b";
+        s.islike = true;
         db.SqlUserandNewsDao().insert(s);
         List<SqlId> list = db.SqlUserandNewsDao().getLikeListByUsername("a");
+        System.out.println("hahaahh");
+
         System.out.println(list.size());
+        assertEquals(list.size(), 2);
     }
 }

@@ -105,6 +105,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.room:room-migration:2.2.0-beta01@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.json:json:20140107@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.gson:gson:2.8.0@jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:core:1.2.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.room:room-testing:2.2.0-beta01@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.collection:collection:1.0.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.room:room-common:2.2.0-beta01@jar" level="project" />
