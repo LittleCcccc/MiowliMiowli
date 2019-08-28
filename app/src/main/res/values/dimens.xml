@@ -1,6 +1,7 @@
 <resources>
 	<!-- Mine -->
 	<dimen name="newsdetail_activity_comment_constraint_layout_height">95dp</dimen>
+	<dimen name="type_button_radius">20dp</dimen>
 
 	<!-- Project level resources -->
     <dimen name="material_spacing_medium">16dp</dimen>
