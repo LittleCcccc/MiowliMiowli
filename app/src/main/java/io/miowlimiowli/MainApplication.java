@@ -12,6 +12,6 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         // 创建数据管理
-       // Manager.getInstance().setContext(getApplicationContext());
+       Manager.getInstance().setContext(getApplicationContext());
     }
 }
