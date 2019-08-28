@@ -66,6 +66,12 @@ public class Manager {
     }
 
     /**
+     * 退出登录
+     */
+    public void logout(){
+        user = null;
+    }
+    /**
      * @param size 一次获取的新闻数量，推荐100个，平均每个新闻3kb
      * @param page 获取第几页的新闻。
      * @param category 新闻的类别，共10个
