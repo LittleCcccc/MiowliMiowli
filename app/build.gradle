@@ -49,6 +49,7 @@ dependencies {
     implementation 'com.romandanylyk:pageindicatorview:1.0.0'
 
     // Unit tests dependencies
+    testImplementation 'androidx.test:core:1.2.0'
     testImplementation 'junit:junit:4.12'
 
     // Integration tests dependencies
