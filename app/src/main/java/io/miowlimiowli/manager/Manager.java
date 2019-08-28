@@ -79,12 +79,13 @@ public class Manager {
      * @param size 一次获取的新闻数量，推荐100个，平均每个新闻3kb
      * @param page 获取第几页的新闻。
      * @param category 新闻的类别，共10个
+     * @param keyword 搜索关键词
      * @return 返回的新闻是从第((pageNo - 1) * pageSize + 1)个的pageSize个最新新闻。若不到pageSize个，说明没有更多可用新闻
      */
-    public Single<List<DisplayableNews>> FetchDisplayableNewsbyCategory(final int size, final int page,  final String category) {
+    public Single<List<DisplayableNews>> FetchDisplayableNewsbyCategoryandKeyword(final int size, final int page,  final String category, final String keyword) {
         return Flowable.fromCallable(()->{
             try {
-                return RawNews.fetch_news_from_server(size, page, null, null, "", category);
+                return RawNews.fetch_news_from_server(size, page, null, null, keyword, category);
             }catch (Exception e){
                 return new ArrayList<RawNews>();
             }
@@ -136,8 +137,18 @@ public class Manager {
             sql = db.SqlUserandNewsDao().query(user.username, news.id).get(0);
             news.islike = sql.islike;
             news.isread = sql.isread;
+            news.likecount = db.SqlUserandNewsDao().countLike(news.id);
+            news.readcount = db.SqlUserandNewsDao().countRead(news.id);
             news.publisher.subscribe(displayableNews ->  {
                 SqlUserandNews t = db.SqlUserandNewsDao().query(user.username, displayableNews.id).get(0);
+                if(displayableNews.islike && !t.islike)
+                    displayableNews.likecount += 1;
+                if(!displayableNews.islike && t.islike)
+                    displayableNews.likecount -= 1;
+                if(displayableNews.isread && !t.isread)
+                    displayableNews.readcount += 1;
+                if(!displayableNews.isread && t.isread)
+                    displayableNews.readcount -= 1;
                 t.islike = displayableNews.islike;
                 t.isread = displayableNews.isread;
                 db.SqlUserandNewsDao().update(t);

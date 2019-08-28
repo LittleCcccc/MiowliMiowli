@@ -19,6 +19,12 @@ public interface SqlUserandNewsDao {
     @Query("Select * from usersnews where username = :username and news_id = :id")
     List<SqlUserandNews> query(String username, String id);
 
+    @Query("Select count(news_id) from usersnews where islike = 1 and news_id = :id")
+    int countLike(String id);
+
+    @Query("Select count(news_id) from usersnews where isread = 1 and news_id = :id")
+    int countRead(String id);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(SqlUserandNews entity);
     @Update
