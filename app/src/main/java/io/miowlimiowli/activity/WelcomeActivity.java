@@ -44,7 +44,7 @@ public class WelcomeActivity extends AppCompatActivity {
 		this.startAnimationOne();
 
 		//灰灰的代码
-		Manager.getInstance().setContext(getApplicationContext());
+		//Manager.getInstance().setContext(getApplicationContext());
 	}
 	
 	private void init() {
