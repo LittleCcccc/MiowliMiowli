@@ -5,6 +5,9 @@
 package io.miowlimiowli.activity;
 
 import io.miowlimiowli.R;
+import io.miowlimiowli.exceptions.UsernameAlreadExistError;
+import io.miowlimiowli.manager.Manager;
+
 import android.view.MenuItem;
 import android.os.Bundle;
 
@@ -35,11 +38,12 @@ public class SignupActivity extends AppCompatActivity {
 	private TextView signUpTextView;
 	private TextView welcomeTextView;
 	private EditText signupNicknameEditText;
-	private EditText signupSpaceEditText;
+	private EditText signupMailEditText;
 	private EditText signupPasswordEditText;
 	private Switch agreeSwitch;
 	private LinearLayout signUpButton;
 	private Button logInButton;
+	private TextView alert;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -64,7 +68,8 @@ public class SignupActivity extends AppCompatActivity {
 	}
 	
 	private void init() {
-	
+
+		alert = this.findViewById(R.id.alert);
 		// Configure Navigation Bar #2 component
 		toolbar = this.findViewById(R.id.toolbar);
 		
@@ -78,7 +83,7 @@ public class SignupActivity extends AppCompatActivity {
 		signupNicknameEditText = this.findViewById(R.id.signup_nickname_edit_text);
 		
 		// Configure Your spacemail component
-		signupSpaceEditText = this.findViewById(R.id.signup_space_edit_text);
+		signupMailEditText = this.findViewById(R.id.signup_mail_edit_text);
 		
 		// Configure Password component
 		signupPasswordEditText = this.findViewById(R.id.signup_password_edit_text);
@@ -88,6 +93,7 @@ public class SignupActivity extends AppCompatActivity {
 		agreeSwitch.setOnClickListener((view) -> {
 	this.onAgreeSwitchValueChanged();
 });
+
 		
 		// Configure Sign Up component
 		signUpButton = this.findViewById(R.id.sign_up_button);
@@ -113,16 +119,34 @@ public class SignupActivity extends AppCompatActivity {
 	}
 	
 	public void onAgreeSwitchValueChanged() {
-	
 	}
 	
 	public void onSignUpPressed() {
-	
+		if(!agreeSwitch.isChecked()){
+			alert.setText("请同意条款");
+			return;
+		}
+		String name = signupNicknameEditText.getText().toString();
+		String mail = signupMailEditText.getText().toString();
+		String pw = signupPasswordEditText.getText().toString();
+		try{
+			Manager.getInstance().register(name,pw);
+		}catch(UsernameAlreadExistError e)
+		{
+			alert.setText("用户名已经存在");
+			return;
+		}
+		try {
+			Manager.getInstance().login(name, pw);
+		}catch(Exception e)
+		{
+
+		}
 		this.startTwoActivity();
 	}
 	
 	public void onLogInPressed() {
-	
+
 		this.startLoginActivity();
 	}
 	

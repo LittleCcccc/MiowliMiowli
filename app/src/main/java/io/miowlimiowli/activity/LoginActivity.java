@@ -5,6 +5,7 @@
 package io.miowlimiowli.activity;
 
 import android.animation.*;
+import android.graphics.Color;
 import android.widget.EditText;
 import android.view.View;
 
@@ -18,6 +19,10 @@ import android.content.Intent;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import io.miowlimiowli.R;
+
+import io.miowlimiowli.exceptions.UsernameorPasswordError;
+import io.miowlimiowli.manager.Manager;
+
 import android.content.Context;
 
 
@@ -35,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 	private EditText inputNicknameEditText;
 	private EditText inputPasswordEditText;
 	private LinearLayout loginButton;
-	private Button forgotYourPasswordButton;
+	private TextView LoginErrorTextView;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 	}
 	
 	private void init() {
-	
+		LoginErrorTextView=this.findViewById(R.id.forgot_your_password_button);
 		// Configure Navigation Bar #2 component
 		toolbar = this.findViewById(R.id.toolbar);
 		
@@ -81,13 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 		loginButton.setOnClickListener((view) -> {
 	this.onLoginPressed();
 });
-		
-		// Configure Forgot your password component
-		forgotYourPasswordButton = this.findViewById(R.id.forgot_your_password_button);
-		forgotYourPasswordButton.setOnClickListener((view) -> {
-	this.onForgotYourPasswordPressed();
-});
-		
+
 		this.setupToolbar();
 	}
 	
@@ -100,13 +99,16 @@ public class LoginActivity extends AppCompatActivity {
 	}
 	
 	public void onLoginPressed() {
-	
-		this.startTwoActivity();
+		String name = inputNicknameEditText.getText().toString();
+		String password = inputPasswordEditText.getText().toString();
+		try{
+			Manager.getInstance().login(name,password);
+			this.startTwoActivity();
+		}catch(UsernameorPasswordError e){
+			LoginErrorTextView.setTextColor(Color.parseColor("#FF6D6B"));
+		}
 	}
-	
-	public void onForgotYourPasswordPressed() {
-	
-	}
+
 	
 	public void onGroupPressed() {
 	
