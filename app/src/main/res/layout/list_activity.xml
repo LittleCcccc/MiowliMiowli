@@ -82,58 +82,6 @@
 				app:layout_constraintVertical_bias="0.5" />
 		</androidx.constraintlayout.widget.ConstraintLayout>
 	
-		<androidx.constraintlayout.widget.ConstraintLayout
-			android:id="@+id/view_two_constraint_layout"
-			android:layout_width="0dp"
-			android:layout_height="0dp"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintHorizontal_weight="1"
-			app:layout_constraintLeft_toLeftOf="parent"
-			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/tabview_constraint_layout"
-			app:layout_constraintVertical_weight="0.94"
-			tools:layout_editor_absoluteX="0dp"
-			tools:layout_editor_absoluteY="40dp">
-		
-			<androidx.recyclerview.widget.RecyclerView
-				android:id="@+id/recommand_recycler_view"
-				android:layout_width="0dp"
-				android:layout_height="0dp"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintHorizontal_weight="1"
-				app:layout_constraintLeft_toLeftOf="parent"
-				app:layout_constraintRight_toRightOf="parent"
-				app:layout_constraintTop_toBottomOf="@+id/news_search_constraint_layout"
-				app:layout_constraintVertical_weight="0.93"
-				tools:layout_editor_absoluteX="0dp"
-				tools:layout_editor_absoluteY="45dp"
-				tools:listitem="@layout/news_view_holder"/>
-		
-			<androidx.constraintlayout.widget.ConstraintLayout
-				android:id="@+id/news_search_constraint_layout"
-				android:layout_width="0dp"
-				android:layout_height="@dimen/list_activity_news_search_constraint_layout_height"
-				android:background="@color/list_activity_news_search_constraint_layout_background_color"
-				app:layout_constraintHorizontal_weight="1"
-				app:layout_constraintLeft_toLeftOf="parent"
-				app:layout_constraintRight_toRightOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				tools:layout_editor_absoluteX="0dp"
-				tools:layout_editor_absoluteY="0dp">
 
-				<androidx.appcompat.widget.SearchView
-					android:id="@+id/news_search_bar_search_view"
-					android:layout_width="0dp"
-					android:layout_height="@dimen/list_activity_news_search_bar_search_view_height"
-					android:background="@drawable/list_activity_news_search_bar_search_view_background"
-					android:backgroundTint="@color/click_overlay"
-					app:layout_constraintHorizontal_weight="1"
-					app:layout_constraintLeft_toLeftOf="parent"
-					app:layout_constraintRight_toRightOf="parent"
-					app:layout_constraintTop_toTopOf="parent"
-					app:queryHint="@string/list_activity_news_search_bar_search_view_hint"
-					app:searchIcon="@drawable/search_icon" />
-			</androidx.constraintlayout.widget.ConstraintLayout>
-		</androidx.constraintlayout.widget.ConstraintLayout>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
