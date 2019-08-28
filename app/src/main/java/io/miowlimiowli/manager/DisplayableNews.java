@@ -1,5 +1,6 @@
 package io.miowlimiowli.manager;
 
+import java.util.Date;
 import java.util.List;
 
 import io.miowlimiowli.manager.data.RawNews;
@@ -14,12 +15,19 @@ public class DisplayableNews {
     public String content;
     public List<String> image_urls;
     public String id;
-
+    public Date pulish_time;
+    public String publisher_name;
+    public Integer likecount;
+    public Integer readcount;
+    public String video_url;
     public DisplayableNews(final RawNews news){
         this.title = news.title;
         this.content = news.content;
         this.image_urls = news.image_urls;
         this.id = news.id;
+        this.publisher_name = news.publisher;
+        this.pulish_time = news.publishtime;
+        this.video_url = news.video_url;
         publisher = PublishSubject.create();
         publisher.observeOn(Schedulers.computation());
     }
