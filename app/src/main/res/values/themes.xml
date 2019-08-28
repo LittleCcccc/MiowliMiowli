@@ -1,0 +1,45 @@
+<resources>
+	
+	<!-- Project level resources -->
+	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+		<item name="colorPrimary">@color/color_primary</item>
+		<item name="colorPrimaryDark">@color/color_primary_dark</item>
+		<item name="colorAccent">@color/color_accent</item>
+	</style>
+
+	<!-- WelcomeActivity -->
+	<style name="WelcomeActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
+	
+	<!-- LoginActivity -->
+	<style name="LoginActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
+	
+	<!-- SignupActivity -->
+	<style name="SignupActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
+	<style name="SignupActivityAgreeSwitchTheme">
+		<item name="colorControlActivated">@color/signup_activity_agree_switch_active_color</item>
+	</style>
+	
+	<!-- RecommandActivity -->
+
+    <!-- ProfileActivity -->
+
+    <!-- CommentActivity -->
+	<style name="CommentActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
+	
+	<!-- SettingsActivity -->
+	<style name="SettingsActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
+	<style name="SettingsActivityNopictureSwitchTheme">
+		<item name="colorControlActivated">@color/settings_activity_nopicture_switch_active_color</item>
+	</style>
+	<style name="SettingsActivityDarkmodeSwitchTheme">
+		<item name="colorControlActivated">@color/settings_activity_darkmode_switch_active_color</item>
+	</style>
+	
+	<!-- ListActivity -->
+
+    <!-- NewsdetailActivity -->
+	<style name="NewsdetailActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
+	
+	<!-- TwoActivity -->
+	<style name="TwoActivityTheme" parent="Theme.AppCompat.NoActionBar"/>
+</resources>

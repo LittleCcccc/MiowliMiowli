@@ -1,0 +1,88 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/cell_view_holder_news_height">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/newsview_constraint_layout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cell_view_holder_newsview_constraint_layout_height"
+        android:background="@color/cell_view_holder_newsview_constraint_layout_background_color"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+    
+        <ImageView
+            android:id="@+id/news_photo_image_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/cell_view_holder_news_photo_image_view_margin_end"
+            android:layout_marginStart="@dimen/cell_view_holder_news_photo_image_view_margin_start"
+            android:layout_marginTop="@dimen/cell_view_holder_news_photo_image_view_margin_top"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_news_temp_2"
+            app:layout_constraintHorizontal_weight="0.91"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/news_title_text_view"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="64dp"/>
+    
+        <TextView
+            android:id="@+id/news_title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/cell_view_holder_news_title_text_view_margin_end"
+            android:layout_marginStart="@dimen/cell_view_holder_news_title_text_view_margin_start"
+            android:layout_marginTop="@dimen/cell_view_holder_news_title_text_view_margin_top"
+            android:gravity="start"
+            android:text="@string/cell_view_holder_news_title_text_view_text"
+            android:textColor="@color/cell_view_holder_news_title_text_view_text_color"
+            android:textSize="@dimen/cell_view_holder_news_title_text_view_text_size"
+            app:layout_constraintHorizontal_weight="0.91"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="7dp"/>
+    
+        <TextView
+            android:id="@+id/news_time_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/cell_view_holder_news_time_text_view_margin_start"
+            android:layout_marginTop="@dimen/cell_view_holder_news_time_text_view_margin_top"
+            android:alpha="0.4"
+            android:gravity="start"
+            android:text="@string/cell_view_holder_news_time_text_view_text"
+            android:textColor="@color/cell_view_holder_news_time_text_view_text_color"
+            android:textSize="@dimen/cell_view_holder_news_time_text_view_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/news_photo_image_view"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="271dp"/>
+
+        <Button
+            android:id="@+id/news_parent_button"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="start"
+            android:text="@string/cell_view_holder_news_parent_button_text"
+            android:textColor="@color/cell_view_holder_news_parent_button_text_color"
+            android:textSize="@dimen/cell_view_holder_news_parent_button_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

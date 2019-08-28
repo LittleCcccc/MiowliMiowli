@@ -1,0 +1,240 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/profile_constraint_layout"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/profile_activity_profile_constraint_layout_background_color">
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/view_constraint_layout"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_marginBottom="@dimen/profile_activity_view_constraint_layout_margin_bottom"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintHorizontal_weight="1"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_weight="0.91"
+		tools:layout_editor_absoluteX="0dp"
+		tools:layout_editor_absoluteY="0dp">
+	
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/header_constraint_layout"
+			android:layout_width="0dp"
+			android:layout_height="@dimen/profile_activity_header_constraint_layout_height"
+			android:background="@color/profile_activity_header_constraint_layout_background_color"
+			app:layout_constraintHorizontal_weight="1"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:layout_editor_absoluteX="0dp"
+			tools:layout_editor_absoluteY="0dp">
+
+			<Button
+				android:id="@+id/avatar_button"
+				android:layout_width="@dimen/profile_activity_avatar_button_width"
+				android:layout_height="@dimen/profile_activity_avatar_button_height"
+				android:layout_marginTop="@dimen/profile_activity_avatar_button_margin_top"
+				android:background="@drawable/common_google_signin_btn_icon_light_focused"
+				android:gravity="start"
+				android:textColor="@color/profile_activity_avatar_button_text_color"
+				android:textSize="@dimen/profile_activity_avatar_button_text_size"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
+		
+			<TextView
+				android:id="@+id/my_nickname_text_view"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/profile_activity_my_nickname_text_view_margin_top"
+				android:gravity="center"
+				android:lineSpacingMultiplier="0.86"
+				android:text="@string/profile_activity_my_nickname_text_view_text"
+				android:textColor="@color/profile_activity_my_nickname_text_view_text_color"
+				android:textSize="@dimen/profile_activity_my_nickname_text_view_text_size"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/avatar_button"
+				tools:layout_editor_absoluteX="149dp"
+				tools:layout_editor_absoluteY="201dp"/>
+		
+			<TextView
+				android:id="@+id/my_title_text_view"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:alpha="0.4"
+				android:gravity="center"
+				android:text="@string/profile_activity_my_title_text_view_text"
+				android:textColor="@color/profile_activity_my_title_text_view_text_color"
+				android:textSize="@dimen/profile_activity_my_title_text_view_text_size"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/my_nickname_text_view"
+				tools:layout_editor_absoluteX="140dp"
+				tools:layout_editor_absoluteY="238dp"/>
+		
+			<TextView
+				android:id="@+id/my_introduction_text_view"
+				android:layout_width="@dimen/profile_activity_my_introduction_text_view_width"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/profile_activity_my_introduction_text_view_margin_bottom"
+				android:gravity="center"
+				android:text="@string/profile_activity_my_introduction_text_view_text"
+				android:textColor="@color/profile_activity_my_introduction_text_view_text_color"
+				android:textSize="@dimen/profile_activity_my_introduction_text_view_text_size"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toRightOf="parent"
+				tools:layout_editor_absoluteX="38dp"
+				tools:layout_editor_absoluteY="271dp"/>
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/info_bar_constraint_layout"
+			android:layout_width="0dp"
+			android:layout_height="@dimen/profile_activity_info_bar_constraint_layout_height"
+			android:background="@color/profile_activity_info_bar_constraint_layout_background_color"
+			app:layout_constraintHorizontal_weight="1"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/header_constraint_layout">
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/collectionview_constraint_layout"
+				android:layout_width="wrap_content"
+				android:layout_height="@dimen/profile_activity_collectionview_constraint_layout_height"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toLeftOf="@id/commentview_constraint_layout"
+				app:layout_constraintTop_toTopOf="parent">
+
+				<TextView
+					android:id="@+id/collect_sum_text_view"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:gravity="center"
+					android:text="@string/profile_activity_collect_sum_text_view_text"
+					android:textColor="@color/profile_activity_collect_sum_text_view_text_color"
+					android:textSize="@dimen/profile_activity_collect_sum_text_view_text_size"
+					app:layout_constraintHorizontal_weight="1.05"
+					app:layout_constraintLeft_toLeftOf="parent"
+					app:layout_constraintRight_toRightOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
+
+				<Button
+					android:id="@+id/clooection_button"
+					android:layout_width="wrap_content"
+					android:layout_height="@dimen/profile_activity_clooection_button_height"
+					android:alpha="0.4"
+					android:background="?attr/selectableItemBackground"
+					android:gravity="bottom|center"
+					android:text="@string/profile_activity_clooection_button_text"
+					android:textColor="@color/profile_activity_clooection_button_text_color"
+					android:textSize="@dimen/profile_activity_clooection_button_text_size"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:layout_constraintHorizontal_bias="0.0"
+					app:layout_constraintHorizontal_weight="1.05"
+					app:layout_constraintLeft_toLeftOf="parent"
+					app:layout_constraintRight_toRightOf="parent"
+					app:layout_constraintStart_toStartOf="parent" />
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/commentview_constraint_layout"
+				android:layout_width="wrap_content"
+				android:layout_height="@dimen/profile_activity_commentview_constraint_layout_height"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintLeft_toLeftOf="parent"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toTopOf="parent">
+
+				<TextView
+					android:id="@+id/comment_sum_text_view"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:gravity="center"
+					android:text="@string/profile_activity_comment_sum_text_view_text"
+					android:textColor="@color/profile_activity_comment_sum_text_view_text_color"
+					android:textSize="@dimen/profile_activity_comment_sum_text_view_text_size"
+					app:layout_constraintHorizontal_weight="0.98"
+					app:layout_constraintLeft_toLeftOf="parent"
+					app:layout_constraintRight_toRightOf="parent"
+					app:layout_constraintTop_toTopOf="parent" />
+
+				<Button
+					android:id="@+id/comment_button"
+					android:layout_width="wrap_content"
+					android:layout_height="@dimen/profile_activity_comment_button_height"
+					android:alpha="0.4"
+					android:background="?attr/selectableItemBackground"
+					android:gravity="bottom|center"
+					android:text="@string/profile_activity_comment_button_text"
+					android:textColor="@color/profile_activity_comment_button_text_color"
+					android:textSize="@dimen/profile_activity_comment_button_text_size"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintHorizontal_weight="1.02"
+					app:layout_constraintLeft_toLeftOf="parent"
+					app:layout_constraintRight_toRightOf="parent" />
+			</androidx.constraintlayout.widget.ConstraintLayout>
+
+			<androidx.constraintlayout.widget.ConstraintLayout
+				android:id="@+id/brouseview_constraint_layout"
+				android:layout_width="wrap_content"
+				android:layout_height="@dimen/profile_activity_brouseview_constraint_layout_height"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintLeft_toRightOf="@id/commentview_constraint_layout"
+				app:layout_constraintRight_toRightOf="parent"
+				app:layout_constraintTop_toTopOf="parent">
+
+				<TextView
+					android:id="@+id/brouse_sum_text_view"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginEnd="@dimen/profile_activity_brouse_sum_text_view_margin_end"
+					android:gravity="center"
+					android:text="@string/profile_activity_brouse_sum_text_view_text"
+					android:textColor="@color/profile_activity_brouse_sum_text_view_text_color"
+					android:textSize="@dimen/profile_activity_brouse_sum_text_view_text_size"
+					app:layout_constraintHorizontal_weight="1.02"
+					app:layout_constraintLeft_toLeftOf="parent"
+					app:layout_constraintRight_toRightOf="parent"
+					app:layout_constraintTop_toTopOf="parent"
+					tools:layout_editor_absoluteX="0dp"
+					tools:layout_editor_absoluteY="0dp" />
+
+				<Button
+					android:id="@+id/brouser_button"
+					android:layout_width="wrap_content"
+					android:layout_height="@dimen/profile_activity_brouser_button_height"
+					android:alpha="0.4"
+					android:background="?attr/selectableItemBackground"
+					android:gravity="bottom|center"
+					android:text="@string/profile_activity_brouser_button_text"
+					android:textColor="@color/profile_activity_brouser_button_text_color"
+					android:textSize="@dimen/profile_activity_brouser_button_text_size"
+					app:layout_constraintBottom_toBottomOf="parent"
+					app:layout_constraintHorizontal_weight="1.3"
+					app:layout_constraintLeft_toLeftOf="parent"
+					app:layout_constraintRight_toRightOf="parent" />
+			</androidx.constraintlayout.widget.ConstraintLayout>
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+		<ImageButton
+			android:id="@+id/settings_button"
+			android:layout_width="@dimen/profile_activity_settings_button_width"
+			android:layout_height="@dimen/profile_activity_settings_button_height"
+			android:layout_marginEnd="@dimen/profile_activity_settings_button_margin_end"
+			android:layout_marginTop="@dimen/profile_activity_settings_button_margin_top"
+			android:background="?attr/selectableItemBackground"
+			android:src="@drawable/path_2"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:layout_editor_absoluteX="323dp"
+			tools:layout_editor_absoluteY="12dp"/>
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
