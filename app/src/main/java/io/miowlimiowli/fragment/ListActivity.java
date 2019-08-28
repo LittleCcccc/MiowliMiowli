@@ -7,6 +7,8 @@ import io.miowlimiowli.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import android.util.Log;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,12 +26,13 @@ import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.view.View;
 
+import java.util.List;
 
 
+public class ListActivity extends Fragment implements ListActivityTypeButtonSheet.TypeDialogFragment_Listener {
 
 
-
-public class ListActivity extends Fragment {
+	private boolean type[];
 	
 	public static ListActivity newInstance() {
 	
@@ -44,10 +47,17 @@ public class ListActivity extends Fragment {
 	private RecyclerView recommandRecyclerView;
 	private ConstraintLayout newsSearchConstraintLayout;
 	private SearchView newsSearchBarSearchView;
+
+	@Override
+	public void getDataFrom_TypeDialogFragment(boolean[] type){
+		for(int i=1;i<=10;i++)
+			this.type[i]=type[i];
+	}
+
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	
+		type = new boolean[12];
 		return inflater.inflate(R.layout.list_activity, container, false);
 	}
 	
@@ -63,7 +73,17 @@ public class ListActivity extends Fragment {
 	}
 	
 	public void onMoreTypeButtonPressed() {
-		new ListActivityTypeButtonSheet().show(getFragmentManager(),"ListActivityTypeButtonSheet");
+		ListActivityTypeButtonSheet listActivityTypeButtonSheet = new ListActivityTypeButtonSheet();
+		Bundle bundle = new Bundle();
+		for(int i=1;i<=10;i++)
+		{
+			bundle.putBoolean("type" + i, type[i]);
+		}
+		listActivityTypeButtonSheet.setArguments(bundle);
+		listActivityTypeButtonSheet.setTargetFragment(this,1);
+
+
+		listActivityTypeButtonSheet.show(getFragmentManager(),"ListActivityTypeButtonSheet");
 	}
 	
 	public void init() {

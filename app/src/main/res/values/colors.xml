@@ -94,7 +94,7 @@
     <color name="news_view_holder_view_constraint_layout_background_color">#FFFFFF</color>
 	<color name="news_view_holder_title_text_view_text_color">#0F0F0F</color>
 	<color name="news_view_holder_time_text_view_text_color">#000000</color>
-    <color name="advertisement_two_view_holder_pinktext_text_view_text_color">#D9676E</color>
+    <color name="advertisement_two_view_holder_pinktext_text_view_text_color">#FFFFFF</color>
 
     <!-- SettingsActivity -->
 	<color name="settings_activity_profile_settings_constraint_layout_background_color">#F4F2F4</color>
@@ -132,7 +132,7 @@
 	<color name="list_activity_news_type_tab_bar_background_color">#FFFFFF</color>
     <color name="list_activity_more_type_button_background_color">#FFFFFF</color>
     <color name="list_activity_recommand_recycler_view_separator_color">#E0E0E0</color>
-    <color name="advertisement_three_view_holder_bg_constraint_layout_background_color">#FFFFFF</color>
+    <color name="advertisement_three_view_holder_bg_constraint_layout_background_color">#000000</color>
 	<color name="advertisement_three_view_holder_ad_title_text_view_text_color">#D9676E</color>
     <color name="list_activity_news_search_constraint_layout_background_color">#FFFFFF</color>
 
