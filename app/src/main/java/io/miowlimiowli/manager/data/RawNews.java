@@ -48,10 +48,10 @@ public class RawNews {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             String sbegin = "1970-01-01", send = format.format(new Date(System.currentTimeMillis()));
-            if (sbegin != null) {
+            if (begin != null) {
                 sbegin = format.format(begin);
             }
-            if (send != null)
+            if (end != null)
                 send = format.format(end);
             String url = "https://api2.newsminer.net/svc/news/queryNewsList?" + String.format("size=%d&startDate=%s&endDate=%s&words=%s&categories=%s&page=%d",
                     size,
@@ -164,6 +164,7 @@ public class RawNews {
                 }
                 newses.add(news);
             }
+            System.out.println(newses.size() + " news found!");
             return newses;
         } catch (Exception e) {
             System.out.println("error raised when fetching news from server!");

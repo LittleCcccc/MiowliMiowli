@@ -48,6 +48,7 @@ public class SqlUserandNewsDaoTest {
         System.out.println("hahaahh");
 
         System.out.println(list.size());
+        System.out.println(list.get(0).news_id);
         assertEquals(list.size(), 2);
     }
 }

@@ -11,7 +11,6 @@ import java.util.Set;
 public class User {
     public String username;
     public String password;
-    public Set<String> read_news = new HashSet<>();
     public User(String username, String password){
         this.username = username;
         this.password = password;

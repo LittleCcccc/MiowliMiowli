@@ -1,6 +1,7 @@
 package io.miowlimiowli.manager;
 
 import android.content.Context;
+import android.test.mock.MockContext;
 
 import androidx.room.*;
 
@@ -13,6 +14,7 @@ import io.miowlimiowli.exceptions.UsernameAlreadExistError;
 import io.miowlimiowli.exceptions.UsernameorPasswordError;
 import io.miowlimiowli.manager.data.RawNews;
 import io.miowlimiowli.manager.sql.AppDatabase;
+import io.miowlimiowli.manager.sql.SqlUserandNews;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
@@ -72,25 +74,47 @@ public class Manager {
     public Single<List<DisplayableNews>> FetchDisplayableNewsbyCategory(final int size, final int page,  final String category) {
         return Flowable.fromCallable(()->{
             try {
+                System.out.println("hehe");
                 return RawNews.fetch_news_from_server(size, page, null, null, "", category);
             }catch (Exception e){
                 return new ArrayList<RawNews>();
             }
         }).flatMapIterable(item -> item)
                 .map(item ->{
+                    System.out.println("haha");
                     newses.put(item.id, item);
                     return item;
                 })
-                .map(rawNews -> new DisplayableNews(rawNews))
+                .map(rawNews -> {
+                    DisplayableNews news = new DisplayableNews(rawNews);
+                    SqlUserandNews sql = new SqlUserandNews();
+                    sql.islike = false;
+                    sql.username = user.username;
+                    sql.news_id = news.id;
+                    db.SqlUserandNewsDao().insert(sql);
+                    news.read = !db.SqlUserandNewsDao().getLikelistByUsernameAndId(user.username, news.id).isEmpty();
+                    news.isread_publisher.subscribe(stringBooleanPair -> {
+                        SqlUserandNews t = db.SqlUserandNewsDao().query(user.username, stringBooleanPair.first).get(0);
+                        t.islike = stringBooleanPair.second;
+                        db.SqlUserandNewsDao().update(t);
+                    });
+                    return news;
+                })
                 .toList().subscribeOn(Schedulers.io()).observeOn((AndroidSchedulers.mainThread()));
     }
 
+    /**
+     * 此函数只允许在启动时调用一次
+     * @param context Application Context
+     */
     public void setContext(Context context) {
         this.context = context;
+        db  = Room.inMemoryDatabaseBuilder(context,
+                AppDatabase.class).build();
     }
 
     Context context;
 
-    AppDatabase db = Room.databaseBuilder(context,
-            AppDatabase.class, "user").build();
+    //inmemory_for_test
+    AppDatabase db ;
 }

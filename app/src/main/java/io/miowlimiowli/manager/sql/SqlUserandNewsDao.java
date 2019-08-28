@@ -13,10 +13,16 @@ public interface SqlUserandNewsDao {
     @Query("Select news_id from usersnews where username = :username and islike = 1")
     List<SqlId> getLikeListByUsername(String username);
 
+    @Query("Select news_id from usersnews where username = :username and news_id = :id")
+    List<SqlId> getLikelistByUsernameAndId(String username, String id);
+
+    @Query("Select * from usersnews where username = :username and news_id = :id")
+    List<SqlUserandNews> query(String username, String id);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(SqlUserandNews entity);
-
+    @Update
+    void update(SqlUserandNews entity);
     @Delete
     void delete(SqlUserandNews user);
 }

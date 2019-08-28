@@ -1,8 +1,13 @@
 package io.miowlimiowli.manager;
 
+import android.util.Pair;
+
 import java.util.List;
 
 import io.miowlimiowli.manager.data.RawNews;
+import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
 
 /**
  * 修改成员应使用setter！
@@ -13,17 +18,18 @@ public class DisplayableNews {
     public List<String> image_urls;
     public String id;
 
+    /**
+     * @param read 设置此新闻是否已读
+     * @return
+     */
     public void setRead(boolean read) {
         this.read = read;
-        if(read)
-            Manager.getInstance().user.read_news.add(id);
-        else
-            Manager.getInstance().user.read_news.remove(id);
+        isread_publisher.onNext(new Pair<>(id, read));
     }
-
+    PublishSubject<Pair<String, Boolean>> isread_publisher;
 
     /**
-     * 新闻是否阅读
+     * 新闻是否阅读，修改请使用setRead
      */
     public boolean read;
     public DisplayableNews(final RawNews news){
@@ -31,6 +37,7 @@ public class DisplayableNews {
         this.content = news.content;
         this.image_urls = news.image_urls;
         this.id = news.id;
-        this.read = Manager.getInstance().user.read_news.contains(news.id);
+        isread_publisher = PublishSubject.create();
+        isread_publisher.observeOn(Schedulers.computation());
     }
 }
