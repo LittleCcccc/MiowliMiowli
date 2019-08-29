@@ -24,10 +24,16 @@
 			android:id="@+id/pager"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent">
+
 			<com.google.android.material.tabs.TabLayout
 				android:id="@+id/tab_layout"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content" />
+				android:layout_height="wrap_content"
+				android:background="@color/white"
+				android:outlineAmbientShadowColor="@color/main_light"
+				app:tabIndicatorColor="@color/main_light"
+				app:tabSelectedTextColor="@color/main_light"
+				app:tabTextColor="@color/material_bottom_sheet_item" />
 		</androidx.viewpager.widget.ViewPager>
 
 		<ImageButton
@@ -37,7 +43,7 @@
 			android:layout_marginTop="8dp"
 			android:layout_marginEnd="8dp"
 			android:alpha="0.5"
-			android:background="@drawable/list_activity_more_type_button_ripple"
+			android:backgroundTint="#00FFFFFF"
 			android:src="@drawable/menu_icon"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />

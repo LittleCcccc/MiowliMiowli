@@ -5,8 +5,11 @@
 package io.miowlimiowli.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Button;
+
+import java.net.URL;
 import java.util.*;
 
 import android.view.View;
@@ -14,11 +17,16 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import io.miowlimiowli.R;
 import io.miowlimiowli.manager.DisplayableNews;
+import io.miowlimiowli.manager.Manager;
 import io.reactivex.Single;
 import io.reactivex.functions.Consumer;
 
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 
 public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -64,6 +72,11 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 			DisplayableNews news = mNews.get(position);
 			final CellViewHolder cell = (CellViewHolder)viewHolder;
 			cell.setTitle(news.title);
+			String url = news.image_urls.get(0);
+			url = url.substring(1,url.length());
+			//cell.setImage(url);
+			Glide.with(viewHolder.itemView.getContext()).load(url).into(((CellViewHolder) viewHolder).newsPhotoImageView);
+			cell.setTime(news.publisher_name+" "+news.pulish_time+" "+news.readcount+"阅读"+" "+news.likecount+"喜爱");
 		}
 		// Here you can bind RecyclerView item data.
 	}
@@ -92,9 +105,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 	* 新闻单元格
 	 */
 	public class CellViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-		private ImageView newsPhotoImageView;
-		private TextView newsTitleTextView;
-		private TextView newsTimeTextView;
+		ImageView newsPhotoImageView;
+		TextView newsTitleTextView;
+		TextView newsTimeTextView;
 
 		public CellViewHolder(View itemView) {
 			super(itemView);
@@ -119,8 +132,8 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 			newsTimeTextView.setText(s);
 		}
 
-		public void setPhoto(){
-
+		public void setImage(String url){
+			Glide.with(mContext).load(url).into(newsPhotoImageView);
 		}
 		
 		public void init() {

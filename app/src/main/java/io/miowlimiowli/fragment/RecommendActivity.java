@@ -7,6 +7,8 @@ package io.miowlimiowli.fragment;
 import android.os.Bundle;
 
 import io.miowlimiowli.R;
+import io.miowlimiowli.adapter.NewsListAdapter;
+
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,8 +29,8 @@ public class RecommendActivity extends Fragment {
 		return fragment;
 	}
 
-	private ConstraintLayout newsSearchConstraintLayout;
 	private SearchView newsSearchBarSearchView;
+	//private NewsListFragment newsListFragment;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,14 +45,9 @@ public class RecommendActivity extends Fragment {
 		init();
 	}
 
-
 	public void init() {
+		//newsListFragment = this.getView().findViewById(R.id.news_list_fragment);
 
-
-		// Configure SearchView component
-		newsSearchConstraintLayout = this.getView().findViewById(R.id.news_search_constraint_layout);
-		
-		// Configure Search component
 		newsSearchBarSearchView = this.getView().findViewById(R.id.news_search_bar_search_view);
 	}
 }
