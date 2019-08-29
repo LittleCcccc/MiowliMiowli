@@ -49,6 +49,10 @@ public class NewsListFragment extends BaseListFragment {
         newsListAdapter.setData(list);
     }
 
+    public void appendNewsList(List<DisplayableNews> list){
+        newsListAdapter.appendData(list);
+    }
+
     @Override
     public void fetchNews(){
 
@@ -57,11 +61,15 @@ public class NewsListFragment extends BaseListFragment {
         single.subscribe(new Consumer<List<DisplayableNews>>() {
             @Override
             public void accept(List<DisplayableNews> displayableNews) throws Exception {
-                setNewsList(displayableNews);
-
+                if(mPageNo==1)
+                    setNewsList(displayableNews);
+                else
+                    appendNewsList(displayableNews);
             }
         });
 
     }
+
+
 
 }

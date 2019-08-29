@@ -48,6 +48,13 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 		this.notifyDataSetChanged();
 	}
 
+	public void appendData(List<DisplayableNews> data){
+		int pos = mNews.size();
+		mNews.addAll(data);
+		this.notifyItemRangeChanged(pos, getItemCount());
+	}
+
+
 
 
 	public void setOnItemClickListener(OnItemClickListener onItemClickListener){

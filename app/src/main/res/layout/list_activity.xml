@@ -27,12 +27,13 @@
 
 			<com.google.android.material.tabs.TabLayout
 				android:id="@+id/tab_layout"
-				android:layout_width="match_parent"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:background="@color/white"
 				android:outlineAmbientShadowColor="@color/main_light"
-				android:overScrollMode="always"
+				app:tabGravity="center"
 				app:tabIndicatorColor="@color/main_light"
+				app:tabMode="scrollable"
 				app:tabSelectedTextColor="@color/main_light"
 				app:tabTextColor="@color/material_bottom_sheet_item" />
 		</androidx.viewpager.widget.ViewPager>
@@ -42,7 +43,7 @@
 			android:layout_width="32dp"
 			android:layout_height="32dp"
 			android:layout_marginTop="8dp"
-			android:layout_marginEnd="8dp"
+			android:layout_marginEnd="2dp"
 			android:alpha="0.5"
 			android:backgroundTint="#00FFFFFF"
 			android:src="@drawable/menu_icon"
