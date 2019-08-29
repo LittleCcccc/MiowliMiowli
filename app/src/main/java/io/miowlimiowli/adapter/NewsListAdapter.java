@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Button;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import android.view.View;
@@ -75,10 +76,12 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 			String url = news.image_urls.get(0);
 			url = url.substring(1,url.length());
 			//cell.setImage(url);
+			Date date=news.pulish_time;
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String time = formatter.format(date);
 			Glide.with(viewHolder.itemView.getContext()).load(url).into(((CellViewHolder) viewHolder).newsPhotoImageView);
-			cell.setTime(news.publisher_name+" "+news.pulish_time+" "+news.readcount+"阅读"+" "+news.likecount+"喜爱");
+			cell.setTime(news.publisher_name+" "+time+" "+news.readcount+"阅读"+" "+news.likecount+"喜爱");
 		}
-		// Here you can bind RecyclerView item data.
 	}
 
 	@Override

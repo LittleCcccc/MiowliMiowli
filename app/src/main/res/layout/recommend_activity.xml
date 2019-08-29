@@ -45,6 +45,17 @@
 				app:searchIcon="@drawable/search_icon" />
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/news_list_layout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginTop="@dimen/recommend_activity_news_search_constraint_layout_height"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 	</androidx.constraintlayout.widget.ConstraintLayout>

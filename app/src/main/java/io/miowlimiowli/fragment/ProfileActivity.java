@@ -13,8 +13,15 @@ import io.miowlimiowli.activity.*;
 import android.widget.Button;
 import android.widget.ImageButton;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import android.os.Bundle;
 import android.view.View;
+
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProfileActivity extends Fragment {
@@ -38,6 +45,8 @@ public class ProfileActivity extends Fragment {
 	private TextView brouseSumTextView;
 	private Button brouserButton;
 	private ImageButton settingsButton;
+
+
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +59,7 @@ public class ProfileActivity extends Fragment {
 	
 		super.onViewCreated(view, savedInstanceState);
 		init();
+
 	}
 	
 	public void onAvatarPressed() {
