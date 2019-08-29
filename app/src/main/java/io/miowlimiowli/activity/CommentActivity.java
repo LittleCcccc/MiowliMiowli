@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import io.miowlimiowli.R;
-import io.miowlimiowli.adapter.RecommandActivityRecommandRecyclerViewAdapter;
+import io.miowlimiowli.adapter.NewsListAdapter;
 
 import com.google.android.material.tabs.TabLayout;
 import android.view.MenuItem;
@@ -30,7 +30,7 @@ public class CommentActivity extends AppCompatActivity {
 	private Toolbar toolbar;
 	private ConstraintLayout tabConstraintLayout;
 	private TabLayout collectionTabBar;
-	private RecyclerView recommandRecyclerView;
+	private RecyclerView recommendRecyclerView;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,10 +63,10 @@ public class CommentActivity extends AppCompatActivity {
 	this.onOnlineValueChanged();
 });
 		
-		// Configure Recommand component
-		recommandRecyclerView = this.findViewById(R.id.recommand_recycler_view);
-		recommandRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-		recommandRecyclerView.setAdapter(new RecommandActivityRecommandRecyclerViewAdapter());
+		// Configure Recommend component
+		recommendRecyclerView = this.findViewById(R.id.recommend_recycler_view);
+		recommendRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+		recommendRecyclerView.setAdapter(new NewsListAdapter(getApplicationContext()));
 
 	}
 	

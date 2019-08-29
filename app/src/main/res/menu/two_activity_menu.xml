@@ -3,9 +3,9 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<item
-		android:id="@+id/recommand_activity_menu_item"
+		android:id="@+id/recommend_activity_menu_item"
 		android:icon="@drawable/active_icon_7"
-		android:title="@string/recommand_activity_menu_item_title"
+		android:title="@string/recommend_activity_menu_item_title"
 		app:showAsAction="ifRoom"/>
 
 	<item

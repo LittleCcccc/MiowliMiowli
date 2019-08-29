@@ -12,6 +12,9 @@ import org.w3c.dom.Text;
 
 import io.miowlimiowli.R;
 
+/**
+ * 测试用typelist
+ */
 public class NewsObjectFragment extends Fragment {
     public static final String ARG_OBJECT="object";
 

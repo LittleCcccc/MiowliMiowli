@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<corners android:radius="@dimen/recommend_activity_news_search_bar_search_view_radius"/>
+
+	<solid android:color="@color/recommend_activity_news_search_bar_search_view_background_color"/>
+</shape>

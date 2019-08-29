@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import io.miowlimiowli.adapter.TwoActivityPagerAdapter;
 import android.content.Context;
 import java.util.List;
-import io.miowlimiowli.fragment.RecommandActivity;
+import io.miowlimiowli.fragment.RecommendActivity;
 import android.os.Bundle;
 import android.content.Intent;
 
@@ -49,7 +49,7 @@ public class TwoActivity extends AppCompatActivity {
 		viewPager = findViewById(R.id.view_pager);
 		
 		// Configure View Pager Adapter
-		List<Fragment> fragments = Arrays.asList(RecommandActivity.newInstance(), ListActivity.newInstance(), ProfileActivity.newInstance());
+		List<Fragment> fragments = Arrays.asList(RecommendActivity.newInstance(), ListActivity.newInstance(), ProfileActivity.newInstance());
 		viewPager.setAdapter(new TwoActivityPagerAdapter(getSupportFragmentManager(), fragments));
 		bottomNavigationBar.setOnNavigationItemSelectedListener((menuItem) -> {
 	onTabSelected(menuItem);
@@ -60,7 +60,7 @@ public class TwoActivity extends AppCompatActivity {
 	public void onTabSelected(MenuItem menuItem) {
 	
 		switch (menuItem.getItemId()) {
-			case R.id.recommand_activity_menu_item: 
+			case R.id.recommend_activity_menu_item:
 				viewPager.setCurrentItem(0, true);
 				break;
 			case R.id.list_activity_menu_item: 

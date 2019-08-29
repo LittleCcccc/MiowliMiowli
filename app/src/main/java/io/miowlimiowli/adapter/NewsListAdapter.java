@@ -4,6 +4,7 @@
 
 package io.miowlimiowli.adapter;
 
+import android.content.Context;
 import android.widget.TextView;
 import android.widget.Button;
 import java.util.*;
@@ -12,16 +13,38 @@ import android.view.View;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import io.miowlimiowli.R;
+import io.miowlimiowli.manager.DisplayableNews;
+import io.reactivex.Single;
+import io.reactivex.functions.Consumer;
+
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class RecommandActivityRecommandRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 	public static final int CELL_VIEW_HOLDER_VIEW_TYPE = 1;
 	public static final int ADVERTISEMENT_VIEW_HOLDER_VIEW_TYPE = 2;
-	
-	public static final List<Integer> MOCK_DATA = Arrays.asList(CELL_VIEW_HOLDER_VIEW_TYPE, ADVERTISEMENT_VIEW_HOLDER_VIEW_TYPE, CELL_VIEW_HOLDER_VIEW_TYPE, ADVERTISEMENT_VIEW_HOLDER_VIEW_TYPE, CELL_VIEW_HOLDER_VIEW_TYPE, ADVERTISEMENT_VIEW_HOLDER_VIEW_TYPE);
-	
+
+	private Context mContext;
+	private OnItemClickListener mOnItemClickListener;
+	private List<DisplayableNews> mNews = new ArrayList<DisplayableNews>();
+
+	public DisplayableNews getNews(int position){
+		return mNews.get(position);
+	}
+	public NewsListAdapter(Context context){mContext = context;}
+
+	public void setData(List<DisplayableNews> data){
+		mNews = new ArrayList<>(data);
+		this.notifyDataSetChanged();
+	}
+
+
+
+	public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+		this.mOnItemClickListener=onItemClickListener;
+	}
+
 	@Override
 	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 	
@@ -37,31 +60,67 @@ public class RecommandActivityRecommandRecyclerViewAdapter extends RecyclerView.
 	
 	@Override
 	public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-	
+		if(viewHolder instanceof CellViewHolder){
+			DisplayableNews news = mNews.get(position);
+			final CellViewHolder cell = (CellViewHolder)viewHolder;
+			cell.setTitle(news.title);
+		}
 		// Here you can bind RecyclerView item data.
 	}
-	
+
 	@Override
 	public int getItemViewType(int position) {
-	
-		return MOCK_DATA.get(position);
+		if(position == mNews.size()+1)
+			return 2;
+		else return 1;
 	}
 	
 	@Override
 	public int getItemCount() {
-	
-		return MOCK_DATA.size();
+		return mNews.size();
 	}
-	
-	
-	public static class CellViewHolder extends RecyclerView.ViewHolder {
+
+	/**
+	 * 点击Listener
+	 */
+	public interface OnItemClickListener {
+		void onItemClick(View view, int position);
+	}
+
+
+	/**
+	* 新闻单元格
+	 */
+	public class CellViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 		private ImageView newsPhotoImageView;
 		private TextView newsTitleTextView;
 		private TextView newsTimeTextView;
-		private Button newsParentButton;
+
 		public CellViewHolder(View itemView) {
 			super(itemView);
 			init();
+			itemView.setOnClickListener(this);
+		}
+
+		@Override
+		public void onClick(View view) {
+			if (mOnItemClickListener != null) {
+				mOnItemClickListener.onItemClick(view, this.getLayoutPosition());
+			}
+		}
+
+		public void setTitle(String s)
+		{
+			newsTitleTextView.setText(s);
+		}
+
+		public void setTime(String s)
+		{
+			newsTimeTextView.setText(s);
+		}
+
+		public void setPhoto(){
+
 		}
 		
 		public void init() {
@@ -80,9 +139,8 @@ public class RecommandActivityRecommandRecyclerViewAdapter extends RecyclerView.
 		
 
 	}
-	
-	
-	public static class AdvertisementViewHolder extends RecyclerView.ViewHolder {
+
+	public class AdvertisementViewHolder extends RecyclerView.ViewHolder {
 		private ImageView adPhotoImageView;
 		private TextView adTitleTextView;
 		private TextView adDetailTextView;
@@ -91,7 +149,11 @@ public class RecommandActivityRecommandRecyclerViewAdapter extends RecyclerView.
 			super(itemView);
 			init();
 		}
-		
+		public void setTitle(String s)
+		{
+
+		}
+
 		public void init() {
 		
 			// Configure bg-event-image component
@@ -107,4 +169,6 @@ public class RecommandActivityRecommandRecyclerViewAdapter extends RecyclerView.
 			adTimeTextView = this.itemView.findViewById(R.id.ad_time_text_view);
 		}
 	}
+
+
 }

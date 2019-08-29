@@ -32,15 +32,15 @@
 	<string name="signup_activity_already_gave_up_your_text_view_text">已有账号？</string>
 	<string name="signup_activity_log_in_button_text">登陆</string>
 	
-	<!-- RecommandActivity -->
-    <string name="recommand_activity_menu_item_title">新闻推荐</string>
+	<!-- RecommendActivity -->
+    <string name="recommend_activity_menu_item_title">新闻推荐</string>
 	<string name="cell_view_holder_news_title_text_view_text">意大利记者问邓小平：天安门上毛主席像是否永远保留</string>
 	<string name="cell_view_holder_news_time_text_view_text">中国网文化	317评论	2019-8-24</string>
 	<string name="cell_view_holder_news_parent_button_text"></string>
 	<string name="advertisement_view_holder_ad_title_text_view_text">Spray and Pray</string>
 	<string name="advertisement_view_holder_ad_detail_text_view_text">Hull tattoos? A new trend to follow in 2050</string>
 	<string name="advertisement_view_holder_ad_time_text_view_text">Sponsored content</string>
-	<string name="recommand_activity_news_search_bar_search_view_hint">搜索新闻</string>
+	<string name="recommend_activity_news_search_bar_search_view_hint">搜索新闻</string>
 	
 	<!-- ProfileActivity -->
     <string name="profile_activity_menu_item_title">个人信息</string>
