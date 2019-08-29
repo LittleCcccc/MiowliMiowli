@@ -1,5 +1,7 @@
 package io.miowlimiowli.manager;
 
+import android.util.Pair;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.Set;
 
 /**
  * 前端不应直接修改，应调用setter
+ * 修改类别列表用setCat_list
  */
 public class User {
     public String username;
@@ -36,6 +39,12 @@ public class User {
     public String nickname;
     public String short_description, long_description;
     public boolean is_vip;
+
+    public void setCat_list(List<String> cat_list) {
+        this.cat_list = cat_list;
+    }
+
+    public List<String> cat_list;
 
     public User(String username, String password){
         this.username = username;

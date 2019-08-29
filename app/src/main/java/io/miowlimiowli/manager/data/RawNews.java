@@ -79,6 +79,10 @@ public class RawNews {
                 JSONObject jnews = jnewses.getJSONObject(i);
                 RawNews news = new RawNews();
                 String img = jnews.getString("image");
+                if(!img.isEmpty() && img.charAt(0) == '[')
+                    img = img.substring(1);
+                if(!img.isEmpty() && img.charAt(img.length() - 1) == ']')
+                    img = img.substring(0, img.length() - 1);
                 //img = img.substring(1, img.length() - 1);
                 String[] imgs = img.split(",");
                 if (imgs[0].length() == 0)

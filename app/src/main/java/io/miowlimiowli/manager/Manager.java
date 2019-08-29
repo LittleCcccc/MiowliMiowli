@@ -1,6 +1,7 @@
 package io.miowlimiowli.manager;
 
 import android.content.Context;
+import android.util.Pair;
 
 import androidx.room.*;
 
@@ -28,9 +29,19 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 public class Manager {
 
     private static Manager manager = new Manager();
-
+    private static List<String>  cat_list;
     private Manager() {
-
+        cat_list = new ArrayList<>();
+        cat_list.add("科技");
+        cat_list.add("社会");
+        cat_list.add("体育");
+        cat_list.add("娱乐");
+        cat_list.add("汽车");
+        cat_list.add("教育");
+        cat_list.add("文化");
+        cat_list.add("健康");
+        cat_list.add("军事");
+        cat_list.add("财经");
     }
 
     public static Manager getInstance() {
@@ -39,6 +50,11 @@ public class Manager {
 
     public Map<String, User> users = new HashMap<>();
     public Map<String, RawNews> newses = new HashMap<>();
+
+    public User getUser() {
+        return user;
+    }
+
     public User user = null;
     /**
      * @param username 用户名
@@ -66,7 +82,9 @@ public class Manager {
             throw new UsernameAlreadExistError();
         if(username.isEmpty())
             throw new UsernameEmpty();
-        users.put(username, new User(username, password));
+        User user = new User(username, password);
+        user.cat_list = new ArrayList<>(cat_list);
+        users.put(username, user);
     }
 
     /**
@@ -166,6 +184,14 @@ public class Manager {
         db  = Room.inMemoryDatabaseBuilder(context,
                 AppDatabase.class).build();
     }
+
+    /**
+     * @return 获取当前用户的类别列表
+     */
+    public List<String> getCat_list(){
+        return user.cat_list;
+    }
+
 
     private Context context;
 
