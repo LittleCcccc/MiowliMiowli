@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.SwipeRefreshLayout
+<com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/recommend_activity_timeline_constraint_layout_background_color">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/news_recycler_view"
             android:layout_width="0dp"
@@ -19,4 +20,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_weight="0.87"
             tools:listitem="@layout/cell_view_holder" />
-</androidx.constraintlayout.widget.SwipeRefreshLayout>
+
+</com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout>
