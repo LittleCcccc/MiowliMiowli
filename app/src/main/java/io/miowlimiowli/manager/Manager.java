@@ -79,7 +79,7 @@ public class Manager {
      * @param size 一次获取的新闻数量，推荐100个，平均每个新闻3kb
      * @param page 获取第几页的新闻。
      * @param category 新闻的类别，共10个
-     * @param keyword 搜索关键词
+     * @param keyword 搜索关键词，留空则不指定关键词
      * @return 返回的新闻是从第((pageNo - 1) * pageSize + 1)个的pageSize个最新新闻。若不到pageSize个，说明没有更多可用新闻
      */
     public Single<List<DisplayableNews>> FetchDisplayableNewsbyCategoryandKeyword(final int size, final int page,  final String category, final String keyword) {
