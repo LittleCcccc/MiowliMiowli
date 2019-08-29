@@ -69,18 +69,19 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 	
 	@Override
 	public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-		if(viewHolder instanceof CellViewHolder){
+		if(viewHolder instanceof CellViewHolder) {
 			DisplayableNews news = mNews.get(position);
-			final CellViewHolder cell = (CellViewHolder)viewHolder;
+			final CellViewHolder cell = (CellViewHolder) viewHolder;
 			cell.setTitle(news.title);
-			String url = news.image_urls.get(0);
-			url = url.substring(1,url.length());
-			//cell.setImage(url);
-			Date date=news.pulish_time;
+			String url="";
+			Date date = news.pulish_time;
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			String time = formatter.format(date);
+			cell.setTime(news.publisher_name + " " + time + " " + news.readcount + "阅读" + " " + news.likecount + "喜爱");
+			if (!news.image_urls.isEmpty()) {
+				url = news.image_urls.get(0);
+			}
 			Glide.with(viewHolder.itemView.getContext()).load(url).into(((CellViewHolder) viewHolder).newsPhotoImageView);
-			cell.setTime(news.publisher_name+" "+time+" "+news.readcount+"阅读"+" "+news.likecount+"喜爱");
 		}
 	}
 
@@ -133,10 +134,6 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 		public void setTime(String s)
 		{
 			newsTimeTextView.setText(s);
-		}
-
-		public void setImage(String url){
-			Glide.with(mContext).load(url).into(newsPhotoImageView);
 		}
 		
 		public void init() {

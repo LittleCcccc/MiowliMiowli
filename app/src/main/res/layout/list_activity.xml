@@ -31,6 +31,7 @@
 				android:layout_height="wrap_content"
 				android:background="@color/white"
 				android:outlineAmbientShadowColor="@color/main_light"
+				android:overScrollMode="always"
 				app:tabIndicatorColor="@color/main_light"
 				app:tabSelectedTextColor="@color/main_light"
 				app:tabTextColor="@color/material_bottom_sheet_item" />

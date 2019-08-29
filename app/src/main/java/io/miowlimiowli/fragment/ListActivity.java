@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 
 import io.miowlimiowli.adapter.NewsPagerAdaptor;
 import io.miowlimiowli.dialog.ListActivityTypeButtonSheet;
+import io.miowlimiowli.manager.Manager;
 
 import androidx.fragment.app.Fragment;
 import android.widget.ImageButton;
@@ -61,11 +62,9 @@ public class ListActivity extends Fragment implements ListActivityTypeButtonShee
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-
+		mCategories = Manager.getInstance().getCat_list();
 		//mCategories = Manager.getInstance().
-		mCategories.add("娱乐");
-		mCategories.add("军事");
-		mCategories.add("文化");
+
 	}
 	
 	@Override

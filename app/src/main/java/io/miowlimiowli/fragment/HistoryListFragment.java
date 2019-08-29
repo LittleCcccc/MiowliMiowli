@@ -7,11 +7,12 @@ import io.miowlimiowli.manager.Manager;
 import io.reactivex.Single;
 import io.reactivex.functions.Consumer;
 
-public class HistoryListFragment extends NewsListFragment {
+public class HistoryListFragment extends BaseListFragment {
+    @Override
     public void fetchNews(){
 
         Single<List<DisplayableNews>> single = null;
-        single = Manager.getInstance().fetch_like_list();
+        single = Manager.getInstance().fetch_read_list();
         single.subscribe(new Consumer<List<DisplayableNews>>() {
             @Override
             public void accept(List<DisplayableNews> displayableNews) throws Exception {
@@ -20,4 +21,9 @@ public class HistoryListFragment extends NewsListFragment {
         });
 
     }
+    public static HistoryListFragment newInstance(){
+        HistoryListFragment fragment = new HistoryListFragment();
+        return fragment;
+    }
+
 }

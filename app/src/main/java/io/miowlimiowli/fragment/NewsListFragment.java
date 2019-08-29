@@ -21,32 +21,11 @@ import io.miowlimiowli.manager.Manager;
 import io.reactivex.Single;
 import io.reactivex.functions.Consumer;
 
-public class NewsListFragment extends Fragment {
+public class NewsListFragment extends BaseListFragment {
 
-    protected List<DisplayableNews> mNews;
-    protected RecyclerView mRecyclerView;
-    //private RecyclerView.Adapter mAdapter;
-    protected NewsListAdapter newsListAdapter;
-    protected RecyclerView.LayoutManager mLayoutManager;
 
     private String mKeyword="";
     private String mCategory;
-    protected int mPageSize = 100;
-    protected int mPageNo = 1;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.news_list, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-
-        super.onViewCreated(view, savedInstanceState);
-        init();
-        fetchNews();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -54,24 +33,6 @@ public class NewsListFragment extends Fragment {
 
         mCategory=getArguments().getString("category");
         mKeyword=getArguments().getString("keyword");
-
-
-    }
-
-    public void init(){
-        // Configure Recommend component
-        mRecyclerView = this.getView().findViewById(R.id.news_recycler_view);
-
-        mLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        newsListAdapter = new NewsListAdapter(getContext());
-        mRecyclerView.setAdapter(newsListAdapter);
-
-        DividerItemDecoration recommendRecyclerViewDecoration = new DividerItemDecoration(this.getContext(), LinearLayoutManager.VERTICAL);
-        recommendRecyclerViewDecoration.setDrawable(ContextCompat.getDrawable(this.getContext(), R.drawable.recommend_activity_recommend_recycler_view_separator));
-        mRecyclerView.addItemDecoration(recommendRecyclerViewDecoration);
-
     }
 
     public static NewsListFragment newInstance(String category,String keyword){
@@ -88,6 +49,7 @@ public class NewsListFragment extends Fragment {
         newsListAdapter.setData(list);
     }
 
+    @Override
     public void fetchNews(){
 
         Single<List<DisplayableNews>> single = null;
