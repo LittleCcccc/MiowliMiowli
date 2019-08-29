@@ -23,6 +23,14 @@ allprojects {
         maven { url "https://maven.google.com/"}
     }
 }
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url  "http://dl.bintray.com/nuptboyzhb/maven"
+        }
+    }
+}
 
 task clean(type: Delete) {
     delete rootProject.buildDir

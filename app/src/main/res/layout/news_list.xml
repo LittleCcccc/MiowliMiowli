@@ -8,10 +8,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/recommend_activity_timeline_constraint_layout_background_color">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/news_recycler_view"
             android:layout_width="0dp"
@@ -23,5 +19,4 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_weight="0.87"
             tools:listitem="@layout/cell_view_holder" />
-    </LinearLayout>
 </androidx.constraintlayout.widget.SwipeRefreshLayout>

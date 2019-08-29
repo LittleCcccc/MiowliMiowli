@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 import com.google.j2objc.annotations.ObjectiveCName;
 
 import java.util.List;
@@ -29,9 +30,9 @@ abstract public class BaseListFragment extends Fragment {
     protected List<DisplayableNews> mNews;
     protected RecyclerView mRecyclerView;
     //private RecyclerView.Adapter mAdapter;
-    private SwipeRefreshLayout mSwipeRefreshWidget;
+    private SuperSwipeRefreshLayout mSwipeRefreshWidget;
     protected NewsListAdapter newsListAdapter;
-    protected LinearLayoutManager mLayoutManager;
+    protected RecyclerView.LayoutManager mLayoutManager;
 
     protected int mPageSize = 100;
     protected int mPageNo = 1;
@@ -40,35 +41,27 @@ abstract public class BaseListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.news_list, container, false);
         init();
-        mSwipeRefreshWidget = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_widget);
-        mSwipeRefreshWidget.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener(){
-                    @Override
-                    public void onRefresh(){
-                        requireMoreNews();
-                    }
-                }
-        );
-        mSwipeRefreshWidget.setRefreshing(true);
-
         /*
-        mRecyclerView.addOnScrollListener(new OnScrollListener(){
-            private int lastVisibleItem;
-
+        mSwipeRefreshWidget = (SuperSwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_widget);
+        mSwipeRefreshWidget.setOnPullRefreshListener(new SuperSwipeRefreshLayout.OnPullRefreshListener(){
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+            public void onRefresh(){
+                refreshNews();
             }
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem == newsListAdapter.getItemCount() - 1) {
+            public void onPullDistance(int distance){
+                if(distance>2)
+                {
                     requireMoreNews();
                 }
             }
+            @Override
+            public void onPullEnable(boolean enable){
+
+            }
         });
         */
+
 
         return view;
     }
