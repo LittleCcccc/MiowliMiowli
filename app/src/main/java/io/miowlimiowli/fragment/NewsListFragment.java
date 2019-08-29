@@ -23,16 +23,16 @@ import io.reactivex.functions.Consumer;
 
 public class NewsListFragment extends Fragment {
 
-    private List<DisplayableNews> mNews;
-    private RecyclerView mRecyclerView;
+    protected List<DisplayableNews> mNews;
+    protected RecyclerView mRecyclerView;
     //private RecyclerView.Adapter mAdapter;
-    private NewsListAdapter newsListAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    protected NewsListAdapter newsListAdapter;
+    protected RecyclerView.LayoutManager mLayoutManager;
 
     private String mKeyword="";
     private String mCategory;
-    private int mPageSize = 100;
-    private int mPageNo = 1;
+    protected int mPageSize = 100;
+    protected int mPageNo = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,7 +55,6 @@ public class NewsListFragment extends Fragment {
         mCategory=getArguments().getString("category");
         mKeyword=getArguments().getString("keyword");
 
-        newsListAdapter=new NewsListAdapter(getContext());
 
     }
 
@@ -100,7 +99,6 @@ public class NewsListFragment extends Fragment {
 
             }
         });
-
 
     }
 

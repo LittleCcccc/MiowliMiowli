@@ -8,8 +8,8 @@ import io.miowlimiowli.R;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 
+import io.miowlimiowli.adapter.NewsPagerAdaptor;
 import io.miowlimiowli.dialog.ListActivityTypeButtonSheet;
-import io.miowlimiowli.manager.Manager;
 
 import androidx.fragment.app.Fragment;
 import android.widget.ImageButton;
@@ -17,8 +17,6 @@ import android.widget.ImageButton;
 import androidx.appcompat.widget.SearchView;
 import android.os.Bundle;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.View;
@@ -82,7 +80,7 @@ public class ListActivity extends Fragment implements ListActivityTypeButtonShee
 		for(int i=0;i<mCategories.size();i++)
 			mTabLayout.addTab(mTabLayout.newTab());
 
-		newsPagerAdaptor = new NewsPagerAdaptor(getChildFragmentManager(),mCategories);
+		newsPagerAdaptor = new NewsPagerAdaptor(getChildFragmentManager(),mCategories,mKeyword);
 		viewPager.setAdapter(newsPagerAdaptor);
 		return view;
 	}
@@ -124,33 +122,4 @@ public class ListActivity extends Fragment implements ListActivityTypeButtonShee
 	}
 
 
-	public class NewsPagerAdaptor extends FragmentStatePagerAdapter {
-		public NewsPagerAdaptor(FragmentManager fm){
-			super(fm);
-		}
-		private List<String> mCategories;
-
-		public NewsPagerAdaptor(FragmentManager fm,List<String> list){
-			super(fm);
-			mCategories = list;
-		}
-
-		@Override
-		public Fragment getItem(int position){
-			Fragment fragment = NewsListFragment.newInstance(mCategories.get(position),mKeyword);
-			return fragment;
-		}
-
-		@Override
-		public int getCount(){
-			return mCategories.size();
-		}
-
-		@Override
-		public CharSequence getPageTitle(int position)
-		{
-			return mCategories.get(position);
-		}
-
-	}
 }

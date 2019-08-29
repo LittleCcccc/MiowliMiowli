@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
 public class RecommendActivity extends Fragment {
@@ -47,7 +49,11 @@ public class RecommendActivity extends Fragment {
 
 	public void init() {
 		//newsListFragment = this.getView().findViewById(R.id.news_list_fragment);
-
+		FragmentManager fragmentManager = getFragmentManager();
+		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		NewsListFragment fragment = NewsListFragment.newInstance("体育","");
+		fragmentTransaction.add(R.id.news_list_layout,fragment);
+		fragmentTransaction.commit();
 		newsSearchBarSearchView = this.getView().findViewById(R.id.news_search_bar_search_view);
 	}
 }

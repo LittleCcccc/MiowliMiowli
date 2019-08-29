@@ -99,7 +99,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/white_type_button_ripple"
-        android:text="教育"
+        android:text="社会"
         android:textColor="@color/advertisement_three_view_holder_bg_constraint_layout_background_color"
         app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintEnd_toEndOf="parent"
