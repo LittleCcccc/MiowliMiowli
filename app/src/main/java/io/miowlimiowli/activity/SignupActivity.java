@@ -9,6 +9,7 @@ import io.miowlimiowli.exceptions.UsernameAlreadExistError;
 import io.miowlimiowli.exceptions.UsernameEmptyError;
 import io.miowlimiowli.manager.Manager;
 
+import android.service.autofill.RegexValidator;
 import android.view.MenuItem;
 import android.os.Bundle;
 
@@ -26,6 +27,9 @@ import android.widget.TextView;
 import androidx.core.view.animation.PathInterpolatorCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class SignupActivity extends AppCompatActivity {
 	
@@ -38,7 +42,7 @@ public class SignupActivity extends AppCompatActivity {
 	private Toolbar toolbar;
 	private TextView signUpTextView;
 	private TextView welcomeTextView;
-	private EditText signupNicknameEditText;
+	private EditText signupUsernameEditText;
 	private EditText signupMailEditText;
 	private EditText signupPasswordEditText;
 	private Switch agreeSwitch;
@@ -80,8 +84,8 @@ public class SignupActivity extends AppCompatActivity {
 		// Configure Welcome component
 		welcomeTextView = this.findViewById(R.id.welcome_text_view);
 		
-		// Configure Your nickname component
-		signupNicknameEditText = this.findViewById(R.id.signup_nickname_edit_text);
+		// Configure Your username component
+		signupUsernameEditText = this.findViewById(R.id.signup_username_edit_text);
 		
 		// Configure Your spacemail component
 		signupMailEditText = this.findViewById(R.id.signup_mail_edit_text);
@@ -127,11 +131,21 @@ public class SignupActivity extends AppCompatActivity {
 			alert.setText("请同意条款");
 			return;
 		}
-		String name = signupNicknameEditText.getText().toString();
+		if(signupPasswordEditText.length() < 6){
+			alert.setText("密码长度过短");
+			return;
+		}
+
+		Pattern pattern = Pattern.compile("^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
+		if(!pattern.matcher(signupMailEditText.getText()).matches()){
+			alert.setText("邮箱格式错误");
+			return;
+		}
+		String name = signupUsernameEditText.getText().toString();
 		String mail = signupMailEditText.getText().toString();
 		String pw = signupPasswordEditText.getText().toString();
 		try{
-			Manager.getInstance().register(name,pw);
+			Manager.getInstance().register(name,mail, pw);
 		}catch(UsernameAlreadExistError e)
 		{
 			alert.setText("用户名已经存在");

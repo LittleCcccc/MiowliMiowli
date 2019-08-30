@@ -1,11 +1,16 @@
 package io.miowlimiowli.manager;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import io.miowlimiowli.R;
 
 /**
  * 前端不应直接修改，应调用setter
@@ -14,7 +19,7 @@ import java.util.Set;
 public class User {
     public String username;
     public String password;
-
+    public BitmapDrawable avator;
     public void setMail_address(String mail_address) {
         this.mail_address = mail_address;
     }
@@ -46,9 +51,19 @@ public class User {
 
     public List<String> cat_list;
 
-    public User(String username, String password){
+    public User(String username, String email, String password){
         this.username = username;
+        this.mail_address = email;
         this.password = password;
+
+        //set default
+
+        this.nickname = username;
+        this.short_description = "一只小朋友";
+        this.long_description = "一大大大大只小朋友！";
+        is_vip = false;
+        this.avator =
+
     }
 
     public String getUsername() {

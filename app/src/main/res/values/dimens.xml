@@ -165,8 +165,8 @@
 	<dimen name="profile_activity_my_nickname_text_view_margin_top">10dp</dimen>
 	<dimen name="profile_activity_view_constraint_layout_margin_bottom">58dp</dimen>
     <dimen name="profile_activity_collectionview_constraint_layout_height">42dp</dimen>
-    <dimen name="profile_activity_settings_button_width">42dp</dimen>
-	<dimen name="profile_activity_settings_button_height">42dp</dimen>
+    <dimen name="profile_activity_settings_button_width">30dp</dimen>
+	<dimen name="profile_activity_settings_button_height">30dp</dimen>
 	<dimen name="profile_activity_settings_button_margin_top">12dp</dimen>
 	<dimen name="profile_activity_settings_button_margin_end">8dp</dimen>
 	<dimen name="profile_activity_info_bar_constraint_layout_height">81dp</dimen>

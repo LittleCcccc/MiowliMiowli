@@ -1,6 +1,7 @@
 package io.miowlimiowli.manager;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 
 import androidx.room.*;
 
@@ -10,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.miowlimiowli.R;
 import io.miowlimiowli.exceptions.UsernameEmptyError;
 import io.miowlimiowli.manager.sql.SqlComment;
 import io.reactivex.functions.Function;
@@ -76,13 +78,14 @@ public class Manager {
      * @param password 密码
      * @throws UsernameAlreadExistError 注册失败（用户重名）抛出异常
      */
-    public void register(final String username, final String password) throws UsernameAlreadExistError, UsernameEmptyError {
+    public void register(final String username, final String email, final String password) throws UsernameAlreadExistError, UsernameEmptyError {
         if (users.containsKey(username))
             throw new UsernameAlreadExistError();
         if(username.isEmpty())
             throw new UsernameEmptyError();
-        User user = new User(username, password);
+        User user = new User(username, email, password);
         user.cat_list = new ArrayList<>(cat_list);
+        //user.avator = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
         users.put(username, user);
     }
 
@@ -145,6 +148,17 @@ public class Manager {
      */
     public Single<List<DisplayableNews>> fetch_favorite_list(){
         return Flowable.fromCallable(()-> db.SqlUserandNewsDao().getFavoriteListByUsername(user.username))
+                .flatMapIterable(item->item)
+                .map(item-> new DisplayableNews(newses.get(item.news_id)))
+                .map(new WrapDisplayableNews())
+                .toList().subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * @return 获取当前用户所有评论的新闻的列表
+     */
+    public Single<List<DisplayableNews>> fetch_comment_list(){
+        return Flowable.fromCallable(()->db.SqlCommentDao().getCommentByUsername(user.username))
                 .flatMapIterable(item->item)
                 .map(item-> new DisplayableNews(newses.get(item.news_id)))
                 .map(new WrapDisplayableNews())
@@ -264,5 +278,5 @@ public class Manager {
 
     private Context context;
 
-    AppDatabase db ;
+    private AppDatabase db ;
 }

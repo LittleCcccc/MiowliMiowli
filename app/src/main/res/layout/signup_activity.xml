@@ -54,7 +54,7 @@
 		tools:layout_editor_absoluteY="273dp">
 	
 		<EditText
-			android:id="@+id/signup_nickname_edit_text"
+			android:id="@+id/signup_username_edit_text"
 			android:layout_width="0dp"
 			android:layout_height="@dimen/signup_activity_signup_nickname_edit_text_height"
 			android:layout_marginEnd="@dimen/signup_activity_signup_nickname_edit_text_margin_end"
@@ -63,7 +63,7 @@
 			android:background="@color/signup_activity_signup_nickname_edit_text_background_color"
 			android:gravity="start|center_vertical"
 			android:hint="@string/signup_activity_signup_nickname_edit_text_hint"
-			android:inputType="text"
+			android:inputType="textVisiblePassword|textNoSuggestions"
 			android:maxLines="1"
 			android:textColor="@color/signup_activity_signup_nickname_edit_text_text_color"
 			android:textColorHint="@color/default_hint"
@@ -85,7 +85,7 @@
 			app:layout_constraintHorizontal_weight="1"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/signup_nickname_edit_text"
+			app:layout_constraintTop_toBottomOf="@+id/signup_username_edit_text"
 			tools:layout_editor_absoluteX="0dp"
 			tools:layout_editor_absoluteY="50dp"/>
 	
@@ -99,7 +99,7 @@
 			android:background="@color/signup_activity_signup_space_edit_text_background_color"
 			android:gravity="start|center_vertical"
 			android:hint="@string/signup_activity_signup_space_edit_text_hint"
-			android:inputType="text"
+			android:inputType="textEmailAddress"
 			android:maxLines="1"
 			android:textColor="@color/signup_activity_signup_space_edit_text_text_color"
 			android:textColorHint="@color/default_hint"

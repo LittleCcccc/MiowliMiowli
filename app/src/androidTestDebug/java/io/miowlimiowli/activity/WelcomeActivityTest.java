@@ -50,7 +50,7 @@ public class WelcomeActivityTest {
         linearLayout.perform(click());
 
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.signup_nickname_edit_text),
+                allOf(withId(R.id.signup_username_edit_text),
                         childAtPosition(
                                 allOf(withId(R.id.sign_up_fields_constraint_layout),
                                         childAtPosition(
@@ -61,7 +61,7 @@ public class WelcomeActivityTest {
         appCompatEditText.perform(replaceText("qwq"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.signup_nickname_edit_text), withText("qwq"),
+                allOf(withId(R.id.signup_username_edit_text), withText("qwq"),
                         childAtPosition(
                                 allOf(withId(R.id.sign_up_fields_constraint_layout),
                                         childAtPosition(
