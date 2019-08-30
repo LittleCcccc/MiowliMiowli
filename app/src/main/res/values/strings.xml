@@ -44,14 +44,14 @@
 	
 	<!-- ProfileActivity -->
     <string name="profile_activity_menu_item_title">个人信息</string>
-	<string name="profile_activity_my_nickname_text_view_text">喵喵喵</string>
-	<string name="profile_activity_my_title_text_view_text">北京市某理工大学</string>
-	<string name="profile_activity_my_introduction_text_view_text">旅行家，文艺爱好者。喜欢音乐，诗歌，绘画。\n享受醉人的下午茶时光，</string>
-	<string name="profile_activity_collect_sum_text_view_text">365</string>
+	<string name="profile_activity_my_nickname_text_view_text">我的昵称</string>
+	<string name="profile_activity_my_title_text_view_text">短介绍</string>
+	<string name="profile_activity_my_introduction_text_view_text">长长的介绍</string>
+	<string name="profile_activity_collect_sum_text_view_text">加载中</string>
 	<string name="profile_activity_clooection_button_text">收藏</string>
-	<string name="profile_activity_comment_sum_text_view_text">58k</string>
+	<string name="profile_activity_comment_sum_text_view_text">加载中</string>
 	<string name="profile_activity_comment_button_text">评论</string>
-	<string name="profile_activity_brouse_sum_text_view_text">326</string>
+	<string name="profile_activity_brouse_sum_text_view_text">加载中</string>
 	<string name="profile_activity_brouser_button_text">最近浏览</string>
 
     <!-- CommentActivity -->

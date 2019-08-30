@@ -45,7 +45,7 @@
 				app:layout_constraintLeft_toLeftOf="parent"
 				app:layout_constraintRight_toRightOf="parent"
 				app:layout_constraintTop_toTopOf="parent" />
-		
+
 			<TextView
 				android:id="@+id/my_nickname_text_view"
 				android:layout_width="wrap_content"
@@ -61,11 +61,12 @@
 				app:layout_constraintTop_toBottomOf="@+id/avatar_button"
 				tools:layout_editor_absoluteX="149dp"
 				tools:layout_editor_absoluteY="201dp"/>
-		
+
 			<TextView
-				android:id="@+id/my_title_text_view"
+				android:id="@+id/my_short_text_view"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
 				android:alpha="0.4"
 				android:gravity="center"
 				android:text="@string/profile_activity_my_title_text_view_text"
@@ -73,12 +74,10 @@
 				android:textSize="@dimen/profile_activity_my_title_text_view_text_size"
 				app:layout_constraintLeft_toLeftOf="parent"
 				app:layout_constraintRight_toRightOf="parent"
-				app:layout_constraintTop_toBottomOf="@+id/my_nickname_text_view"
-				tools:layout_editor_absoluteX="140dp"
-				tools:layout_editor_absoluteY="238dp"/>
+				app:layout_constraintTop_toBottomOf="@+id/my_nickname_text_view" />
 		
 			<TextView
-				android:id="@+id/my_introduction_text_view"
+				android:id="@+id/my_long_text_view"
 				android:layout_width="@dimen/profile_activity_my_introduction_text_view_width"
 				android:layout_height="wrap_content"
 				android:layout_marginBottom="@dimen/profile_activity_my_introduction_text_view_margin_bottom"
@@ -228,13 +227,12 @@
 			android:id="@+id/settings_button"
 			android:layout_width="@dimen/profile_activity_settings_button_width"
 			android:layout_height="@dimen/profile_activity_settings_button_height"
-			android:layout_marginEnd="@dimen/profile_activity_settings_button_margin_end"
-			android:layout_marginTop="@dimen/profile_activity_settings_button_margin_top"
+			android:layout_marginTop="8dp"
+			android:layout_marginRight="8dp"
 			android:background="?attr/selectableItemBackground"
-			android:src="@drawable/path_2"
+			android:scaleType="centerCrop"
+			android:src="@drawable/menu_icon"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			tools:layout_editor_absoluteX="323dp"
-			tools:layout_editor_absoluteY="12dp"/>
+			app:layout_constraintTop_toTopOf="parent" />
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,22 +6,19 @@ package io.miowlimiowli.fragment;
 
 import io.miowlimiowli.R;
 
+import android.graphics.drawable.BitmapDrawable;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 import io.miowlimiowli.activity.*;
+import io.miowlimiowli.manager.Manager;
+
 import android.widget.Button;
 import android.widget.ImageButton;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.View;
-
-import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ProfileActivity extends Fragment {
@@ -36,8 +33,8 @@ public class ProfileActivity extends Fragment {
 	
 	private Button avatarButton;
 	private TextView myNicknameTextView;
-	private TextView myTitleTextView;
-	private TextView myIntroductionTextView;
+	private TextView myShortTextView;
+	private TextView myLongTextView;
 	private TextView collectSumTextView;
 	private Button collectionButton;
 	private TextView commentSumTextView;
@@ -61,7 +58,26 @@ public class ProfileActivity extends Fragment {
 		init();
 
 	}
-	
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		Manager manager = Manager.getInstance();
+		manager.fetch_comment_list().subscribe((list)->{
+			this.commentSumTextView.setText(String.valueOf(list.size()));
+		});
+		manager.fetch_favorite_list().subscribe((list)->{
+			this.collectSumTextView.setText(String.valueOf(list.size()));
+		});
+		manager.fetch_read_list().subscribe((list)->{
+			this.brouseSumTextView.setText(String.valueOf(list.size()));
+		});
+		this.myNicknameTextView.setText( manager.getUser().nickname);
+		this.myShortTextView.setText(manager.getUser().short_description);
+		this.myLongTextView.setText(manager.getUser().long_description);
+		this.avatarButton.setBackground(manager.getUser().avator);
+	}
+
 	public void onAvatarPressed() {
 	
 	}
@@ -98,10 +114,10 @@ public class ProfileActivity extends Fragment {
 		myNicknameTextView = this.getView().findViewById(R.id.my_nickname_text_view);
 		
 		// Configure MyTitle component
-		myTitleTextView = this.getView().findViewById(R.id.my_title_text_view);
+		myShortTextView = this.getView().findViewById(R.id.my_short_text_view);
 		
 		// Configure MyIntroduction component
-		myIntroductionTextView = this.getView().findViewById(R.id.my_introduction_text_view);
+		myLongTextView = this.getView().findViewById(R.id.my_long_text_view);
 		
 		// Configure 365 component
 		collectSumTextView = this.getView().findViewById(R.id.collect_sum_text_view);
