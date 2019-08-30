@@ -6,11 +6,13 @@ import android.util.Pair;
 import androidx.room.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import io.miowlimiowli.exceptions.UsernameEmpty;
+import io.miowlimiowli.manager.sql.SqlComment;
 import io.reactivex.functions.Function;
 
 import io.miowlimiowli.exceptions.UsernameAlreadExistError;
@@ -20,6 +22,7 @@ import io.miowlimiowli.manager.sql.AppDatabase;
 import io.miowlimiowli.manager.sql.SqlUserandNews;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
+import io.reactivex.internal.operators.flowable.FlowableWindow;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 /**
@@ -116,7 +119,7 @@ public class Manager {
     }
 
     /**
-     * @return 获取所有喜欢的新闻的列表
+     * @return 获取当前用户所有喜欢的新闻的列表
      */
     public Single<List<DisplayableNews>> fetch_like_list(){
         return Flowable.fromCallable(()->{
@@ -129,17 +132,78 @@ public class Manager {
     }
 
     /**
-     * @return 获取所有阅读过的新闻的列表
+     * @return 获取当前用户所有阅读过的新闻的列表
      */
     public Single<List<DisplayableNews>> fetch_read_list(){
-        return Flowable.fromCallable(()->{
-            return db.SqlUserandNewsDao().getReadListByUsername(user.username);
-        })
+        return Flowable.fromCallable(()-> db.SqlUserandNewsDao().getReadListByUsername(user.username))
                 .flatMapIterable(item->item)
                 .map(item-> new DisplayableNews(newses.get(item.news_id)))
                 .map(new WrapDisplayableNews())
                 .toList().subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
     }
+
+    /**
+     * @return 获取当前用户所有收藏的新闻的列表
+     */
+    public Single<List<DisplayableNews>> fetch_favorite_list(){
+        return Flowable.fromCallable(()-> db.SqlUserandNewsDao().getFavoriteListByUsername(user.username))
+                .flatMapIterable(item->item)
+                .map(item-> new DisplayableNews(newses.get(item.news_id)))
+                .map(new WrapDisplayableNews())
+                .toList().subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 以新闻ID获取此新闻所有评论
+     * @param news_id 新闻的ID
+     * @return 此新闻所有的评论
+     */
+    public Single<List<DisplayableComment>> fetch_comment_by_news_id(String news_id){
+        return Flowable.fromCallable(()->db.SqlCommentDao().getCommentByNewsid(news_id))
+                .flatMapIterable(item->item)
+                .map(DisplayableComment::new)
+                .map(new WrapDisplayableComment())
+                .toList()
+                .subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 当前用户发布一条评论
+     * @param news_id 新闻ID
+     * @param content 评论内容
+     * @param date 评论时间
+     * @return 返回刚添加的新闻的DisplayableComment
+     */
+    public DisplayableComment add_comment(String news_id, String content, Date date){
+        SqlComment cmt = new SqlComment();
+        cmt.content = content;
+        cmt.news_id = news_id;
+        cmt.publish_date = date;
+        cmt.username = user.username;
+        db.SqlCommentDao().insert(cmt);
+        WrapDisplayableComment f = new WrapDisplayableComment();
+        return f.apply(new DisplayableComment(cmt));
+    }
+
+    /**
+     * @param cmt 被删除的评论，可以不是由当前用户发布
+     */
+    public void delete_comment(DisplayableComment cmt){
+        SqlComment sqlcmt = db.SqlCommentDao().query(cmt.cmt_id);
+        db.SqlCommentDao().delete(sqlcmt);
+    }
+
+
+    private class WrapDisplayableComment implements Function<DisplayableComment, DisplayableComment>{
+        @Override
+        public DisplayableComment apply(DisplayableComment displayableComment) {
+            displayableComment.user  = users.get(displayableComment.username);
+            WrapDisplayableNews f = new WrapDisplayableNews();
+            displayableComment.news = f.apply(new DisplayableNews(newses.get(displayableComment.news_id)));
+            return displayableComment;
+        }
+    }
+
 
     private class WrapDisplayableNews implements Function<DisplayableNews, DisplayableNews> {
         @Override
@@ -149,12 +213,15 @@ public class Manager {
             sql.news_id = news.id;
             sql.isread = false;
             sql.islike = false;
+            sql.isfavorite = false;
             db.SqlUserandNewsDao().insert(sql);
             sql = db.SqlUserandNewsDao().query(user.username, news.id).get(0);
             news.islike = sql.islike;
             news.isread = sql.isread;
+            news.isfavorite = sql.isfavorite;
             news.likecount = db.SqlUserandNewsDao().countLike(news.id);
             news.readcount = db.SqlUserandNewsDao().countRead(news.id);
+            news.favoritecount = db.SqlUserandNewsDao().countFavorate(news.id);
             news.publisher.subscribe(displayableNews ->  {
                 SqlUserandNews t = db.SqlUserandNewsDao().query(user.username, displayableNews.id).get(0);
                 if(displayableNews.islike && !t.islike)
@@ -165,8 +232,13 @@ public class Manager {
                     displayableNews.readcount += 1;
                 if(!displayableNews.isread && t.isread)
                     displayableNews.readcount -= 1;
+                if(displayableNews.isfavorite && !t.isfavorite)
+                    displayableNews.favoritecount += 1;
+                if(!displayableNews.isfavorite && t.isfavorite)
+                    displayableNews.favoritecount -= 1;
                 t.islike = displayableNews.islike;
                 t.isread = displayableNews.isread;
+                t.isfavorite = displayableNews.isfavorite;
                 db.SqlUserandNewsDao().update(t);
             });
             return news;
