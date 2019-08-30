@@ -112,7 +112,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 				builder.setView(input);
 				builder.setPositiveButton("确定", (dialog, id) -> {
 					s1.setText(input.getText());
-					Manager.getInstance().getUser().setNickname(input.getText().toString());
+					s2.accept(input.getText().toString());
 				});
 				builder.setNegativeButton("取消", (dialog, id) -> {
 					dialog.cancel();
