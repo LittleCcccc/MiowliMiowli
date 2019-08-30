@@ -4,8 +4,8 @@
 	<color name="recommend_activity_news_search_bar_search_view_background_color">@color/middle_grey</color>
 
 	<!-- Project level resources -->
-	<color name="color_primary">#000000</color>
-	<color name="color_primary_dark">#000000</color>
+	<color name="color_primary">@color/main_light</color>
+	<color name="color_primary_dark">@color/main_dark</color>
 	<color name="color_accent">#000000</color>
 	<color name="click_overlay">#F0F0F0</color>
 	<color name="default_hint">#C6C6CB</color>

@@ -6,9 +6,15 @@ package io.miowlimiowli.fragment;
 
 import io.miowlimiowli.R;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.BitmapDrawable;
+import android.text.InputType;
+import android.view.ContextThemeWrapper;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import io.miowlimiowli.activity.*;
 import io.miowlimiowli.manager.Manager;
@@ -19,6 +25,9 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.View;
+
+import java.util.function.Consumer;
+import java.util.regex.Matcher;
 
 
 public class ProfileActivity extends Fragment {
@@ -50,13 +59,48 @@ public class ProfileActivity extends Fragment {
 	
 		return inflater.inflate(R.layout.profile_activity, container, false);
 	}
-	
+
+	private View.OnClickListener getListener(String name, TextView s1, Consumer<String> s2){
+		return new View.OnClickListener(){
+			@Override
+			public void onClick(View view) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getActivity(), R.style.MyDialogTheme);
+				builder.setTitle(name);
+				EditText input = new EditText(ProfileActivity.this.getContext());
+				input.setText(s1.getText());
+				input.setInputType(InputType.TYPE_CLASS_TEXT);
+				input.requestFocus();
+
+				builder.setView(input);
+				builder.setPositiveButton("确定", (dialog, id) -> {
+					s1.setText(input.getText());
+					Manager.getInstance().getUser().setNickname(input.getText().toString());
+				});
+				builder.setNegativeButton("取消", (dialog, id) -> {
+					dialog.cancel();
+				});
+				AlertDialog dialog = builder.create();
+				dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+				dialog.show();
+			}
+		};
+	}
+
+
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 	
 		super.onViewCreated(view, savedInstanceState);
 		init();
-
+		this.myNicknameTextView.setOnClickListener(
+				getListener("设置昵称", myNicknameTextView, Manager.getInstance().getUser()::setNickname)
+		);
+		this.myShortTextView.setOnClickListener(
+				getListener("设置短介绍", myShortTextView, Manager.getInstance().getUser()::setShort_description)
+		);
+		this.myLongTextView.setOnClickListener(
+				getListener("设置长介绍", myLongTextView, Manager.getInstance().getUser()::setLong_description)
+		);
 	}
 
 	@Override
