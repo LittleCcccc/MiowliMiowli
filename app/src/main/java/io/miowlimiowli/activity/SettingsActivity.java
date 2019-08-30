@@ -4,9 +4,17 @@
 
 package io.miowlimiowli.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import android.widget.Switch;
+
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.text.InputType;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Button;
 import android.content.Intent;
 import androidx.appcompat.widget.Toolbar;
@@ -14,10 +22,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import io.miowlimiowli.R;
 import android.widget.TextView;
-import android.widget.ImageButton;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import com.yalantis.ucrop.UCrop;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.function.Consumer;
+
 import io.miowlimiowli.dialog.SettingsActivityVipButtonSheet;
+import io.miowlimiowli.manager.Manager;
 
 
 public class SettingsActivity extends AppCompatActivity implements SettingsActivityVipButtonSheet.BottomSheetListener {
@@ -25,8 +41,9 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 	public void onButtonClicked(String text) {
 		if(text.equals("Yes"))
 		{
-			vipButton.setText("已办理");
+			vipTextView.setText("已办理");
 			vip=true;
+			Manager.getInstance().getUser().setIs_vip(true);
 		}
 	}
 
@@ -37,26 +54,12 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 	}
 
 	private Toolbar toolbar;
-	private Button avatarButton;
-	private TextView detailsTextView;
-	private ConstraintLayout nicknameConstraintLayout;
-	private Button myNameButton;
-	private ImageButton modifyNameButton;
-	private ConstraintLayout mailConstraintLayout;
-	private TextView mailTextView;
-	private Button mymailButton;
-	private ImageButton modifymailButton;
-	private ConstraintLayout informationConstraintLayout;
-	private Button clearcacheButton;
-	private Button cacheButton;
-	private TextView nopictureTextView;
-	private Switch nopictureSwitch;
-	private TextView darkmodeTextView;
-	private Switch darkmodeSwitch;
-	private Button vipButton;
+	private ImageView avatarImageView;
+	private TextView vipTextView;
 	private TextView loggednameTextView;
 	private Button logoutButton;
-	private TextView informationTextView;
+	private TextView mynameTextView;
+	private TextView mymailTextView;
 
 	private boolean vip;
 	@Override
@@ -65,6 +68,13 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.settings_activity);
 		this.init();
+		ConstraintLayout layout = this.findViewById(R.id.nickname_constraint_layout);
+
+		layout.setOnClickListener(getListener("设置昵称",mynameTextView, Manager.getInstance().getUser()::setNickname));
+
+		layout = this.findViewById(R.id.mail_constraint_layout);
+
+		layout.setOnClickListener(getListener("设置邮箱",mymailTextView,Manager.getInstance().getUser()::setMail_address));
 	}
 	
 	@Override
@@ -78,91 +88,58 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 				return super.onOptionsItemSelected(menuItem);
 		}
 	}
-	
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		this.vip = Manager.getInstance().getUser().is_vip;
+		avatarImageView.setImageDrawable(Manager.getInstance().getUser().avator);
+		mynameTextView.setText(Manager.getInstance().getUser().nickname);
+		mymailTextView.setText(Manager.getInstance().getUser().mail_address);
+		loggednameTextView.setText(Manager.getInstance().getUser().username);
+	}
+	private View.OnClickListener getListener(String name, TextView s1, Consumer<String> s2){
+		return new View.OnClickListener(){
+			@Override
+			public void onClick(View view) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this, R.style.MyDialogTheme);
+				builder.setTitle(name);
+				EditText input = new EditText(SettingsActivity.this);
+				input.setText(s1.getText());
+				input.setInputType(InputType.TYPE_CLASS_TEXT);
+				input.requestFocus();
+
+				builder.setView(input);
+				builder.setPositiveButton("确定", (dialog, id) -> {
+					s1.setText(input.getText());
+					s2.accept(input.getText().toString());
+				});
+				builder.setNegativeButton("取消", (dialog, id) -> {
+					dialog.cancel();
+				});
+				AlertDialog dialog = builder.create();
+				dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+				dialog.show();
+			}
+		};
+	}
 	private void init() {
 
-		vip = false;
+
+
 		// Configure Navigation Bar #2 component
 		toolbar = this.findViewById(R.id.toolbar);
 		
 		// Configure Avatar component
-		avatarButton = this.findViewById(R.id.avatar_button);
-		avatarButton.setOnClickListener((view) -> {
+		avatarImageView = this.findViewById(R.id.avatar_image_view);
+		avatarImageView.setOnClickListener((view) -> {
 	this.onAvatarPressed();
 });
-		
-		// Configure Details component
-		detailsTextView = this.findViewById(R.id.details_text_view);
-		
-		// Configure Nickname component
-		nicknameConstraintLayout = this.findViewById(R.id.nickname_constraint_layout);
-		
-		// Configure Myname component
-		myNameButton = this.findViewById(R.id.my_name_button);
-		myNameButton.setOnClickListener((view) -> {
-	this.onMynamePressed();
-});
-		
-		// Configure Modifyname component
-		modifyNameButton = this.findViewById(R.id.modify_name_button);
-		modifyNameButton.setOnClickListener((view) -> {
-	this.onModifynamePressed();
-});
-		
-		// Configure Mail component
-		mailConstraintLayout = this.findViewById(R.id.mail_constraint_layout);
-		
-		// Configure Mail component
-		mailTextView = this.findViewById(R.id.mail_text_view);
-		
-		// Configure Mymail component
-		mymailButton = this.findViewById(R.id.mymail_button);
-		mymailButton.setOnClickListener((view) -> {
-	this.onMymailPressed();
-});
-		
-		// Configure Modifymail component
-		modifymailButton = this.findViewById(R.id.modifymail_button);
-		modifymailButton.setOnClickListener((view) -> {
-	this.onModifymailPressed();
-});
-		
-		// Configure Information component
-		informationConstraintLayout = this.findViewById(R.id.information_constraint_layout);
-		
-		// Configure Clear component
-		clearcacheButton = this.findViewById(R.id.clearcache_button);
-		clearcacheButton.setOnClickListener((view) -> {
-	this.onClearPressed();
-});
-		
-		// Configure Cache component
-		cacheButton = this.findViewById(R.id.cache_button);
-		cacheButton.setOnClickListener((view) -> {
-	this.onCachePressed();
-});
-		
-		// Configure Label component
-		nopictureTextView = this.findViewById(R.id.nopicture_text_view);
-		
-		// Configure Slide component
-		nopictureSwitch = this.findViewById(R.id.nopicture_switch);
-		nopictureSwitch.setOnClickListener((view) -> {
-	this.onNoPictureSlideValueChanged();
-});
-		
-		// Configure Label component
-		darkmodeTextView = this.findViewById(R.id.darkmode_text_view);
-		
-		// Configure Slide component
-		darkmodeSwitch = this.findViewById(R.id.darkmode_switch);
-		darkmodeSwitch.setOnClickListener((view) -> {
-	this.onDarkSlideValueChanged();
-});
+
 		
 		// Configure GetVip component
-		vipButton = this.findViewById(R.id.vip_button);
-		vipButton.setOnClickListener((view) -> {
+		vipTextView = this.findViewById(R.id.vip_button);
+		vipTextView.setOnClickListener((view) -> {
 	this.onVipButtonPressed();
 });
 		
@@ -174,9 +151,8 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 		logoutButton.setOnClickListener((view) -> {
 	this.onLogoutPressed();
 });
-		
-		// Configure Information component
-		informationTextView = this.findViewById(R.id.information_text_view);
+		mymailTextView = this.findViewById(R.id.mail_text_view);
+		mynameTextView = this.findViewById(R.id.name_text_view);
 		
 		this.setupToolbar();
 	}
@@ -189,42 +165,45 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 		
 		// Additional Toolbar setup code can go here.
 	}
-	
+
+	public static final int PICK_IMAGE = 1;
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == RESULT_OK) {
+			if (requestCode == PICK_IMAGE) {
+				Uri uri = data.getData();
+				Uri desturi = Uri.fromFile(new File(getCacheDir(), "IMG_" + System.currentTimeMillis()));
+				UCrop.of(uri, desturi)
+						.withAspectRatio(1, 1)
+						.start(this);
+			}
+		}
+		System.out.println(resultCode);
+		System.out.println(requestCode);
+		if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+			final Uri uri = UCrop.getOutput(data);
+			InputStream inputStream = null;
+			try {
+				inputStream = getContentResolver().openInputStream(uri);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			Drawable drawable = Drawable.createFromStream(inputStream, uri.toString() );
+			avatarImageView.setImageDrawable(drawable);
+			Manager.getInstance().getUser().setAvator(drawable);
+		} else if (resultCode == UCrop.RESULT_ERROR) {
+			final Throwable cropError = UCrop.getError(data);
+		}
+	}
+
 	public void onAvatarPressed() {
-	
+		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		intent.setType("image/*");
+		startActivityForResult(Intent.createChooser(intent, "选择图片"),PICK_IMAGE);
 	}
-	
-	public void onMynamePressed() {
-	
-	}
-	
-	public void onModifynamePressed() {
-	
-	}
-	
-	public void onMymailPressed() {
-	
-	}
-	
-	public void onModifymailPressed() {
-	
-	}
-	
-	public void onClearPressed() {
-	
-	}
-	
-	public void onCachePressed() {
-	
-	}
-	
-	public void onNoPictureSlideValueChanged() {
-	
-	}
-	
-	public void onDarkSlideValueChanged() {
-	
-	}
+
 	
 	public void onVipButtonPressed() {
 		if (!vip) {
@@ -236,7 +215,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 
 	
 	public void onLogoutPressed() {
-	
+		Manager.getInstance().logout();
 		this.startWelcomeActivity();
 	}
 	
@@ -246,7 +225,8 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 	}
 	
 	private void startWelcomeActivity() {
-	
-		this.startActivity(WelcomeActivity.newIntent(this));
+		Intent intent = new Intent(this, WelcomeActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startActivity(intent);
 	}
 }

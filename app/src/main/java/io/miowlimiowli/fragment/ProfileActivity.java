@@ -6,28 +6,44 @@ package io.miowlimiowli.fragment;
 
 import io.miowlimiowli.R;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.text.InputType;
-import android.view.ContextThemeWrapper;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import io.miowlimiowli.activity.*;
 import io.miowlimiowli.manager.Manager;
 
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
+import com.yalantis.ucrop.UCrop;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.function.Consumer;
-import java.util.regex.Matcher;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class ProfileActivity extends Fragment {
@@ -39,8 +55,8 @@ public class ProfileActivity extends Fragment {
 		fragment.setArguments(arguments);
 		return fragment;
 	}
-	
-	private Button avatarButton;
+
+	private ImageView avatarImageView;
 	private TextView myNicknameTextView;
 	private TextView myShortTextView;
 	private TextView myLongTextView;
@@ -74,7 +90,7 @@ public class ProfileActivity extends Fragment {
 				builder.setView(input);
 				builder.setPositiveButton("确定", (dialog, id) -> {
 					s1.setText(input.getText());
-					Manager.getInstance().getUser().setNickname(input.getText().toString());
+					s2.accept(input.getText().toString());
 				});
 				builder.setNegativeButton("取消", (dialog, id) -> {
 					dialog.cancel();
@@ -119,11 +135,45 @@ public class ProfileActivity extends Fragment {
 		this.myNicknameTextView.setText( manager.getUser().nickname);
 		this.myShortTextView.setText(manager.getUser().short_description);
 		this.myLongTextView.setText(manager.getUser().long_description);
-		this.avatarButton.setBackground(manager.getUser().avator);
+		Glide.with(this).load(manager.getUser().avator).into(avatarImageView);
+	}
+
+    public static final int PICK_IMAGE = 1;
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == RESULT_OK) {
+			if (requestCode == PICK_IMAGE) {
+				Uri uri = data.getData();
+				Uri desturi = Uri.fromFile(new File(getContext().getCacheDir(), "IMG_" + System.currentTimeMillis()));
+				UCrop.of(uri, desturi)
+						.withAspectRatio(1, 1)
+						.start(getContext(), this);
+			}
+		}
+		System.out.println(resultCode);
+		System.out.println(requestCode);
+		if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+			final Uri uri = UCrop.getOutput(data);
+			InputStream inputStream = null;
+			try {
+				inputStream = getContext().getContentResolver().openInputStream(uri);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			Drawable drawable = Drawable.createFromStream(inputStream, uri.toString() );
+			avatarImageView.setImageDrawable(drawable);
+			Manager.getInstance().getUser().setAvator(drawable);
+		} else if (resultCode == UCrop.RESULT_ERROR) {
+			final Throwable cropError = UCrop.getError(data);
+		}
 	}
 
 	public void onAvatarPressed() {
-	
+		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		intent.setType("image/*");
+		startActivityForResult(Intent.createChooser(intent, "选择图片"),PICK_IMAGE);
 	}
 	
 	public void onColletctionPressed() {
@@ -147,10 +197,10 @@ public class ProfileActivity extends Fragment {
 	}
 	
 	public void init() {
-	
+
 		// Configure Avatar component
-		avatarButton = this.getView().findViewById(R.id.avatar_button);
-		avatarButton.setOnClickListener((view) -> {
+		avatarImageView = this.getView().findViewById(R.id.avatar_image_view);
+		avatarImageView.setOnClickListener((view) -> {
 	this.onAvatarPressed();
 });
 		

@@ -48,7 +48,7 @@ public class RecommendActivity extends Fragment {
 	}
 	private MovableFloatingActionButton searchButton;
 	private String mKeyword = "";
-	protected int mPageSize = 100;
+	protected int mPageSize = 10;
 	protected int mPageNo = 1;
 	//private NewsListFragment newsListFragment;
 

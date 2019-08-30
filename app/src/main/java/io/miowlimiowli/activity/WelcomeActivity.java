@@ -5,6 +5,8 @@
 package io.miowlimiowli.activity;
 
 import android.widget.TextView;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import io.miowlimiowli.R;
@@ -40,7 +42,6 @@ public class WelcomeActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.welcome_activity);
 		this.init();
-		
 		this.startAnimationOne();
 
 	}

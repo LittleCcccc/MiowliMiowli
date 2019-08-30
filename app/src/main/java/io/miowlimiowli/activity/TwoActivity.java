@@ -6,17 +6,25 @@ package io.miowlimiowli.activity;
 
 import java.util.Arrays;
 import io.miowlimiowli.R;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import io.miowlimiowli.fragment.ListActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import io.miowlimiowli.fragment.ProfileActivity;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.view.MenuItem;
 import androidx.fragment.app.Fragment;
 import io.miowlimiowli.adapter.TwoActivityPagerAdapter;
 import android.content.Context;
 import java.util.List;
 import io.miowlimiowli.fragment.RecommendActivity;
+import pub.devrel.easypermissions.EasyPermissions;
+
 import android.os.Bundle;
 import android.content.Intent;
 
@@ -38,6 +46,15 @@ public class TwoActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.two_activity);
 		init();
+
+		String[] galleryPermissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+		if (EasyPermissions.hasPermissions(this, galleryPermissions)) {
+
+		} else {
+			EasyPermissions.requestPermissions(this, "我要存储！",
+					101, galleryPermissions);
+		}
 	}
 	
 	public void init() {

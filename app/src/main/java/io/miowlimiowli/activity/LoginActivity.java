@@ -104,7 +104,10 @@ public class LoginActivity extends AppCompatActivity {
 		String password = inputPasswordEditText.getText().toString();
 		try{
 			Manager.getInstance().login(name,password);
-			this.startTwoActivity();
+			Intent intent = new Intent(this, TwoActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+			startActivity(intent);
+
 		}catch(UsernameorPasswordError e){
 			LoginErrorTextView.setTextColor(Color.parseColor("#FF6D6B"));
 		}
@@ -115,11 +118,7 @@ public class LoginActivity extends AppCompatActivity {
 	
 		this.finish();
 	}
-	
-	private void startTwoActivity() {
-	
-		this.startActivity(TwoActivity.newIntent(this));
-	}
+
 	
 	public void startAnimationTwo() {
 	
