@@ -24,13 +24,22 @@ public class SearchActivity extends AppCompatActivity {
     public static Intent newIntent(Context context) {
         return new Intent(context,SearchActivity.class);
     }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.search_activity);
         init();
+    }
 
-
+    private void handleIntent(Intent intent){
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            searchNews(query);
+            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this, MySuggestionProvider.AUTHORITY,MySuggestionProvider.MODE);
+            suggestions.saveRecentQuery(query,null);
+        }
     }
 
     public void init(){
@@ -39,13 +48,11 @@ public class SearchActivity extends AppCompatActivity {
 
         mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         mSearchView.setIconifiedByDefault(false);
-
+        mSearchView.setQueryRefinementEnabled(true);
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                mKeyword=query;
-                searchNews();
-
+                searchNews(query);
                 mSearchView.clearFocus();
                 return false;
             }
@@ -57,11 +64,7 @@ public class SearchActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        if(Intent.ACTION_SEARCH.equals(intent.getAction())){
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this, MySuggestionProvider.AUTHORITY,MySuggestionProvider.MODE);
-            suggestions.saveRecentQuery(query,null);
-        }
+        handleIntent(intent);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
@@ -79,7 +82,7 @@ public class SearchActivity extends AppCompatActivity {
         this.finish();
     }
 
-    public void searchNews()
+    public void searchNews(String query)
     {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -98,9 +101,8 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     public void onNewIntent(Intent intent){
         super.onNewIntent(intent);
-        String query=intent.getStringExtra(SearchManager.QUERY);
-        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this, MySuggestionProvider.AUTHORITY,MySuggestionProvider.MODE);
-        suggestions.saveRecentQuery(query,null);
-
+        handleIntent(intent);
     }
+
+
 }
