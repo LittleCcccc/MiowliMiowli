@@ -37,7 +37,7 @@ abstract public class BaseListFragment extends Fragment {
     private SuperSwipeRefreshLayout mSwipeRefreshWidget;
     protected NewsListAdapter newsListAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
-    protected int mPageSize = 3;
+    protected int mPageSize = 100;
     protected int mPageNo = 1;
 
     // Header View
@@ -166,9 +166,7 @@ abstract public class BaseListFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
-
         fetchNews();
     }
 
