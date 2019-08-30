@@ -6,7 +6,7 @@ package io.miowlimiowli.activity;
 
 import io.miowlimiowli.R;
 import io.miowlimiowli.exceptions.UsernameAlreadExistError;
-import io.miowlimiowli.exceptions.UsernameEmpty;
+import io.miowlimiowli.exceptions.UsernameEmptyError;
 import io.miowlimiowli.manager.Manager;
 
 import android.view.MenuItem;
@@ -136,7 +136,7 @@ public class SignupActivity extends AppCompatActivity {
 		{
 			alert.setText("用户名已经存在");
 			return;
-		}catch (UsernameEmpty e){
+		}catch (UsernameEmptyError e){
 			alert.setText("username empty");
 			return;
 		}

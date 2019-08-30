@@ -58,6 +58,7 @@ public class ProfileActivity extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 	
 		super.onViewCreated(view, savedInstanceState);
+		System.out.println("hahaha");
 		init();
 
 	}

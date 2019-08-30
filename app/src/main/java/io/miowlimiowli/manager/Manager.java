@@ -1,7 +1,6 @@
 package io.miowlimiowli.manager;
 
 import android.content.Context;
-import android.util.Pair;
 
 import androidx.room.*;
 
@@ -11,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.miowlimiowli.exceptions.UsernameEmpty;
+import io.miowlimiowli.exceptions.UsernameEmptyError;
 import io.miowlimiowli.manager.sql.SqlComment;
 import io.reactivex.functions.Function;
 
@@ -22,7 +21,6 @@ import io.miowlimiowli.manager.sql.AppDatabase;
 import io.miowlimiowli.manager.sql.SqlUserandNews;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
-import io.reactivex.internal.operators.flowable.FlowableWindow;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 /**
@@ -78,11 +76,11 @@ public class Manager {
      * @param password 密码
      * @throws UsernameAlreadExistError 注册失败（用户重名）抛出异常
      */
-    public void register(final String username, final String password) throws UsernameAlreadExistError, UsernameEmpty {
+    public void register(final String username, final String password) throws UsernameAlreadExistError, UsernameEmptyError {
         if (users.containsKey(username))
             throw new UsernameAlreadExistError();
         if(username.isEmpty())
-            throw new UsernameEmpty();
+            throw new UsernameEmptyError();
         User user = new User(username, password);
         user.cat_list = new ArrayList<>(cat_list);
         users.put(username, user);
