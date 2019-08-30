@@ -37,7 +37,7 @@ abstract public class BaseListFragment extends Fragment {
     private SuperSwipeRefreshLayout mSwipeRefreshWidget;
     protected NewsListAdapter newsListAdapter;
     protected RecyclerView.LayoutManager mLayoutManager;
-    protected int mPageSize = 100;
+    protected int mPageSize = 10;
     protected int mPageNo = 1;
 
     // Header View

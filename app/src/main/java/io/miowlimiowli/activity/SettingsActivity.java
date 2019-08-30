@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.os.Bundle;
 import android.view.MenuItem;
 import io.miowlimiowli.dialog.SettingsActivityVipButtonSheet;
+import io.miowlimiowli.manager.Manager;
 
 
 public class SettingsActivity extends AppCompatActivity implements SettingsActivityVipButtonSheet.BottomSheetListener {
@@ -27,6 +28,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 		{
 			vipButton.setText("已办理");
 			vip=true;
+			Manager.getInstance().getUser().setIs_vip(true);
 		}
 	}
 
@@ -78,10 +80,19 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 				return super.onOptionsItemSelected(menuItem);
 		}
 	}
-	
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		this.vip = Manager.getInstance().getUser().is_vip;
+		avatarButton.setBackground(Manager.getInstance().getUser().avator);
+		myNameButton.setText(Manager.getInstance().getUser().nickname);
+		mymailButton.setText(Manager.getInstance().getUser().mail_address);
+		loggednameTextView.setText(Manager.getInstance().getUser().username);
+	}
+
 	private void init() {
 
-		vip = false;
 		// Configure Navigation Bar #2 component
 		toolbar = this.findViewById(R.id.toolbar);
 		
@@ -236,7 +247,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 
 	
 	public void onLogoutPressed() {
-	
+		Manager.getInstance().logout();
 		this.startWelcomeActivity();
 	}
 	
@@ -246,7 +257,8 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 	}
 	
 	private void startWelcomeActivity() {
-	
-		this.startActivity(WelcomeActivity.newIntent(this));
+		Intent intent = new Intent(this, WelcomeActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startActivity(intent);
 	}
 }

@@ -167,7 +167,9 @@ public class SignupActivity extends AppCompatActivity {
 		{
 
 		}
-		this.startTwoActivity();
+		Intent intent = new Intent(this, TwoActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startActivity(intent);
 	}
 	
 	public void onLogInPressed() {
@@ -179,11 +181,7 @@ public class SignupActivity extends AppCompatActivity {
 	
 		this.finish();
 	}
-	
-	private void startTwoActivity() {
-	
-		this.startActivity(TwoActivity.newIntent(this));
-	}
+
 	
 	private void startLoginActivity() {
 	
