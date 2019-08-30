@@ -6,14 +6,21 @@ package io.miowlimiowli.fragment;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.input.InputManager;
 import android.os.Bundle;
 
 import io.miowlimiowli.R;
+import io.miowlimiowli.activity.SearchActivity;
+import io.miowlimiowli.activity.SettingsActivity;
 import io.miowlimiowli.adapter.NewsListAdapter;
+import io.miowlimiowli.exceptions.MovableFloatingActionButton;
+import io.miowlimiowli.exceptions.MySuggestionProvider;
 import io.miowlimiowli.manager.Manager;
 
+import android.provider.SearchRecentSuggestions;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,6 +34,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 public class RecommendActivity extends Fragment {
 
@@ -37,8 +46,7 @@ public class RecommendActivity extends Fragment {
 		fragment.setArguments(arguments);
 		return fragment;
 	}
-
-	private SearchView mSearchView;
+	private MovableFloatingActionButton searchButton;
 	private String mKeyword = "";
 	protected int mPageSize = 100;
 	protected int mPageNo = 1;
@@ -65,38 +73,42 @@ public class RecommendActivity extends Fragment {
 		fragmentTransaction.add(R.id.news_list_layout,fragment);
 		fragmentTransaction.commit();
 
-		SearchManager searchManager=(SearchManager)getActivity().getSystemService(Context.SEARCH_SERVICE);
-		mSearchView = this.getView().findViewById(R.id.news_search_view);
-
-		mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-		mSearchView.setIconifiedByDefault(false);
-
-		mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+		searchButton = this.getView().findViewById(R.id.search_button);
+		searchButton.setOnClickListener((view) -> {
+			this.onSearchButtonPressed();
+		});
+		searchButton.setOnLongClickListener(new View.OnLongClickListener(){
 			@Override
-			public boolean onQueryTextSubmit(String query) {
-				mKeyword=query;
-				searchNews();
-
-				mSearchView.clearFocus();
-				return false;
-			}
-
-			@Override
-			public boolean onQueryTextChange(String newText) {
-				return false;
+			public boolean onLongClick(View v) {
+				v.setOnTouchListener(new View.OnTouchListener() {
+					@Override
+					public boolean onTouch(View view, MotionEvent event) {
+						switch (event.getActionMasked()) {
+							case MotionEvent.ACTION_MOVE:
+								view.setX(event.getRawX() - 120);
+								view.setY(event.getRawY() - 425);
+								break;
+							case MotionEvent.ACTION_UP:
+								view.setOnTouchListener(null);
+								break;
+							default:
+								break;
+						}
+						return true;
+					}
+				});
+				return true;
 			}
 		});
 
 
+}
+
+	private void onSearchButtonPressed() {
+		startSearchActivity();
 	}
 
-	public void searchNews()
-	{
-		FragmentManager fragmentManager = getFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		NewsListFragment fragment = NewsListFragment.newInstance("","海贼王");
-		fragmentTransaction.add(R.id.news_list_layout,fragment);
-		fragmentTransaction.commit();
+	public void startSearchActivity(){
+		this.getActivity().startActivity(SearchActivity.newIntent(this.getContext()));
 	}
-
 }

@@ -19,46 +19,31 @@
 		app:layout_constraintVertical_weight="1">
 
 		<androidx.constraintlayout.widget.ConstraintLayout
-			android:id="@+id/news_search_constraint_layout"
-			android:layout_width="0dp"
-			android:layout_height="@dimen/recommend_activity_news_search_constraint_layout_height"
-			android:background="@color/recommend_activity_news_search_constraint_layout_background_color"
-			app:layout_constraintHorizontal_weight="1"
-			app:layout_constraintLeft_toLeftOf="parent"
-			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			tools:layout_editor_absoluteX="0dp"
-			tools:layout_editor_absoluteY="0dp">
-
-			<androidx.appcompat.widget.SearchView
-				android:id="@+id/news_search_view"
-				android:layout_width="0dp"
-				android:layout_height="@dimen/recommend_activity_news_search_bar_search_view_height"
-				android:background="@drawable/recommend_activity_news_search_bar_search_view_background"
-				app:layout_constraintHorizontal_weight="1"
-				app:layout_constraintLeft_toLeftOf="parent"
-				app:layout_constraintRight_toRightOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				app:queryHint="@string/recommend_activity_news_search_bar_search_view_hint"
-				app:searchIcon="@drawable/search_icon">
-
-			</androidx.appcompat.widget.SearchView>
-		</androidx.constraintlayout.widget.ConstraintLayout>
-
-		<androidx.constraintlayout.widget.ConstraintLayout
 			android:id="@+id/news_list_layout"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_marginTop="@dimen/recommend_activity_news_search_constraint_layout_height"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent">
 
+			<io.miowlimiowli.exceptions.MovableFloatingActionButton
+				android:id="@+id/search_button"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="16dp"
+				android:layout_marginBottom="16dp"
+				android:alpha="0.6"
+				android:backgroundTint="@color/main_light"
+				android:clickable="true"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:srcCompat="@drawable/search_white" />
 		</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
+
 	<com.google.android.material.bottomnavigation.BottomNavigationView
 		android:id="@+id/navi"
 		android:layout_width="0dp"
