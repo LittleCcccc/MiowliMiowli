@@ -16,4 +16,7 @@ public class SqlUserandNews {
 
     @ColumnInfo(name = "isread")
     public boolean isread;
+
+    @ColumnInfo(name = "isfavorite")
+    public boolean isfavorite;
 }

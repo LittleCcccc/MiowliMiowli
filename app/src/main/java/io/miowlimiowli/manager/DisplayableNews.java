@@ -19,6 +19,7 @@ public class DisplayableNews {
     public String publisher_name;
     public Integer likecount;
     public Integer readcount;
+    public Integer favoritecount;
     public String video_url;
     public DisplayableNews(final RawNews news){
         this.title = news.title;
@@ -33,8 +34,22 @@ public class DisplayableNews {
     }
 
     /**
+     * @param favorite 设置此新闻是否收藏
+     */
+    public void setIsfavorite(boolean favorite) {
+        this.isfavorite = favorite;
+        publisher.onNext(this);
+    }
+
+    /**
+     * 新闻是否收藏，修改请使用setIsfavorite
+     */
+    public boolean isfavorite;
+
+
+
+    /**
      * @param isread 设置此新闻是否已读
-     * @return
      */
     public void setIsread(boolean isread) {
         this.isread = isread;

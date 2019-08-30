@@ -143,6 +143,17 @@ public class Manager {
     }
 
     /**
+     * @return 获取当前用户所有收藏的新闻的列表
+     */
+    public Single<List<DisplayableNews>> fetch_favorite_list(){
+        return Flowable.fromCallable(()-> db.SqlUserandNewsDao().getFavoriteListByUsername(user.username))
+                .flatMapIterable(item->item)
+                .map(item-> new DisplayableNews(newses.get(item.news_id)))
+                .map(new WrapDisplayableNews())
+                .toList().subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
      * 以新闻ID获取此新闻所有评论
      * @param news_id 新闻的ID
      * @return 此新闻所有的评论
@@ -202,12 +213,15 @@ public class Manager {
             sql.news_id = news.id;
             sql.isread = false;
             sql.islike = false;
+            sql.isfavorite = false;
             db.SqlUserandNewsDao().insert(sql);
             sql = db.SqlUserandNewsDao().query(user.username, news.id).get(0);
             news.islike = sql.islike;
             news.isread = sql.isread;
+            news.isfavorite = sql.isfavorite;
             news.likecount = db.SqlUserandNewsDao().countLike(news.id);
             news.readcount = db.SqlUserandNewsDao().countRead(news.id);
+            news.favoritecount = db.SqlUserandNewsDao().countFavorate(news.id);
             news.publisher.subscribe(displayableNews ->  {
                 SqlUserandNews t = db.SqlUserandNewsDao().query(user.username, displayableNews.id).get(0);
                 if(displayableNews.islike && !t.islike)
@@ -218,8 +232,13 @@ public class Manager {
                     displayableNews.readcount += 1;
                 if(!displayableNews.isread && t.isread)
                     displayableNews.readcount -= 1;
+                if(displayableNews.isfavorite && !t.isfavorite)
+                    displayableNews.favoritecount += 1;
+                if(!displayableNews.isfavorite && t.isfavorite)
+                    displayableNews.favoritecount -= 1;
                 t.islike = displayableNews.islike;
                 t.isread = displayableNews.isread;
+                t.isfavorite = displayableNews.isfavorite;
                 db.SqlUserandNewsDao().update(t);
             });
             return news;
