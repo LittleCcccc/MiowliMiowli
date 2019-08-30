@@ -73,7 +73,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 		
 		throw new RuntimeException("Unsupported view type");
 	}
-	
+
 	@Override
 	public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
 		if(viewHolder instanceof CellViewHolder) {
@@ -87,9 +87,10 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 			cell.setTime(news.publisher_name + " " + time + " " + news.readcount + "阅读" + " " + news.likecount + "喜爱");
 			if (!news.image_urls.isEmpty()) {
 				url = news.image_urls.get(0);
+				Glide.with(viewHolder.itemView.getContext()).load(url).placeholder(R.drawable.icon_sign_up).into(((CellViewHolder) viewHolder).newsPhotoImageView);
+
 			}
-			Glide.with(viewHolder.itemView.getContext()).load(url).into(((CellViewHolder) viewHolder).newsPhotoImageView);
-		}
+	}
 	}
 
 	@Override

@@ -111,7 +111,14 @@ public class SignupActivity extends AppCompatActivity {
 		logInButton.setOnClickListener((view) -> {
 	this.onLogInPressed();
 });
-		
+
+
+		// default user
+		signupUsernameEditText.setText("q");
+		signupMailEditText.setText("q@q.qq");
+		signupPasswordEditText.setText("qqqqqq");
+		agreeSwitch.setChecked(true);
+
 		this.setupToolbar();
 	}
 	

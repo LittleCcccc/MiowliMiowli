@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
 	}
 	
 	public void onLoginPressed() {
+
 		String name = inputNicknameEditText.getText().toString();
 		String password = inputPasswordEditText.getText().toString();
 		try{
