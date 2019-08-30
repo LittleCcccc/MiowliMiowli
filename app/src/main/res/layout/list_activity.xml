@@ -21,7 +21,10 @@
 		<androidx.viewpager.widget.ViewPager
 			android:id="@+id/pager"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+			android:layout_height="match_parent"
+			android:layout_marginBottom="16dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			tools:layout_editor_absoluteX="-87dp">
 
 			<com.google.android.material.tabs.TabLayout
 				android:id="@+id/tab_layout"
@@ -34,6 +37,7 @@
 				app:tabMode="scrollable"
 				app:tabSelectedTextColor="@color/main_light"
 				app:tabTextColor="@color/material_bottom_sheet_item" />
+
 		</androidx.viewpager.widget.ViewPager>
 
 		<ImageButton
