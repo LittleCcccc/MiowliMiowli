@@ -3,6 +3,7 @@ package io.miowlimiowli.manager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Pair;
 
 import java.util.ArrayList;
@@ -62,7 +63,6 @@ public class User {
         this.short_description = "一只小朋友";
         this.long_description = "一大大大大只小朋友！";
         is_vip = false;
-        this.avator =
 
     }
 

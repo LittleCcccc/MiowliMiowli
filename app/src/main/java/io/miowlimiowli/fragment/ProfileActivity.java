@@ -75,7 +75,7 @@ public class ProfileActivity extends Fragment {
 		this.myNicknameTextView.setText( manager.getUser().nickname);
 		this.myShortTextView.setText(manager.getUser().short_description);
 		this.myLongTextView.setText(manager.getUser().long_description);
-		this.avatarButton.setBackground(new BitmapDrawable());
+		this.avatarButton.setBackground(manager.getUser().avator);
 	}
 
 	public void onAvatarPressed() {

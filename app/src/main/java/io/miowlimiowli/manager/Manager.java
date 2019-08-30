@@ -2,6 +2,7 @@ package io.miowlimiowli.manager;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 
 import androidx.room.*;
 
@@ -85,7 +86,7 @@ public class Manager {
             throw new UsernameEmptyError();
         User user = new User(username, email, password);
         user.cat_list = new ArrayList<>(cat_list);
-        //user.avator = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
+        user.avator = (BitmapDrawable) context.getResources().getDrawable(R.drawable.logo, null);
         users.put(username, user);
     }
 
