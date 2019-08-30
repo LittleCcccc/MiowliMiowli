@@ -6,11 +6,13 @@ import android.util.Pair;
 import androidx.room.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import io.miowlimiowli.exceptions.UsernameEmpty;
+import io.miowlimiowli.manager.sql.SqlComment;
 import io.reactivex.functions.Function;
 
 import io.miowlimiowli.exceptions.UsernameAlreadExistError;
@@ -141,6 +143,7 @@ public class Manager {
     }
 
     /**
+     * 以新闻ID获取此新闻所有评论
      * @param news_id 新闻的ID
      * @return 此新闻所有的评论
      */
@@ -151,6 +154,32 @@ public class Manager {
                 .map(new WrapDisplayableComment())
                 .toList()
                 .subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 当前用户发布一条评论
+     * @param news_id 新闻ID
+     * @param content 评论内容
+     * @param date 评论时间
+     * @return 返回刚添加的新闻的DisplayableComment
+     */
+    public DisplayableComment add_comment(String news_id, String content, Date date){
+        SqlComment cmt = new SqlComment();
+        cmt.content = content;
+        cmt.news_id = news_id;
+        cmt.publish_date = date;
+        cmt.username = user.username;
+        db.SqlCommentDao().insert(cmt);
+        WrapDisplayableComment f = new WrapDisplayableComment();
+        return f.apply(new DisplayableComment(cmt));
+    }
+
+    /**
+     * @param cmt 被删除的评论，可以不是由当前用户发布
+     */
+    public void delete_comment(DisplayableComment cmt){
+        SqlComment sqlcmt = db.SqlCommentDao().query(cmt.cmt_id);
+        db.SqlCommentDao().delete(sqlcmt);
     }
 
 

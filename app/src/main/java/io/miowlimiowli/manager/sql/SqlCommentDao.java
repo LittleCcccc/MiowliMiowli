@@ -13,11 +13,13 @@ public interface SqlCommentDao {
     @Query("Select * from comment where news_id = :news_id order by publish_date")
     List<SqlComment> getCommentByNewsid(String news_id);
 
+    @Query("Select * from comment where cmt_id = :cmt_id")
+    SqlComment query(int cmt_id);
 
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(SqlNews news);
+    void insert(SqlComment news);
 
     @Delete
-    void delete(SqlNews news);
+    void delete(SqlComment news);
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 import io.miowlimiowli.manager.sql.SqlComment;
 
 public class DisplayableComment {
-    private int cmt_id;
+    public int cmt_id;
 
     public String username;
 
