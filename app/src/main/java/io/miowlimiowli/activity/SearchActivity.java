@@ -55,6 +55,7 @@ public class SearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         Intent intent = getIntent();
         if(Intent.ACTION_SEARCH.equals(intent.getAction())){
             String query = intent.getStringExtra(SearchManager.QUERY);
@@ -91,5 +92,15 @@ public class SearchActivity extends AppCompatActivity {
         SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
                 MySuggestionProvider.AUTHORITY, MySuggestionProvider.MODE);
         suggestions.clearHistory();
+    }
+
+
+    @Override
+    public void onNewIntent(Intent intent){
+        super.onNewIntent(intent);
+        String query=intent.getStringExtra(SearchManager.QUERY);
+        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this, MySuggestionProvider.AUTHORITY,MySuggestionProvider.MODE);
+        suggestions.saveRecentQuery(query,null);
+
     }
 }
