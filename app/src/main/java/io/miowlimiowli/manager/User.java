@@ -20,7 +20,7 @@ import io.miowlimiowli.R;
 public class User {
     public String username;
     public String password;
-    public BitmapDrawable avator;
+    public Drawable avator;
     public void setMail_address(String mail_address) {
         this.mail_address = mail_address;
     }

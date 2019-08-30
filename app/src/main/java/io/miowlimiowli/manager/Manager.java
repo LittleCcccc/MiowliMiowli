@@ -86,7 +86,7 @@ public class Manager {
             throw new UsernameEmptyError();
         User user = new User(username, email, password);
         user.cat_list = new ArrayList<>(cat_list);
-        user.avator = (BitmapDrawable) context.getResources().getDrawable(R.drawable.logo, null);
+        user.avator = context.getResources().getDrawable(R.drawable.logo, null);
         users.put(username, user);
     }
 
