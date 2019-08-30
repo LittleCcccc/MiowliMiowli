@@ -13,6 +13,8 @@ public interface SqlCommentDao {
     @Query("Select * from comment where news_id = :news_id order by publish_date")
     List<SqlComment> getCommentByNewsid(String news_id);
 
+
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(SqlNews news);
 

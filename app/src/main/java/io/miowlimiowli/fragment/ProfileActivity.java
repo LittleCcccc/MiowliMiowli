@@ -115,7 +115,7 @@ public class ProfileActivity extends Fragment {
 		// Configure 58k component
 		commentSumTextView = this.getView().findViewById(R.id.comment_sum_text_view);
 		
-		// Configure Comment component
+		// Configure DisplayableComment component
 		commentButton = this.getView().findViewById(R.id.comment_button);
 		commentButton.setOnClickListener((view) -> {
 	this.onCommentPressed();

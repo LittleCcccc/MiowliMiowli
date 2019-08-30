@@ -6,7 +6,7 @@ import java.util.Date;
 
 import io.miowlimiowli.manager.sql.SqlComment;
 
-public class Comment {
+public class DisplayableComment {
     private int cmt_id;
 
     public String username;
@@ -21,7 +21,7 @@ public class Comment {
 
     public Date publish_date;
 
-    public Comment(SqlComment comment){
+    public DisplayableComment(SqlComment comment){
         cmt_id = comment.cmt_id;
         username = comment.username;
         news_id = comment.news_id;

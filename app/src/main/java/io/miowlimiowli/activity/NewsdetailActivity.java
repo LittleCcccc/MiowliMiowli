@@ -101,7 +101,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 		// Configure Image component
 		newsPhotoImageView = this.findViewById(R.id.news_photo_image_view);
 		
-		// Configure Comment component
+		// Configure DisplayableComment component
 		commentGroupConstraintLayout = this.findViewById(R.id.comment_group_constraint_layout);
 		
 		// Configure comment component
