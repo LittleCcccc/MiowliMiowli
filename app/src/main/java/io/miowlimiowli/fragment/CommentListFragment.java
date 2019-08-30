@@ -7,7 +7,8 @@ import io.miowlimiowli.manager.Manager;
 import io.reactivex.Single;
 import io.reactivex.functions.Consumer;
 
-public class CommentListFragment extends NewsListFragment {
+public class CommentListFragment extends BaseListFragment {
+    @Override
     public void fetchNews(){
 
         Single<List<DisplayableNews>> single = null;
@@ -19,5 +20,9 @@ public class CommentListFragment extends NewsListFragment {
             }
         });
 
+    }
+    public static CommentListFragment newInstance(){
+        CommentListFragment fragment = new CommentListFragment();
+        return fragment;
     }
 }

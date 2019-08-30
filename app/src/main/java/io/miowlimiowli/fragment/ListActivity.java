@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 
 import io.miowlimiowli.adapter.NewsPagerAdaptor;
 import io.miowlimiowli.dialog.ListActivityTypeButtonSheet;
+import io.miowlimiowli.manager.Manager;
 
 import androidx.fragment.app.Fragment;
 import android.widget.ImageButton;
@@ -27,14 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListActivity extends Fragment implements ListActivityTypeButtonSheet.TypeDialogFragment_Listener {
+public class ListActivity extends Fragment implements ListActivityTypeButtonSheet.TypeDialogFragment_Listener{
 
 	NewsPagerAdaptor newsPagerAdaptor;
 	private TabLayout mTabLayout;
 	ViewPager viewPager;
 	private String mKeyword = "";
 	private List<String> mCategories = new ArrayList<>();
-	private boolean type[];
 
 	public void setKeyword(String keyword){
 		mKeyword = keyword;
@@ -52,10 +52,8 @@ public class ListActivity extends Fragment implements ListActivityTypeButtonShee
 	private ConstraintLayout newsSearchConstraintLayout;
 	private SearchView newsSearchBarSearchView;
 
-	@Override
-	public void getDataFrom_TypeDialogFragment(boolean[] type){
-		for(int i=1;i<=10;i++)
-			this.type[i]=type[i];
+	public void getDataFrom_TypeDialogFragment(){
+		refresh();
 	}
 
 	@Override
@@ -63,28 +61,35 @@ public class ListActivity extends Fragment implements ListActivityTypeButtonShee
 		super.onCreate(savedInstanceState);
 
 		//mCategories = Manager.getInstance().
-		mCategories.add("娱乐");
-		mCategories.add("军事");
-		mCategories.add("文化");
+
 	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		type = new boolean[12];
 
 		View view = inflater.inflate(R.layout.list_activity, container, false);
 		viewPager = view.findViewById(R.id.pager);
 		viewPager.setOffscreenPageLimit(3);
 
 		mTabLayout = view.findViewById(R.id.tab_layout);
-		for(int i=0;i<mCategories.size();i++)
-			mTabLayout.addTab(mTabLayout.newTab());
+		mCategories = Manager.getInstance().getCat_list();
+		//for(int i=0;i<mCategories.size();i++)
+		//	mTabLayout.addTab(mTabLayout.newTab());
 
 		newsPagerAdaptor = new NewsPagerAdaptor(getChildFragmentManager(),mCategories,mKeyword);
 		viewPager.setAdapter(newsPagerAdaptor);
 		return view;
 	}
-	
+
+
+	public void refresh(){
+		mCategories = Manager.getInstance().getCat_list();
+		newsPagerAdaptor = new NewsPagerAdaptor(getChildFragmentManager(),mCategories,mKeyword);
+		viewPager.setAdapter(newsPagerAdaptor);
+		getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+	}
+
+
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
@@ -97,21 +102,11 @@ public class ListActivity extends Fragment implements ListActivityTypeButtonShee
 	
 	public void onMoreTypeButtonPressed() {
 		ListActivityTypeButtonSheet listActivityTypeButtonSheet = new ListActivityTypeButtonSheet();
-		Bundle bundle = new Bundle();
-		for(int i=1;i<=10;i++)
-		{
-			bundle.putBoolean("type" + i, type[i]);
-		}
-		listActivityTypeButtonSheet.setArguments(bundle);
 		listActivityTypeButtonSheet.setTargetFragment(this,1);
-
-
 		listActivityTypeButtonSheet.show(getFragmentManager(),"ListActivityTypeButtonSheet");
 	}
 
 	public void init() {
-
-
 
 		// Configure Button component
 		moreTypeButton = this.getView().findViewById(R.id.more_type_button);

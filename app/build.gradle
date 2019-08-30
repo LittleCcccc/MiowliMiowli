@@ -30,6 +30,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.nuptboyzhb.lib.uikit:superswiperefreshlayout:1.0.0'
     // Jar libs
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 

@@ -11,15 +11,19 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.miowlimiowli.R;
+import io.miowlimiowli.manager.Manager;
+
 public class ListActivityTypeButtonSheet extends BottomSheetDialogFragment {
     private Button[] p;
     private boolean[] type;
     private TypeDialogFragment_Listener mListener;
 
-
     public interface TypeDialogFragment_Listener{
-        void getDataFrom_TypeDialogFragment(boolean[] type);
+        void getDataFrom_TypeDialogFragment();
     }
 
 
@@ -56,6 +60,10 @@ public class ListActivityTypeButtonSheet extends BottomSheetDialogFragment {
 
         p = new Button[12];
         type = new boolean[12];
+        for(int i=1;i<=10;i++){
+            if(Manager.getInstance().getCat_list().contains(Manager.getInstance().getCatAtPosition(i)))
+                type[i]=true;
+        }
         p[1] = v.findViewById(R.id.button);
         p[2] = v.findViewById(R.id.button2);
         p[3] = v.findViewById(R.id.button3);
@@ -81,13 +89,23 @@ public class ListActivityTypeButtonSheet extends BottomSheetDialogFragment {
         p[11].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.getDataFrom_TypeDialogFragment(type);
+                mListener.getDataFrom_TypeDialogFragment();
+                refreshCatList();
                 dismiss();
             }
         });
         return v;
     }
 
+    public void refreshCatList()
+    {
+        List<String> cat = new ArrayList<>();
+        for(int i=1;i<=10;i++){
+            if(type[i])
+                cat.add(Manager.getInstance().getCatAtPosition(i));
+        }
+        Manager.getInstance().setCat_list(cat);
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

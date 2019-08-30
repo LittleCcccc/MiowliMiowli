@@ -33,16 +33,14 @@ public class Manager {
     private static List<String>  cat_list;
     private Manager() {
         cat_list = new ArrayList<>();
-        cat_list.add("科技");
-        cat_list.add("社会");
-        cat_list.add("体育");
-        cat_list.add("娱乐");
-        cat_list.add("汽车");
-        cat_list.add("教育");
-        cat_list.add("文化");
-        cat_list.add("健康");
-        cat_list.add("军事");
-        cat_list.add("财经");
+        for(int i=0;i<cat.length;i++)
+            cat_list.add(cat[i]);
+    }
+
+    public String[] cat = {"科技","社会","体育","娱乐","汽车","教育","文化","健康","军事","财经"};
+    public String getCatAtPosition(int position)
+    {
+        return cat[position-1];
     }
 
     public static Manager getInstance() {
@@ -216,6 +214,7 @@ public class Manager {
         return user.cat_list;
     }
 
+    public void setCat_list(List<String> list){user.setCat_list(list);}
 
     private Context context;
 

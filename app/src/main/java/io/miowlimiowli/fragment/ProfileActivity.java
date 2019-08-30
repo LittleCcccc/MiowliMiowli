@@ -70,7 +70,7 @@ public class ProfileActivity extends Fragment {
 	
 		this.startCommentActivity();
 	}
-	
+
 	public void onCommentPressed() {
 	
 		this.startCommentActivity();
