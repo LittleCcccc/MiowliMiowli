@@ -4,33 +4,18 @@
 
 package io.miowlimiowli.fragment;
 
-import android.app.SearchManager;
-import android.content.Context;
-import android.content.Intent;
-import android.hardware.input.InputManager;
 import android.os.Bundle;
 
 import io.miowlimiowli.R;
 import io.miowlimiowli.activity.SearchActivity;
-import io.miowlimiowli.activity.SettingsActivity;
-import io.miowlimiowli.adapter.NewsListAdapter;
-import io.miowlimiowli.exceptions.MovableFloatingActionButton;
-import io.miowlimiowli.exceptions.MySuggestionProvider;
-import io.miowlimiowli.manager.Manager;
 
-import android.provider.SearchRecentSuggestions;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 
-import androidx.appcompat.widget.SearchView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -46,7 +31,7 @@ public class RecommendActivity extends Fragment {
 		fragment.setArguments(arguments);
 		return fragment;
 	}
-	private MovableFloatingActionButton searchButton;
+	private FloatingActionButton searchButton;
 	private String mKeyword = "";
 	protected int mPageSize = 10;
 	protected int mPageNo = 1;
@@ -75,31 +60,35 @@ public class RecommendActivity extends Fragment {
 
 		searchButton = this.getView().findViewById(R.id.search_button);
 		searchButton.setOnClickListener((view) -> {
+			//System.out.println("按下浮动搜索按钮");
+			//boolean ret = this.getActivity().onSearchRequested();
+			//System.out.println(ret);
 			this.onSearchButtonPressed();
 		});
-		searchButton.setOnLongClickListener(new View.OnLongClickListener(){
-			@Override
-			public boolean onLongClick(View v) {
-				v.setOnTouchListener(new View.OnTouchListener() {
-					@Override
-					public boolean onTouch(View view, MotionEvent event) {
-						switch (event.getActionMasked()) {
-							case MotionEvent.ACTION_MOVE:
-								view.setX(event.getRawX() - 120);
-								view.setY(event.getRawY() - 425);
-								break;
-							case MotionEvent.ACTION_UP:
-								view.setOnTouchListener(null);
-								break;
-							default:
-								break;
-						}
-						return true;
-					}
-				});
-				return true;
-			}
-		});
+
+//		searchButton.setOnLongClickListener(new View.OnLongClickListener(){
+//			@Override
+//			public boolean onLongClick(View v) {
+//				v.setOnTouchListener(new View.OnTouchListener() {
+//					@Override
+//					public boolean onTouch(View view, MotionEvent event) {
+//						switch (event.getActionMasked()) {
+//							case MotionEvent.ACTION_MOVE:
+//								view.setX(event.getRawX() - 120);
+//								view.setY(event.getRawY() - 425);
+//								break;
+//							case MotionEvent.ACTION_UP:
+//								view.setOnTouchListener(null);
+//								break;
+//							default:
+//								break;
+//						}
+//						return true;
+//					}
+//				});
+//				return true;
+//			}
+//		});
 
 
 }

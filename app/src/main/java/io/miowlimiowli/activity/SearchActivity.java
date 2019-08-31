@@ -86,7 +86,11 @@ public class SearchActivity extends AppCompatActivity {
     {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        NewsListFragment fragment = NewsListFragment.newInstance("","海贼王");
+        NewsListFragment fragment = NewsListFragment.newInstance("",query);
+        System.out.println("呵呵");
+        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this, MySuggestionProvider.AUTHORITY,MySuggestionProvider.MODE);
+        suggestions.saveRecentQuery(query,null);
+
         fragmentTransaction.add(R.id.news_list_layout,fragment);
         fragmentTransaction.commit();
     }

@@ -58,8 +58,11 @@
 		<activity
 			android:label="@string/two_activity_title"
 			android:name=".activity.TwoActivity"
-			android:theme="@style/TwoActivityTheme"/>
-
+			android:theme="@style/TwoActivityTheme">
+		</activity>
+		<meta-data
+			android:name="android.app.default_searchable"
+			android:value=".activity.SearchActivity" />
 		<activity
 			android:label=""
 			android:name=".activity.SearchActivity"
