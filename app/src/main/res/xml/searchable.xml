@@ -3,6 +3,6 @@
     android:label="@string/app_name"
     android:hint="@string/recommend_activity_news_search_bar_search_view_hint"
     android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
-    android:searchSuggestAuthority="io.miowlimiowli.exceptions.MySuggestionProvider"
+    android:searchSuggestAuthority="io.miowlimiowli.others.MySuggestionProvider"
     android:searchSuggestSelection=" ?">
 </searchable>
