@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import io.miowlimiowli.R;
-import io.miowlimiowli.exceptions.MySuggestionProvider;
+import io.miowlimiowli.others.MySuggestionProvider;
 import io.miowlimiowli.fragment.NewsListFragment;
 
 

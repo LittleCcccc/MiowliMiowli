@@ -43,9 +43,14 @@ public class WelcomeActivity extends AppCompatActivity {
 		this.setContentView(R.layout.welcome_activity);
 		this.init();
 		this.startAnimationOne();
-
 	}
-	
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Manager.getInstance().logout();
+	}
+
 	private void init() {
 	
 		// Configure logo component

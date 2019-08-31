@@ -5,29 +5,24 @@
 package io.miowlimiowli.adapter;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.TextView;
-import android.widget.Button;
-
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import android.view.View;
 import android.view.LayoutInflater;
-import android.widget.ImageView;
-import io.miowlimiowli.R;
-import io.miowlimiowli.manager.DisplayableNews;
-import io.miowlimiowli.manager.Manager;
-import io.reactivex.Single;
-import io.reactivex.functions.Consumer;
-
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import io.miowlimiowli.R;
+import io.miowlimiowli.manager.DisplayableNews;
 
 
 public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -87,7 +82,10 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 			cell.setTime(news.publisher_name + " " + time + " " + news.readcount + "阅读" + " " + news.likecount + "喜爱");
 			if (!news.image_urls.isEmpty()) {
 				url = news.image_urls.get(0);
-				Glide.with(viewHolder.itemView.getContext()).load(url).placeholder(R.drawable.icon_sign_up).into(((CellViewHolder) viewHolder).newsPhotoImageView);
+				Glide.with(viewHolder.itemView.getContext())
+						.load(url)
+						.apply(new RequestOptions().dontTransform().placeholder(R.drawable.placeholder))
+						.into(((CellViewHolder) viewHolder).newsPhotoImageView);
 
 			}
 	}

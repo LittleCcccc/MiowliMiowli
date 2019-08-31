@@ -14,20 +14,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
-import com.google.j2objc.annotations.ObjectiveCName;
 
 import java.util.List;
 
 import io.miowlimiowli.R;
 import io.miowlimiowli.adapter.NewsListAdapter;
 import io.miowlimiowli.manager.DisplayableNews;
-import io.miowlimiowli.manager.Manager;
-import io.reactivex.Single;
-import io.reactivex.functions.Consumer;
+import io.miowlimiowli.others.VerticalSpaceItemDecoration;
 
 abstract public class BaseListFragment extends Fragment {
 
@@ -95,14 +90,16 @@ abstract public class BaseListFragment extends Fragment {
                 textView.setText("正在刷新");
                 imageView.setVisibility(View.GONE);
                 progressBar.setVisibility(View.VISIBLE);
-                new Handler().postDelayed(new Runnable() {
+                new Handler().post(new Runnable() {
                     @Override
                     public void run() {
-                        refreshNews();
-                        mSwipeRefreshWidget.setRefreshing(false);
-                        progressBar.setVisibility(View.GONE);
+                        refreshNews(()->{
+                            mSwipeRefreshWidget.setRefreshing(false);
+                            progressBar.setVisibility(View.GONE);
+                        });
+
                     }
-                }, 2000);
+                });
             }
             @Override
             public void onPullDistance(int distance){
@@ -121,16 +118,17 @@ abstract public class BaseListFragment extends Fragment {
                 footerTextView.setText("正在加载...");
                 footerImageView.setVisibility(View.GONE);
                 footerProgressBar.setVisibility(View.VISIBLE);
-                new Handler().postDelayed(new Runnable() {
+                new Handler().post(new Runnable() {
 
                     @Override
                     public void run() {
-                        requireMoreNews();
-                        footerImageView.setVisibility(View.VISIBLE);
-                        footerProgressBar.setVisibility(View.GONE);
-                        mSwipeRefreshWidget.setLoadMore(false);
+                        requireMoreNews(()->{
+                            footerImageView.setVisibility(View.VISIBLE);
+                            footerProgressBar.setVisibility(View.GONE);
+                            mSwipeRefreshWidget.setLoadMore(false);
+                        });
                     }
-                }, 2500);
+                });
             }
 
 
@@ -154,6 +152,7 @@ abstract public class BaseListFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         newsListAdapter = new NewsListAdapter(getContext());
+        mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(32));
         mRecyclerView.setAdapter(newsListAdapter);
 
 
@@ -167,7 +166,7 @@ abstract public class BaseListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fetchNews();
+        fetchNews(()->{});
     }
 
     @Override
@@ -181,15 +180,15 @@ abstract public class BaseListFragment extends Fragment {
         newsListAdapter.setData(list);
     }
 
-    abstract public void fetchNews();
+    abstract public void fetchNews(Runnable callback);
 
-    public void requireMoreNews(){
+    public void requireMoreNews(Runnable callback){
         mPageNo++;
-        fetchNews();
+        fetchNews(callback);
     }
 
-    public void refreshNews(){
+    public void refreshNews(Runnable callback){
         mPageNo = 1;
-        fetchNews();
+        fetchNews(callback);
     }
 }

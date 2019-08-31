@@ -121,7 +121,7 @@
 	
 	<!-- RecommendActivity -->
 	<dimen name="cell_view_holder_news_title_text_view_text_size">20sp</dimen>
-	<dimen name="cell_view_holder_news_time_text_view_text_size">9sp</dimen>
+	<dimen name="cell_view_holder_news_time_text_view_text_size">14sp</dimen>
 	<dimen name="cell_view_holder_news_parent_button_text_size">11sp</dimen>
 	<dimen name="advertisement_view_holder_ad_title_text_view_text_size">13sp</dimen>
 	<dimen name="advertisement_view_holder_ad_detail_text_view_text_size">11sp</dimen>

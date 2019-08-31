@@ -9,7 +9,7 @@ import io.reactivex.functions.Consumer;
 
 public class HistoryListFragment extends BaseListFragment {
     @Override
-    public void fetchNews(){
+    public void fetchNews(Runnable callback){
 
         Single<List<DisplayableNews>> single = null;
         single = Manager.getInstance().fetch_read_list();
@@ -17,6 +17,7 @@ public class HistoryListFragment extends BaseListFragment {
             @Override
             public void accept(List<DisplayableNews> displayableNews) throws Exception {
                 setNewsList(displayableNews);
+                callback.run();
             }
         });
 

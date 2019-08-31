@@ -13,8 +13,8 @@
 		android:label="@string/app_name"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
-		<provider android:name="io.miowlimiowli.exceptions.MySuggestionProvider"
-			android:authorities="io.miowlimiowli.exceptions.MySuggestionProvider" />
+		<provider android:name="io.miowlimiowli.others.MySuggestionProvider"
+			android:authorities="io.miowlimiowli.others.MySuggestionProvider" />
 		<activity
 			android:name="com.yalantis.ucrop.UCropActivity"
 			android:screenOrientation="portrait"
