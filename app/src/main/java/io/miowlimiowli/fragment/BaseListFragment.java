@@ -191,4 +191,5 @@ abstract public class BaseListFragment extends Fragment {
         mPageNo = 1;
         fetchNews(callback);
     }
+
 }
