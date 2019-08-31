@@ -83,7 +83,8 @@ abstract public class BaseListFragment extends Fragment {
         mSwipeRefreshWidget.setHeaderView(createHeaderView());
         mSwipeRefreshWidget.setFooterView(createFooterView());
         mSwipeRefreshWidget.setTargetScrollWithLayout(true);
-        mSwipeRefreshWidget.setTargetScrollWithLayout(true);
+
+
         mSwipeRefreshWidget.setOnPullRefreshListener(new SuperSwipeRefreshLayout.OnPullRefreshListener(){
             @Override
             public void onRefresh() {
