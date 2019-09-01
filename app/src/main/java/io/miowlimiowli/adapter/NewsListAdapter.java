@@ -30,7 +30,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 	public static final int ADVERTISEMENT_VIEW_HOLDER_VIEW_TYPE = 2;
 
 	private Context mContext;
-	private OnItemClickListener mOnItemClickListener;
+	private NewsClickListener mNewsClickListener;
 	private List<DisplayableNews> mNews = new ArrayList<DisplayableNews>();
 
 	public DisplayableNews getNews(int position){
@@ -52,8 +52,8 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-	public void setOnItemClickListener(OnItemClickListener onItemClickListener){
-		this.mOnItemClickListener=onItemClickListener;
+	public void setNewsClickListener(NewsClickListener newsClickListener){
+		this.mNewsClickListener=newsClickListener;
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 			final CellViewHolder cell = (CellViewHolder) viewHolder;
 			cell.setTitle(news.title);
 			String url="";
-			Date date = news.pulish_time;
+			Date date = news.publish_time;
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			String time = formatter.format(date);
 			cell.setTime(news.publisher_name + " " + time + " " + news.readcount + "阅读" + " " + news.likecount + "喜爱");
@@ -106,8 +106,8 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 	/**
 	 * 点击Listener
 	 */
-	public interface OnItemClickListener {
-		void onItemClick(View view, int position);
+	public interface NewsClickListener {
+		void onNewsClick(View view, int position);
 	}
 
 
@@ -119,6 +119,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 		TextView newsTitleTextView;
 		TextView newsTimeTextView;
 
+
 		public CellViewHolder(View itemView) {
 			super(itemView);
 			init();
@@ -127,8 +128,8 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 		@Override
 		public void onClick(View view) {
-			if (mOnItemClickListener != null) {
-				mOnItemClickListener.onItemClick(view, this.getLayoutPosition());
+			if (mNewsClickListener != null) {
+				mNewsClickListener.onNewsClick(view, this.getLayoutPosition());
 			}
 		}
 
@@ -143,17 +144,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 		}
 		
 		public void init() {
-		
-			// Configure bg-news-image component
 			newsPhotoImageView = this.itemView.findViewById(R.id.news_photo_image_view);
-			
-			// Configure Title component
 			newsTitleTextView = this.itemView.findViewById(R.id.news_title_text_view);
-			
-			// Configure Time component
 			newsTimeTextView = this.itemView.findViewById(R.id.news_time_text_view);
-			
-
 		}
 		
 

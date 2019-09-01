@@ -7,6 +7,9 @@ package io.miowlimiowli.activity;
 import android.content.Intent;
 import android.view.MenuItem;
 import io.miowlimiowli.R;
+import io.miowlimiowli.manager.DisplayableNews;
+import io.miowlimiowli.manager.Manager;
+
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -42,6 +45,15 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private TextView commentNameTextView;
 	private TextView commentContentTextView;
 	private TextView commentTimeTextView;
+
+	public static final String NEWS_ID = "NEWS_ID";
+	public static final String NEWS_TITLE="";
+	public static final String NEWS_CONTENT = "";
+	public static final String NEWS_IS_LIKE = "";
+	public static final String NEWS_IMAGE_URL = "";
+	public static final String NEWS_PUBLISH_TIME = "";
+
+	public static DisplayableNews news;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +74,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 				return super.onOptionsItemSelected(menuItem);
 		}
 	}
+
 	
 	private void init() {
 	
@@ -88,19 +101,20 @@ public class NewsdetailActivity extends AppCompatActivity {
 		collectButton.setOnClickListener((view) -> {
 	this.onCollectButtonPressed();
 });
-		
+
 		// Configure Title component
 		titleTextView = this.findViewById(R.id.title_text_view);
+		titleTextView.setText(NEWS_TITLE);
 		
 		// Configure Content component
 		contentTextView = this.findViewById(R.id.content_text_view);
-		
+		contentTextView.setText(NEWS_CONTENT);
 		// Configure Time component
 		timeTextView = this.findViewById(R.id.time_text_view);
-		
+		timeTextView.setText(NEWS_PUBLISH_TIME);
 		// Configure Image component
 		newsPhotoImageView = this.findViewById(R.id.news_photo_image_view);
-		
+
 		// Configure DisplayableComment component
 		commentGroupConstraintLayout = this.findViewById(R.id.comment_group_constraint_layout);
 		

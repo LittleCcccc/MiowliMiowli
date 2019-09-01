@@ -1,5 +1,6 @@
 package io.miowlimiowli.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -17,16 +18,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.miowlimiowli.R;
+import io.miowlimiowli.activity.NewsdetailActivity;
+import io.miowlimiowli.activity.SearchActivity;
 import io.miowlimiowli.adapter.NewsListAdapter;
 import io.miowlimiowli.manager.DisplayableNews;
 import io.miowlimiowli.others.VerticalSpaceItemDecoration;
 
 abstract public class BaseListFragment extends Fragment {
 
-    protected List<DisplayableNews> mNews;
+    protected List<DisplayableNews> mNews = new ArrayList<>();
     protected RecyclerView mRecyclerView;
     //private RecyclerView.Adapter mAdapter;
     private SuperSwipeRefreshLayout mSwipeRefreshWidget;
@@ -153,7 +157,13 @@ abstract public class BaseListFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         newsListAdapter = new NewsListAdapter(getContext());
-        mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(32));
+        newsListAdapter.setNewsClickListener((View itemView,int position)->{
+            DisplayableNews news=newsListAdapter.getNews(position);
+            startNewsDetails(news);
+        });
+
+
+        mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(24));
         mRecyclerView.setAdapter(newsListAdapter);
 
 
@@ -172,7 +182,9 @@ abstract public class BaseListFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState){
+
         super.onCreate(savedInstanceState);
+
     }
 
 
@@ -191,6 +203,19 @@ abstract public class BaseListFragment extends Fragment {
     public void refreshNews(Runnable callback){
         mPageNo = 1;
         fetchNews(callback);
+    }
+
+    public void startNewsDetails(DisplayableNews news)
+    {
+        Intent intent = new Intent(this.getContext(),NewsdetailActivity.class);
+        intent.putExtra(NewsdetailActivity.NEWS_ID,news.id);
+        intent.putExtra(NewsdetailActivity.NEWS_TITLE,news.title);
+        intent.putExtra(NewsdetailActivity.NEWS_CONTENT,news.content);
+        intent.putExtra(NewsdetailActivity.NEWS_IS_LIKE,news.islike);
+//        if(news.image_urls.get(0)!=null)
+    //        intent.putExtra(NewsdetailActivity.NEWS_IMAGE_URL,news.image_urls.get(0));
+        intent.putExtra(NewsdetailActivity.NEWS_PUBLISH_TIME,news.publish_time);
+        startActivity(intent);
     }
 
 }

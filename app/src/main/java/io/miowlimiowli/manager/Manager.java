@@ -6,11 +6,14 @@ import android.graphics.drawable.BitmapDrawable;
 
 import androidx.room.*;
 
+import org.reactivestreams.Publisher;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import io.miowlimiowli.R;
 import io.miowlimiowli.exceptions.UsernameEmptyError;
@@ -165,6 +168,19 @@ public class Manager {
                 .map(new WrapDisplayableNews())
                 .toList().subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
     }
+
+
+    /**
+     * 通过新闻ID获取新闻
+     */
+    /*
+    public Single<DisplayableNews> fetch_news_by_news_id(String news_id)
+    {
+
+    }
+    */
+
+
 
     /**
      * 以新闻ID获取此新闻所有评论
