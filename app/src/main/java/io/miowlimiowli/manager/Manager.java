@@ -178,6 +178,7 @@ public class Manager {
     {
         return Single.fromCallable(()-> newses.get(news_id))
                 .map(DisplayableNews::new)
+                .map(new WrapDisplayableNews())
                 .subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
     }
 
