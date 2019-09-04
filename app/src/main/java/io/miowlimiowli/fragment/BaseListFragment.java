@@ -209,12 +209,6 @@ abstract public class BaseListFragment extends Fragment {
     {
         Intent intent = new Intent(this.getContext(),NewsdetailActivity.class);
         intent.putExtra(NewsdetailActivity.NEWS_ID,news.id);
-        intent.putExtra(NewsdetailActivity.NEWS_TITLE,news.title);
-        intent.putExtra(NewsdetailActivity.NEWS_CONTENT,news.content);
-        intent.putExtra(NewsdetailActivity.NEWS_IS_LIKE,news.islike);
-//        if(news.image_urls.get(0)!=null)
-    //        intent.putExtra(NewsdetailActivity.NEWS_IMAGE_URL,news.image_urls.get(0));
-        intent.putExtra(NewsdetailActivity.NEWS_PUBLISH_TIME,news.publish_time);
         startActivity(intent);
     }
 

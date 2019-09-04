@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import io.miowlimiowli.R;
 import io.miowlimiowli.manager.DisplayableNews;
 import io.miowlimiowli.manager.Manager;
+import io.reactivex.Single;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 import android.widget.TextView;
 
@@ -21,6 +24,8 @@ import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.SearchView;
 import android.content.Context;
+
+import java.util.List;
 
 
 public class NewsdetailActivity extends AppCompatActivity {
@@ -47,19 +52,25 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private TextView commentTimeTextView;
 
 	public static String NEWS_ID = "NEWS_ID";
-	public static String NEWS_TITLE="NEWS_TITLE";
-	public static String NEWS_CONTENT = "NEWS_CONTENT";
-	public static String NEWS_IS_LIKE = "";
-	public static String NEWS_IMAGE_URL = "NEWS_IMAGE_URL";
-	public static String NEWS_PUBLISH_TIME = "";
 
 	public static DisplayableNews news;
+	public boolean newserror;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	
 		super.onCreate(savedInstanceState);
-
+		String news_id = getIntent().getStringExtra(NEWS_ID);
+		Single<DisplayableNews> single = null;
+		single = Manager.getInstance().fetch_news_by_news_id(news_id);
+		Disposable d = single.subscribe(new Consumer<DisplayableNews>() {
+			@Override
+			public void accept(DisplayableNews displayableNews) throws Exception {
+				if(displayableNews==null)
+					newserror = true;
+				news=displayableNews;
+			}
+		});
 		//String news_picture_url = getIntent().getStringExtra(NEWS_PICTURE_URL);
 		this.setContentView(R.layout.newsdetail_activity);
 		this.init();
@@ -79,7 +90,9 @@ public class NewsdetailActivity extends AppCompatActivity {
 
 	
 	private void init() {
-	
+
+
+
 		// Configure Navigation Bar #2 component
 		toolbar = this.findViewById(R.id.toolbar);
 		
@@ -105,16 +118,21 @@ public class NewsdetailActivity extends AppCompatActivity {
 });
 
 		// Configure Title component
-		String news_title = getIntent().getStringExtra(NEWS_TITLE);
+
 		titleTextView = this.findViewById(R.id.title_text_view);
-		titleTextView.setText(news_title);
-		
+		//titleTextView.setText(news.title);
+
+		if(newserror)
+			titleTextView.setText("empty news");
+		else
+			titleTextView.setText(news.title);
+
 		// Configure Content component
 		contentTextView = this.findViewById(R.id.content_text_view);
-		contentTextView.setText(NEWS_CONTENT);
+		//contentTextView.setText(news.content);
 		// Configure Time component
 		timeTextView = this.findViewById(R.id.time_text_view);
-		timeTextView.setText(NEWS_PUBLISH_TIME);
+		//timeTextView.setText(news.publish_time.toString());
 		// Configure Image component
 		newsPhotoImageView = this.findViewById(R.id.news_photo_image_view);
 

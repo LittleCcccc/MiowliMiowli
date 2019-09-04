@@ -174,7 +174,7 @@ public class Manager {
      * 通过新闻ID获取新闻
      */
 
-    public Single<DisplayableNews> fetch_news_by_username_and_news_id(String news_id)
+    public Single<DisplayableNews> fetch_news_by_news_id(String news_id)
     {
         return Single.fromCallable(()-> db.SqlUserandNewsDao().query(user.username, news_id))
                 .map((item) -> newses.get(item.news_id))
