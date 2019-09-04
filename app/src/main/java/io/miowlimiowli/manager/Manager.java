@@ -176,9 +176,8 @@ public class Manager {
 
     public Single<DisplayableNews> fetch_news_by_username_and_news_id(String news_id)
     {
-        return Single.fromCallable(()-> db.SqlUserandNewsDao().query(user.username, news_id))
-                .map((item) -> newses.get(item.news_id))
-                .map((item)->new DisplayableNews(item))
+        return Single.fromCallable(()-> newses.get(news_id))
+                .map(DisplayableNews::new)
                 .subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
     }
 
