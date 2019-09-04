@@ -46,12 +46,12 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private TextView commentContentTextView;
 	private TextView commentTimeTextView;
 
-	public static final String NEWS_ID = "NEWS_ID";
-	public static final String NEWS_TITLE="";
-	public static final String NEWS_CONTENT = "";
-	public static final String NEWS_IS_LIKE = "";
-	public static final String NEWS_IMAGE_URL = "";
-	public static final String NEWS_PUBLISH_TIME = "";
+	public static String NEWS_ID = "NEWS_ID";
+	public static String NEWS_TITLE="NEWS_TITLE";
+	public static String NEWS_CONTENT = "NEWS_CONTENT";
+	public static String NEWS_IS_LIKE = "";
+	public static String NEWS_IMAGE_URL = "NEWS_IMAGE_URL";
+	public static String NEWS_PUBLISH_TIME = "";
 
 	public static DisplayableNews news;
 	
@@ -59,6 +59,8 @@ public class NewsdetailActivity extends AppCompatActivity {
 	public void onCreate(Bundle savedInstanceState) {
 	
 		super.onCreate(savedInstanceState);
+
+		//String news_picture_url = getIntent().getStringExtra(NEWS_PICTURE_URL);
 		this.setContentView(R.layout.newsdetail_activity);
 		this.init();
 	}
@@ -103,8 +105,9 @@ public class NewsdetailActivity extends AppCompatActivity {
 });
 
 		// Configure Title component
+		String news_title = getIntent().getStringExtra(NEWS_TITLE);
 		titleTextView = this.findViewById(R.id.title_text_view);
-		titleTextView.setText(NEWS_TITLE);
+		titleTextView.setText(news_title);
 		
 		// Configure Content component
 		contentTextView = this.findViewById(R.id.content_text_view);
