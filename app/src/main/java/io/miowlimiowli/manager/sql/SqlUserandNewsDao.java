@@ -20,7 +20,7 @@ public interface SqlUserandNewsDao {
     List<SqlId> getFavoriteListByUsername(String username);
 
     @Query("Select * from usersnews where username = :username and news_id = :id")
-    List<SqlUserandNews> query(String username, String id);
+    SqlUserandNews query(String username, String id);
 
     @Query("Select count(news_id) from usersnews where islike = 1 and news_id = :id")
     int countLike(String id);

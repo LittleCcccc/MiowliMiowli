@@ -173,12 +173,15 @@ public class Manager {
     /**
      * 通过新闻ID获取新闻
      */
-    /*
-    public Single<DisplayableNews> fetch_news_by_news_id(String news_id)
-    {
 
+    public Single<DisplayableNews> fetch_news_by_username_and_news_id(String news_id)
+    {
+        return Single.fromCallable(()-> db.SqlUserandNewsDao().query(user.username, news_id))
+                .map((item) -> newses.get(item.news_id))
+                .map((item)->new DisplayableNews(item))
+                .subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
     }
-    */
+
 
 
 
@@ -244,7 +247,7 @@ public class Manager {
             sql.islike = false;
             sql.isfavorite = false;
             db.SqlUserandNewsDao().insert(sql);
-            sql = db.SqlUserandNewsDao().query(user.username, news.id).get(0);
+            sql = db.SqlUserandNewsDao().query(user.username, news.id);
             news.islike = sql.islike;
             news.isread = sql.isread;
             news.isfavorite = sql.isfavorite;
@@ -252,7 +255,7 @@ public class Manager {
             news.readcount = db.SqlUserandNewsDao().countRead(news.id);
             news.favoritecount = db.SqlUserandNewsDao().countFavorate(news.id);
             news.publisher.subscribe(displayableNews ->  {
-                SqlUserandNews t = db.SqlUserandNewsDao().query(user.username, displayableNews.id).get(0);
+                SqlUserandNews t = db.SqlUserandNewsDao().query(user.username, displayableNews.id);
                 if(displayableNews.islike && !t.islike)
                     displayableNews.likecount += 1;
                 if(!displayableNews.islike && t.islike)
