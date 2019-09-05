@@ -88,6 +88,8 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 						.into(((CellViewHolder) viewHolder).newsPhotoImageView);
 
 			}
+			if (news.isread)
+				cell.newsTitleTextView.setTextColor(mContext.getResources().getColor(R.color.black_light));
 	}
 	}
 
@@ -128,6 +130,7 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 		@Override
 		public void onClick(View view) {
+			newsTitleTextView.setTextColor(mContext.getResources().getColor(R.color.black_light));
 			if (mNewsClickListener != null) {
 				mNewsClickListener.onNewsClick(view, this.getLayoutPosition());
 			}

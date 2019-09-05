@@ -14,7 +14,6 @@ import io.miowlimiowli.R;
 import io.miowlimiowli.adapter.CollectionPagerAdapter;
 import io.miowlimiowli.fragment.CollectionListFragment;
 import io.miowlimiowli.fragment.CommentListFragment;
-import io.miowlimiowli.fragment.CommentListFragmentTmp;
 import io.miowlimiowli.fragment.HistoryListFragment;
 
 import com.google.android.material.tabs.TabLayout;

@@ -25,6 +25,8 @@
 	<color name="orange">#F78462</color>
 	<color name="red">#E73D3B</color>
 	<color name="purple">#BD4CBE</color>
+	<color name="black_grey">#E1242424</color>
+	<color name="black_light">#555555</color>
 
 	<!-- WelcomeActivity -->
 	<color name="welcome_activity_welcome_constraint_layout_background_color">@color/white</color>
@@ -170,5 +172,5 @@
 	<color name="two_activity_bottom_navigation_bar_background_color">@color/light_grey</color>
 	<color name="two_activity_bottom_navigation_bar_tint">@color/main_light</color>
 	<color name="two_activity_bottom_navigation_bar_text_color">@color/main_light</color>
-	<color name="black_grey">#E1242424</color>
+
 </resources>
