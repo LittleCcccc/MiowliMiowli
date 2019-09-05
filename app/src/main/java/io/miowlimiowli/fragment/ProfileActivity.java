@@ -6,16 +6,10 @@ package io.miowlimiowli.fragment;
 
 import io.miowlimiowli.R;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.text.InputType;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
@@ -29,7 +23,6 @@ import io.miowlimiowli.manager.Manager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
@@ -178,17 +171,17 @@ public class ProfileActivity extends Fragment {
 	
 	public void onColletctionPressed() {
 	
-		this.startCommentActivity();
+		this.startCommentActivity("0");
 	}
 
 	public void onCommentPressed() {
 	
-		this.startCommentActivity();
+		this.startCommentActivity("1");
 	}
 	
 	public void onBrouserPressed() {
 	
-		this.startCommentActivity();
+		this.startCommentActivity("2");
 	}
 	
 	public void onSettingsButtonPressed() {
@@ -248,12 +241,14 @@ public class ProfileActivity extends Fragment {
 	}
 	
 	private void startSettingsActivity() {
-	
 		this.getActivity().startActivity(SettingsActivity.newIntent(this.getContext()));
 	}
 	
-	private void startCommentActivity() {
-	
-		this.getActivity().startActivity(CommentActivity.newIntent(this.getContext()));
+	private void startCommentActivity(String pos) {
+
+		//this.getActivity().startActivity(CollectionActivity.newIntent(this.getContext()));
+		Intent intent = new Intent(this.getContext(),CollectionActivity.class);
+		intent.putExtra(CollectionActivity.position,pos);
+		this.getActivity().startActivity(intent);
 	}
 }

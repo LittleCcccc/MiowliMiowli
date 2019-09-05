@@ -23,7 +23,7 @@
 
     <!-- ProfileActivity -->
 
-    <!-- CommentActivity -->
+    <!-- CollectionActivity -->
 	<style name="CommentActivityTheme" parent="AppTheme"/>
 	
 	<!-- SettingsActivity -->

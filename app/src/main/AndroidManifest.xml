@@ -42,7 +42,7 @@
 	
 		<activity
 			android:label="@string/comment_activity_title"
-			android:name=".activity.CommentActivity"
+			android:name=".activity.CollectionActivity"
 			android:theme="@style/CommentActivityTheme"/>
 	
 		<activity

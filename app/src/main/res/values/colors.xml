@@ -102,7 +102,7 @@
 	<color name="profile_activity_brouse_sum_text_view_text_color">@color/purple</color>
 	<color name="profile_activity_brouser_button_text_color">@color/black</color>
 
-    <!-- CommentActivity -->
+    <!-- CollectionActivity -->
 	<color name="comment_activity_profile_photos_constraint_layout_background_color">@color/middle_grey</color>
 	<color name="comment_activity_tab_constraint_layout_background_color">@color/white</color>
 	<color name="comment_activity_collection_tab_bar_background_color">@color/white</color>

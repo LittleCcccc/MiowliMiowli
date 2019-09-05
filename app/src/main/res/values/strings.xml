@@ -54,7 +54,7 @@
 	<string name="profile_activity_brouse_sum_text_view_text">加载中</string>
 	<string name="profile_activity_brouser_button_text">最近浏览</string>
 
-    <!-- CommentActivity -->
+    <!-- CollectionActivity -->
 	<string name="comment_activity_title"></string>
     <string name="comment_activity_collection_tab_bar_item_one_text">收藏</string>
 	<string name="comment_activity_collection_tab_bar_item_two_text">评论</string>
