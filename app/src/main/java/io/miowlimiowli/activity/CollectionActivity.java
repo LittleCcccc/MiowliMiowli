@@ -58,7 +58,7 @@ public class CollectionActivity extends AppCompatActivity {
 		List<Fragment> fragments = Arrays.asList(CollectionListFragment.newInstance(), CommentListFragment.newInstance(), HistoryListFragment.newInstance());
 		collectionPagerAdapter = new CollectionPagerAdapter(getSupportFragmentManager(),fragments);
 		viewPager.setAdapter(collectionPagerAdapter);
-		//viewPager.setCurrentItem(Integer.parseInt(pos));
+		viewPager.setCurrentItem(Integer.parseInt(pos));
 	}
 
 	@Override

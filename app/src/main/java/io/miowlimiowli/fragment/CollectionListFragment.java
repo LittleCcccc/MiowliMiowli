@@ -13,7 +13,7 @@ public class CollectionListFragment extends BaseListFragment {
     public void fetchNews(Runnable callback){
 
         Single<List<DisplayableNews>> single = null;
-        single = Manager.getInstance().fetch_like_list();
+        single = Manager.getInstance().fetch_favorite_list();
         Disposable d = single.subscribe(new Consumer<List<DisplayableNews>>() {
             @Override
             public void accept(List<DisplayableNews> displayableNews) throws Exception {

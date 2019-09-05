@@ -7,6 +7,7 @@
 		<item name="colorAccent">@color/color_primary</item>
 	</style>
 
+
 	<!-- WelcomeActivity -->
 	<style name="WelcomeActivityTheme" parent="AppTheme"/>
 	

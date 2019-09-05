@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Mine -->
+    <color name="list_activity_news_search_bar_search_view_background_color">@color/middle_grey</color>
+    <color name="recommend_activity_news_search_bar_search_view_background_color">@color/middle_grey</color>
+
+    <!-- Project level resources -->
+    <color name="color_primary">@color/main_light</color>
+    <color name="color_primary_dark">@color/main_dark</color>
+
+
+    <color name="color_accent">#FFFFFF</color>
+    <color name="click_overlay">#0F0F0F</color>
+    <color name="default_hint">#3A3A3A</color>
+    <color name="material_bottom_sheet_title">#85FFFFFF</color>
+    <color name="material_bottom_sheet_item">#21FFFFFF</color>
+    <!-- main color-->
+    <color name="white">#000000</color>
+    <color name="main_light">#00A2A4</color>
+    <color name="black">#FFFFFF</color>
+    <color name="main_dark">#269891</color>
+    <color name="light_grey">#090909</color>
+    <color name="middle_grey">#0B0D0B</color>
+    <color name="dark_grey">#1E1E1E</color>
+    <color name="darker_grey">#4F4F4F</color>
+    <color name="dark_blue">#FBF3E9</color>
+    <color name="orange">#087B9D‬</color>
+    <color name="red">#18C2C4</color>
+    <color name="purple">#42B341</color>
+
+    <!-- WelcomeActivity -->
+    <color name="welcome_activity_welcome_constraint_layout_background_color">@color/white</color>
+    <color name="welcome_activity_titlechinese_text_view_text_color">@color/main_light</color>
+    <color name="welcome_activity_miowlimiowli_news_app_text_view_text_color">@color/main_light</color>
+    <color name="welcome_activity_sign_up_button_background_color">@color/white</color>
+    <color name="welcome_activity_sign_up_button_text_color">@color/main_light</color>
+    <color name="welcome_activity_log_in_button_background_color">@color/main_light</color>
+    <color name="welcome_activity_log_in_button_text_color">@color/white</color>
+    <color name="welcome_activity_littleredgrey_studio_text_view_text_color">@color/main_light</color>
+
+    <!-- LoginActivity -->
+    <color name="login_activity_login_constraint_layout_background_color">@color/white</color>
+    <color name="login_activity_log_in_text_view_text_color">@color/main_light</color>
+    <color name="login_activity_welcome_back_text_view_text_color">@color/main_light</color>
+    <color name="login_activity_login_fields_constraint_layout_background_color">@color/white</color>
+    <color name="login_activity_input_nickname_edit_text_background_color">@android:color/transparent</color>
+    <color name="login_activity_input_nickname_edit_text_text_color">@color/black</color>
+    <color name="login_activity_separator_constraint_layout_background_color">@color/black</color>
+    <color name="login_activity_input_password_edit_text_background_color">@android:color/transparent</color>
+    <color name="login_activity_input_password_edit_text_text_color">@color/black</color>
+    <color name="login_activity_login_button_background_color">@color/main_light</color>
+    <color name="login_activity_login_button_text_color">@color/white</color>
+    <color name="login_activity_forgot_your_password_button_text_color">@color/white</color>
+    <color name="login_activity_forgot_your_password_button_text_color_pink">@color/main_light</color>
+    <color name="login_activity_toolbar_background_color">@color/white</color>
+
+    <!-- SignupActivity -->
+    <color name="signup_activity_signup_constraint_layout_background_color">@color/white</color>
+    <color name="signup_activity_sign_up_text_view_text_color">@color/main_light</color>
+    <color name="signup_activity_welcome_text_view_text_color">@color/main_light</color>
+    <color name="signup_activity_sign_up_fields_constraint_layout_background_color">@color/white</color>
+    <color name="signup_activity_signup_nickname_edit_text_background_color">@android:color/transparent</color>
+    <color name="signup_activity_signup_nickname_edit_text_text_color">@color/black</color>
+    <color name="signup_activity_separator_constraint_layout_background_color">@color/black</color>
+    <color name="signup_activity_signup_space_edit_text_background_color">@android:color/transparent</color>
+    <color name="signup_activity_signup_space_edit_text_text_color">@color/black</color>
+    <color name="signup_activity_separator_two_constraint_layout_background_color">@color/black</color>
+    <color name="signup_activity_signup_password_edit_text_background_color">@android:color/transparent</color>
+    <color name="signup_activity_signup_password_edit_text_text_color">@color/black</color>
+    <color name="signup_activity_i_agree_with_interga_text_view_text_color">@color/main_light</color>
+    <color name="signup_activity_agree_switch_active_color">@color/main_light</color>
+    <color name="signup_activity_agree_switch_thumb_tint">@color/white</color>
+    <color name="signup_activity_sign_up_button_background_color">@color/main_light</color>
+    <color name="signup_activity_sign_up_button_text_color">@color/white</color>
+    <color name="signup_activity_already_gave_up_your_text_view_text_color">@color/main_light</color>
+    <color name="signup_activity_log_in_button_text_color">@color/red</color>
+    <color name="signup_activity_toolbar_background_color">@color/white</color>
+
+    <!-- RecommendActivity -->
+    <color name="recommend_activity_timeline_constraint_layout_background_color">@color/middle_grey</color>
+    <color name="recommend_activity_recommend_recycler_view_separator_color">@color/dark_grey</color>
+    <color name="cell_view_holder_newsview_constraint_layout_background_color">@color/white</color>
+    <color name="cell_view_holder_news_title_text_view_text_color">@color/black</color>
+    <color name="cell_view_holder_news_time_text_view_text_color">@color/black</color>
+    <color name="cell_view_holder_news_parent_button_text_color">@color/white</color>
+    <color name="advertisement_view_holder_bg_constraint_layout_background_color">@color/white</color>
+    <color name="advertisement_view_holder_ad_title_text_view_text_color">@color/main_dark</color>
+    <color name="advertisement_view_holder_ad_detail_text_view_text_color">@color/black</color>
+    <color name="advertisement_view_holder_ad_time_text_view_text_color">@color/black</color>
+    <color name="recommend_activity_news_search_constraint_layout_background_color">@color/white</color>
+
+    <!-- ProfileActivity -->
+    <color name="profile_activity_profile_constraint_layout_background_color">@color/light_grey</color>
+    <color name="profile_activity_header_constraint_layout_background_color">@color/white</color>
+    <color name="profile_activity_avatar_button_text_color">@color/black</color>
+    <color name="profile_activity_my_nickname_text_view_text_color">@color/dark_blue</color>
+    <color name="profile_activity_my_title_text_view_text_color">@color/dark_blue</color>
+    <color name="profile_activity_my_introduction_text_view_text_color">@color/black</color>
+    <color name="profile_activity_info_bar_constraint_layout_background_color">@color/white</color>
+    <color name="profile_activity_collect_sum_text_view_text_color">@color/orange</color>
+    <color name="profile_activity_clooection_button_text_color">@color/black</color>
+    <color name="profile_activity_comment_sum_text_view_text_color">@color/main_dark</color>
+    <color name="profile_activity_comment_button_text_color">@color/black</color>
+    <color name="profile_activity_brouse_sum_text_view_text_color">@color/purple</color>
+    <color name="profile_activity_brouser_button_text_color">@color/black</color>
+
+    <!-- CollectionActivity -->
+    <color name="comment_activity_profile_photos_constraint_layout_background_color">@color/middle_grey</color>
+    <color name="comment_activity_tab_constraint_layout_background_color">@color/white</color>
+    <color name="comment_activity_collection_tab_bar_background_color">@color/white</color>
+    <color name="news_view_holder_view_constraint_layout_background_color">@color/white</color>
+    <color name="news_view_holder_title_text_view_text_color">@color/black</color>
+    <color name="news_view_holder_time_text_view_text_color">@color/black</color>
+    <color name="advertisement_two_view_holder_pinktext_text_view_text_color">@color/white</color>
+
+    <!-- SettingsActivity -->
+    <color name="settings_activity_profile_settings_constraint_layout_background_color">@color/light_grey</color>
+    <color name="settings_activity_avatar_button_text_color">@color/black</color>
+    <color name="settings_activity_details_text_view_text_color">@color/black</color>
+    <color name="settings_activity_nickname_constraint_layout_background_color">@color/white</color>
+    <color name="settings_activity_nickname_text_view_text_color">@color/dark_blue</color>
+    <color name="settings_activity_my_name_button_text_color">@color/main_dark</color>
+    <color name="settings_activity_mail_constraint_layout_background_color">@color/white</color>
+    <color name="settings_activity_mail_text_view_text_color">@color/dark_blue</color>
+    <color name="settings_activity_mymail_button_text_color">@color/main_dark</color>
+    <color name="settings_activity_clear_cache_constraint_layout_background_color">@color/white</color>
+    <color name="settings_activity_clearcache_button_text_color">@color/dark_blue</color>
+    <color name="settings_activity_cache_button_text_color">@color/main_dark</color>
+    <color name="settings_activity_no_picture_constraint_layout_background_color">@color/white</color>
+    <color name="settings_activity_nopicture_text_view_text_color">@color/dark_blue</color>
+    <color name="settings_activity_nopicture_switch_active_color">@color/main_light</color>
+    <color name="settings_activity_nopicture_switch_thumb_tint">@color/white</color>
+    <color name="settings_activity_dark_mode_constraint_layout_background_color">@color/white</color>
+    <color name="settings_activity_darkmode_text_view_text_color">@color/dark_blue</color>
+    <color name="settings_activity_darkmode_switch_active_color">@color/main_light</color>
+    <color name="settings_activity_darkmode_switch_thumb_tint">@color/white</color>
+    <color name="settings_activity_vip_constraint_layout_background_color">@color/white</color>
+    <color name="settings_activity_label_text_view_text_color">@color/dark_blue</color>
+    <color name="settings_activity_vip_button_text_color">@color/main_dark</color>
+    <color name="settings_activity_log_out_constraint_layout_background_color">@color/white</color>
+    <color name="settings_activity_logged_as_text_view_text_color">@color/dark_blue</color>
+    <color name="settings_activity_loggedname_text_view_text_color">@color/dark_blue</color>
+    <color name="settings_activity_logout_button_text_color">@color/main_dark</color>
+    <color name="settings_activity_information_text_view_text_color">@color/black</color>
+
+    <!-- ListActivity -->
+    <color name="list_activity_messages_constraint_layout_background_color">@color/middle_grey</color>
+    <color name="list_activity_tabview_constraint_layout_background_color">@color/white</color>
+    <color name="list_activity_news_type_tab_bar_background_color">@color/white</color>
+    <color name="list_activity_more_type_button_background_color">@color/white</color>
+    <color name="list_activity_recommend_recycler_view_separator_color">@color/dark_grey</color>
+    <color name="advertisement_three_view_holder_bg_constraint_layout_background_color">@color/black</color>
+    <color name="advertisement_three_view_holder_ad_title_text_view_text_color">@color/main_dark</color>
+    <color name="list_activity_news_search_constraint_layout_background_color">@color/white</color>
+
+    <!-- NewsdetailActivity -->
+    <color name="newsdetail_activity_event_detail_constraint_layout_background_color">@color/middle_grey</color>
+    <color name="newsdetail_activity_view_constraint_layout_background_color">@color/white</color>
+    <color name="newsdetail_activity_bottombar_constraint_layout_background_color">@color/white</color>
+    <color name="newsdetail_activity_write_comment_search_view_background_color">@color/white</color>
+    <color name="newsdetail_activity_title_text_view_text_color">@color/black</color>
+    <color name="newsdetail_activity_content_text_view_text_color">@color/black</color>
+    <color name="newsdetail_activity_time_text_view_text_color">@color/black</color>
+    <color name="newsdetail_activity_comment_group_constraint_layout_background_color">@color/light_grey</color>
+    <color name="newsdetail_activity_comment_constraint_layout_background_color">@color/white</color>
+    <color name="newsdetail_activity_comment_name_text_view_text_color">@color/main_dark</color>
+    <color name="newsdetail_activity_comment_content_text_view_text_color">@color/black</color>
+    <color name="newsdetail_activity_comment_time_text_view_text_color">@color/black</color>
+    <color name="newsdetail_activity_toolbar_background_color">@color/white</color>
+
+    <!-- TwoActivity -->
+    <color name="two_activity_bottom_navigation_bar_background_color">@color/light_grey</color>
+    <color name="two_activity_bottom_navigation_bar_tint">@color/main_light</color>
+    <color name="two_activity_bottom_navigation_bar_text_color">@color/main_light</color>
+    <color name="black_grey">#E1242424</color>
+</resources>

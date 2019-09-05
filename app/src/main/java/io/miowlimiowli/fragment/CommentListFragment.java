@@ -23,8 +23,8 @@ public class CommentListFragment extends BaseListFragment {
         });
     }
 
-    public static CollectionListFragment newInstance(){
-        CollectionListFragment fragment = new CollectionListFragment();
+    public static CommentListFragment newInstance(){
+        CommentListFragment fragment = new CommentListFragment();
         return fragment;
     }
 }
