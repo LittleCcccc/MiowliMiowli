@@ -1,11 +1,10 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/event_detail_constraint_layout"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/newsdetail_activity_event_detail_constraint_layout_background_color">
+	android:background="@color/white">
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/view_constraint_layout"
@@ -64,12 +63,24 @@
 				app:layout_constraintRight_toLeftOf="@+id/star_button"
 				app:layout_constraintTop_toTopOf="parent" />
 
+			<ImageButton
+				android:id="@+id/comment_button"
+				android:layout_width="@dimen/newsdetail_activity_bottombar_constraint_layout_height"
+				android:layout_height="0dp"
+				android:background="?attr/selectableItemBackground"
+				android:foregroundGravity="center"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				app:srcCompat="@drawable/comment_icon" />
+
 			<LinearLayout
 				android:layout_width="0dp"
 				android:layout_height="0dp"
 				android:layout_marginTop="8dp"
 				android:layout_marginEnd="8dp"
 				android:layout_marginBottom="8dp"
+				android:background="@drawable/list_activity_news_search_bar_search_view_background"
 				android:orientation="horizontal"
 				app:layout_constraintBottom_toBottomOf="parent"
 				app:layout_constraintEnd_toStartOf="@id/collect_button"
@@ -80,21 +91,15 @@
 					android:id="@+id/comment_textview"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:background="@drawable/list_activity_news_search_bar_search_view_background"
+					android:layout_marginStart="12dp"
+					android:layout_marginEnd="12dp"
+					android:background="@color/middle_grey"
 					android:ems="0"
-					android:inputType="textPersonName|text|phone|time" />
+					android:hint="评论"
+					android:inputType="textPersonName|text|phone|time"
+					android:textColor="@color/black_grey"
+					android:textSize="16dp" />
 			</LinearLayout>
-
-			<ImageButton
-				android:id="@+id/comment_button"
-				android:layout_width="38dp"
-				android:layout_height="38dp"
-				android:background="@color/white"
-				android:foregroundGravity="center"
-				app:layout_constraintBottom_toBottomOf="parent"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toTopOf="parent"
-				app:srcCompat="@drawable/comment_icon" />
 
 		</androidx.constraintlayout.widget.ConstraintLayout>
 

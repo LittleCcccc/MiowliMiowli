@@ -12,14 +12,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import io.miowlimiowli.R;
 import io.miowlimiowli.adapter.CollectionPagerAdapter;
-import io.miowlimiowli.adapter.NewsPagerAdaptor;
 import io.miowlimiowli.fragment.CollectionListFragment;
-import io.miowlimiowli.fragment.CommentListFragment;
 import io.miowlimiowli.fragment.HistoryListFragment;
-import io.miowlimiowli.fragment.ListActivity;
-import io.miowlimiowli.fragment.NewsListFragment;
-import io.miowlimiowli.fragment.ProfileActivity;
-import io.miowlimiowli.fragment.RecommendActivity;
 
 import com.google.android.material.tabs.TabLayout;
 import android.view.MenuItem;
@@ -56,7 +50,7 @@ public class CommentActivity extends AppCompatActivity {
 		mTabLayout = this.findViewById(R.id.tab_layout);
 		for(int i=0;i<3;i++)
 			mTabLayout.addTab(mTabLayout.newTab());
-		List<Fragment> fragments = Arrays.asList(CollectionListFragment.newInstance(), CommentListFragment.newInstance(), HistoryListFragment.newInstance());
+		List<Fragment> fragments = Arrays.asList(CollectionListFragment.newInstance(), CollectionListFragment.newInstance(), HistoryListFragment.newInstance());
 		collectionPagerAdapter = new CollectionPagerAdapter(getSupportFragmentManager(),fragments);
 		viewPager.setAdapter(collectionPagerAdapter);
 	}

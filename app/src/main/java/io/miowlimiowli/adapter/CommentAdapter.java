@@ -55,11 +55,12 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         cell.setTitle(comment.username);
         String url="";
         Date date = comment.publish_date;
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");
         String time = formatter.format(date);
         cell.setTime(time);
         Drawable avt = comment.user.avator;
         cell.setImage(avt);
+        cell.setContent(comment.content);
         
     }
 

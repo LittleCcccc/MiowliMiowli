@@ -70,7 +70,7 @@ public class Manager {
         if (!users.containsKey(username))
             throw new UsernameorPasswordError();
         User user = users.get(username);
-        if (user.getPassword().equals(password))
+        if (!user.getPassword().equals(password))
             throw new UsernameorPasswordError();
         this.user = user;
     }

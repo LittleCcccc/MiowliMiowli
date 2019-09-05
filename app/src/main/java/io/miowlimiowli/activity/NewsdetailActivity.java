@@ -76,6 +76,9 @@ public class NewsdetailActivity extends AppCompatActivity {
 
 	public DisplayableNews news;
 	public boolean newserror;
+
+	public boolean favorite;
+	public boolean star;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -84,8 +87,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 
 
 		String news_id = getIntent().getStringExtra(NEWS_ID);
-		Single<DisplayableNews> single = null;
-		single = Manager.getInstance().fetch_news_by_news_id(news_id);
+		Single<DisplayableNews> single = Manager.getInstance().fetch_news_by_news_id(news_id);
 		Disposable d = single.subscribe(new Consumer<DisplayableNews>() {
 			@Override
 			public void accept(DisplayableNews displayableNews) throws Exception {
@@ -107,9 +109,27 @@ public class NewsdetailActivity extends AppCompatActivity {
 				news.setIsread(true);
 				readcountTextView.setText(news.readcount.toString() + "阅读");
 
+				favorite = news.isfavorite;
+				star = news.islike;
+				if(favorite)
+					collectButton.setImageResource(R.drawable.favorate_icon);
+				else
+					collectButton.setImageResource(R.drawable.favorate_border_icon);
+				if(star)
+					starButton.setImageResource(R.drawable.star_icon);
+				else
+					starButton.setImageResource(R.drawable.star_border_icon);
+			}
+		});
+		Single<List<DisplayableComment>> commentSingle = Manager.getInstance().fetch_comment_by_news_id(news_id);
+		Disposable dw = commentSingle.subscribe(new Consumer<List<DisplayableComment>>() {
+		   @Override
+		   public void accept(List<DisplayableComment> displayableComments) throws Exception {
+			   cmtAdapter.setData(displayableComments);
+		   }
+		});
 
 
-		}});
 		//String news_picture_url = getIntent().getStringExtra(NEWS_PICTURE_URL);
 		this.setContentView(R.layout.newsdetail_activity);
 		this.init();
@@ -121,6 +141,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 		llm.setOrientation(LinearLayoutManager.VERTICAL);
 		cmtRecyclerView = this.findViewById(R.id.comment_recycler_view);
 		cmtAdapter = new CommentAdapter(this);
+
 		cmtRecyclerView.setLayoutManager(llm);
 		cmtRecyclerView.setAdapter(cmtAdapter);
 
@@ -188,20 +209,33 @@ public class NewsdetailActivity extends AppCompatActivity {
 	
 	public void onShareButtonPressed() {
 
+
 	}
 	
 	public void onStarButtonPressed() {
-	
+		star = !star;
+		news.setIslike(star);
+		if(star)
+			starButton.setImageResource(R.drawable.star_icon);
+		else
+			starButton.setImageResource(R.drawable.star_border_icon);
 	}
 	
 	public void onCollectButtonPressed() {
-	
+		favorite = !favorite;
+		news.setIsfavorite(favorite);
+		if(favorite)
+			collectButton.setImageResource(R.drawable.favorate_icon);
+		else
+			collectButton.setImageResource(R.drawable.favorate_border_icon);
 	}
 
 	public void onCommentButtonPressed()
 	{
 		System.out.println("bao bao e le");
 		String comment = commentEditTextView.getText().toString();
+		if(comment.length()==0)
+			return;
 		Single<DisplayableComment> single = Manager.getInstance().add_comment(news.id,comment,new Date());
 		Disposable d = single.subscribe((cmt)->{
 			List<DisplayableComment> list = new ArrayList<>();
