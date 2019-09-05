@@ -30,7 +30,6 @@ public class DisplayableNews {
         this.publish_time = news.publishtime;
         this.video_url = news.video_url;
         publisher = PublishSubject.create();
-        publisher.observeOn(Schedulers.computation());
     }
 
     /**

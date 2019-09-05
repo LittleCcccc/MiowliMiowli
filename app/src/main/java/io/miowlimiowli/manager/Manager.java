@@ -70,7 +70,7 @@ public class Manager {
         if (!users.containsKey(username))
             throw new UsernameorPasswordError();
         User user = users.get(username);
-        if (user.getPassword() != password)
+        if (user.getPassword().equals(password))
             throw new UsernameorPasswordError();
         this.user = user;
     }
@@ -206,15 +206,18 @@ public class Manager {
      * @param date 评论时间
      * @return 返回刚添加的新闻的DisplayableComment
      */
-    public DisplayableComment add_comment(String news_id, String content, Date date){
-        SqlComment cmt = new SqlComment();
-        cmt.content = content;
-        cmt.news_id = news_id;
-        cmt.publish_date = date;
-        cmt.username = user.username;
-        db.SqlCommentDao().insert(cmt);
-        WrapDisplayableComment f = new WrapDisplayableComment();
-        return f.apply(new DisplayableComment(cmt));
+    public Single<DisplayableComment> add_comment(String news_id, String content, Date date){
+        return Single.fromCallable(()->{
+            SqlComment cmt = new SqlComment();
+            cmt.content = content;
+            cmt.news_id = news_id;
+            cmt.publish_date = date;
+            cmt.username = user.username;
+            db.SqlCommentDao().insert(cmt);
+            WrapDisplayableComment f = new WrapDisplayableComment();
+            return f.apply(new DisplayableComment(cmt));
+        }).subscribeOn(Schedulers.computation()).observeOn(AndroidSchedulers.mainThread());
+
     }
 
     /**
@@ -254,7 +257,7 @@ public class Manager {
             news.likecount = db.SqlUserandNewsDao().countLike(news.id);
             news.readcount = db.SqlUserandNewsDao().countRead(news.id);
             news.favoritecount = db.SqlUserandNewsDao().countFavorate(news.id);
-            news.publisher.subscribe(displayableNews ->  {
+            news.publisher.observeOn(Schedulers.computation()).subscribe(displayableNews ->  {
                 SqlUserandNews t = db.SqlUserandNewsDao().query(user.username, displayableNews.id);
                 if(displayableNews.islike && !t.islike)
                     displayableNews.likecount += 1;

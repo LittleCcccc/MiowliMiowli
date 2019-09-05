@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/comment_constraint_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/newsdetail_activity_comment_constraint_layout_background_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/comment_avatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/comment_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/font_sfnstext"
+            android:gravity="start"
+            android:lineSpacingMultiplier="1.18"
+            android:text="@string/newsdetail_activity_comment_name_text_view_text"
+            android:textColor="@color/newsdetail_activity_comment_name_text_view_text_color"
+            android:textSize="@dimen/newsdetail_activity_comment_name_text_view_text_size"
+            app:layout_constraintStart_toEndOf="@+id/comment_avatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/comment_content_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="7dp"
+            android:gravity="start"
+            android:text="@string/newsdetail_activity_comment_content_text_view_text"
+            android:textColor="@color/newsdetail_activity_comment_content_text_view_text_color"
+            android:textSize="@dimen/newsdetail_activity_comment_content_text_view_text_size"
+            app:layout_constraintStart_toEndOf="@+id/comment_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/comment_name_text_view" />
+
+        <TextView
+            android:id="@+id/comment_time_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0.4"
+            android:gravity="start"
+            android:text="@string/newsdetail_activity_comment_time_text_view_text"
+            android:textColor="@color/newsdetail_activity_comment_time_text_view_text_color"
+            android:textSize="@dimen/newsdetail_activity_comment_time_text_view_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/comment_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/comment_content_text_view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

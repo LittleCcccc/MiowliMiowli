@@ -268,9 +268,9 @@
 
     <!-- NewsdetailActivity -->
 	<dimen name="newsdetail_activity_write_comment_search_view_radius">35dp</dimen>
-    <dimen name="newsdetail_activity_title_text_view_text_size">13sp</dimen>
-	<dimen name="newsdetail_activity_content_text_view_text_size">9sp</dimen>
-	<dimen name="newsdetail_activity_time_text_view_text_size">9sp</dimen>
+    <dimen name="newsdetail_activity_title_text_view_text_size">22sp</dimen>
+	<dimen name="newsdetail_activity_content_text_view_text_size">16sp</dimen>
+	<dimen name="newsdetail_activity_time_text_view_text_size">14sp</dimen>
     <dimen name="newsdetail_activity_comment_name_text_view_text_size">13sp</dimen>
 	<dimen name="newsdetail_activity_comment_content_text_view_text_size">11sp</dimen>
 	<dimen name="newsdetail_activity_comment_time_text_view_text_size">11sp</dimen>

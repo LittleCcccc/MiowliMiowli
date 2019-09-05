@@ -17,6 +17,7 @@ import io.miowlimiowli.fragment.CollectionListFragment;
 import io.miowlimiowli.fragment.CommentListFragment;
 import io.miowlimiowli.fragment.HistoryListFragment;
 import io.miowlimiowli.fragment.ListActivity;
+import io.miowlimiowli.fragment.NewsListFragment;
 import io.miowlimiowli.fragment.ProfileActivity;
 import io.miowlimiowli.fragment.RecommendActivity;
 
