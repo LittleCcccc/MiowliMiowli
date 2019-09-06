@@ -122,7 +122,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 
 				news.setIsread(true);
 
-				mSpeaker.setContent(news.title+"。"+news.content);
+				mSpeaker.setContent(news.title);
 
 				readcountTextView.setText(news.readcount.toString() + "阅读");
 

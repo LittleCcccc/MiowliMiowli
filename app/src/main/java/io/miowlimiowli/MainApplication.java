@@ -16,6 +16,6 @@ public class MainApplication extends Application {
         super.onCreate();
         // 创建数据管理
        Manager.getInstance().setContext(this);
-       SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5d711a63");
+
     }
 }

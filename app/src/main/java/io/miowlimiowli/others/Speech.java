@@ -37,6 +37,13 @@ public class Speech
         //text=text_;
         //语音初始化，在使用应用使用时需要初始化一次就好，如果没有这句会出现10111初始化失败
 
+        SpeechUtility.createUtility(context, SpeechConstant.APPID +"=59b25b94");
+        if(SpeechUtility.getUtility()==null) {
+            System.out.println("utility null");
+            return ;
+        }
+        else
+            System.out.println("utility not null");
         //处理语音合成关键类
         mySynthesizer = SpeechSynthesizer.createSynthesizer(context, new InitListener() {
             @Override
@@ -44,12 +51,15 @@ public class Speech
 
             }
         });
+
+        mySynthesizer = SpeechSynthesizer.getSynthesizer();
         mySynthesizer.setParameter(SpeechConstant.VOICE_NAME,"xiaoyan");
         mySynthesizer.setParameter(SpeechConstant.PITCH,"50");
         mySynthesizer.setParameter(SpeechConstant.VOLUME,"50");
     }
     public void setContent(String text_){
         text = text_;
+        System.out.println(text);
     }
 
     private SynthesizerListener mTtsListener = new SynthesizerListener() {
