@@ -37,6 +37,9 @@ import android.content.Context;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.xyzlf.share.library.bean.ShareEntity;
+import com.xyzlf.share.library.interfaces.ShareConstant;
+import com.xyzlf.share.library.util.ShareUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -208,8 +211,21 @@ public class NewsdetailActivity extends AppCompatActivity {
 	}
 	
 	public void onShareButtonPressed() {
+		showShareDialog();
+	}
 
+	public void showShareDialog() {
+		ShareEntity testBean = new ShareEntity("我是标题", "我是内容，描述内容。");
+		testBean.setUrl("https://www.baidu.com"); //分享链接
+		testBean.setImgUrl("https://www.baidu.com/img/bd_logo1.png");
+		ShareUtil.showShareDialog(this, testBean, ShareConstant.REQUEST_CODE);
+	}
 
+	public void startShare() {
+		ShareEntity testBean = new ShareEntity("我是标题", "我是内容，描述内容。");
+		testBean.setUrl("https://www.baidu.com"); //分享链接
+		testBean.setImgUrl("https://www.baidu.com/img/bd_logo1.png");
+		ShareUtil.startShare(this, ShareConstant.SHARE_CHANNEL_QQ, testBean, ShareConstant.REQUEST_CODE);
 	}
 	
 	public void onStarButtonPressed() {
