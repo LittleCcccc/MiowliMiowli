@@ -37,7 +37,7 @@ public class Speech
         //text=text_;
         //语音初始化，在使用应用使用时需要初始化一次就好，如果没有这句会出现10111初始化失败
 
-        SpeechUtility.createUtility(context, SpeechConstant.APPID +"=59b25b94");
+        SpeechUtility.createUtility(context, SpeechConstant.APPID +"=5d711a63");
         if(SpeechUtility.getUtility()==null) {
             System.out.println("utility null");
             return ;
@@ -56,7 +56,7 @@ public class Speech
         mySynthesizer.setParameter(SpeechConstant.VOICE_NAME,"xiaoyan");
         mySynthesizer.setParameter(SpeechConstant.PITCH,"50");
         mySynthesizer.setParameter(SpeechConstant.VOLUME,"50");
-        mySynthesizer.setParameter(SpeechConstant.LANGUAGE,"zhongwen");
+        mySynthesizer.setParameter(SpeechConstant.LANGUAGE,"yingwen");
     }
     public void setContent(String text_){
         text = text_;

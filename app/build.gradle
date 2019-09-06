@@ -106,5 +106,4 @@ dependencies {
     implementation 'pub.devrel:easypermissions:3.0.0'
     implementation 'com.github.yalantis:ucrop:2.2.3'
     api files('libs/Msc.jar')
-    api files('libs/Sunflower.jar')
 }
