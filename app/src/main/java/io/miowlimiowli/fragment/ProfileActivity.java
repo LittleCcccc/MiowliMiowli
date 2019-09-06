@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -48,6 +49,8 @@ public class ProfileActivity extends Fragment {
 		fragment.setArguments(arguments);
 		return fragment;
 	}
+
+	private FloatingActionButton catButton;
 
 	private ImageView avatarImageView;
 	private TextView myNicknameTextView;
@@ -238,8 +241,16 @@ public class ProfileActivity extends Fragment {
 		settingsButton.setOnClickListener((view) -> {
 	this.onSettingsButtonPressed();
 });
+
+		catButton= this.getView().findViewById(R.id.catButton);
+		catButton.setOnClickListener((view) -> {
+			this.onCatButtonPressed();});
 	}
-	
+
+	private void onCatButtonPressed() {
+		this.getActivity().startActivity(ChartActivity.newIntent(this.getContext()));
+	}
+
 	private void startSettingsActivity() {
 		this.getActivity().startActivity(SettingsActivity.newIntent(this.getContext()));
 	}

@@ -141,14 +141,19 @@
 						app:layout_constraintRight_toRightOf="parent"
 						app:layout_constraintTop_toTopOf="parent" />
 
-					<VideoView
-						android:id="@+id/videoView"
-						android:layout_width="wrap_content"
+					<LinearLayout
+						android:id="@+id/video_layout"
+						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginTop="16dp"
-						app:layout_constraintEnd_toEndOf="parent"
-						app:layout_constraintStart_toStartOf="parent"
-						app:layout_constraintTop_toBottomOf="@id/news_photo_image_view" />
+						android:orientation="horizontal"
+						app:layout_constraintTop_toBottomOf="@id/news_photo_image_view">
+
+						<cn.jzvd.JzvdStd
+							android:id="@+id/videoView"
+							android:layout_width="match_parent"
+							android:layout_height="200dp" />
+					</LinearLayout>
 
 					<TextView
 						android:id="@+id/content_text_view"
@@ -193,7 +198,7 @@
 						android:textSize="@dimen/newsdetail_activity_title_text_view_text_size"
 						app:layout_constraintEnd_toEndOf="parent"
 						app:layout_constraintStart_toStartOf="parent"
-						app:layout_constraintTop_toBottomOf="@id/videoView" />
+						app:layout_constraintTop_toBottomOf="@id/video_layout" />
 
 					<TextView
 						android:id="@+id/readcount"

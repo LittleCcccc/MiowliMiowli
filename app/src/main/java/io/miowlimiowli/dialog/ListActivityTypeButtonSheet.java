@@ -1,5 +1,9 @@
 package io.miowlimiowli.dialog;
 
+import android.animation.AnimatorSet;
+import android.animation.Keyframe;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -10,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.widget.Button;
+
+import androidx.core.view.animation.PathInterpolatorCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +54,7 @@ public class ListActivityTypeButtonSheet extends BottomSheetDialogFragment {
             else{
                 p[i].setBackgroundResource(R.drawable.white_type_button_ripple);
             }
+            startAnimation(p[i]);
         }
     });
 
@@ -89,6 +96,7 @@ public class ListActivityTypeButtonSheet extends BottomSheetDialogFragment {
         p[11].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //startAnimation(p[11]);
                 mListener.getDataFrom_TypeDialogFragment();
                 refreshCatList();
                 dismiss();
@@ -117,4 +125,22 @@ public class ListActivityTypeButtonSheet extends BottomSheetDialogFragment {
              throw new ClassCastException(context.toString()+"must implement BottomSheetListener");
         }
     }
+
+    public void startAnimation(Button button){
+        ObjectAnimator animator5 = ObjectAnimator.ofPropertyValuesHolder(button, PropertyValuesHolder.ofKeyframe(View.SCALE_X, Keyframe.ofFloat(0f, 0.3f), Keyframe.ofFloat(0.2f, 1.1f), Keyframe.ofFloat(0.4f, 0.9f), Keyframe.ofFloat(0.6f, 1.03f), Keyframe.ofFloat(0.8f, 0.97f), Keyframe.ofFloat(1f, 1f)), PropertyValuesHolder.ofKeyframe(View.SCALE_Y, Keyframe.ofFloat(0f, 0.3f), Keyframe.ofFloat(0.2f, 1.1f), Keyframe.ofFloat(0.4f, 0.9f), Keyframe.ofFloat(0.6f, 1.03f), Keyframe.ofFloat(0.8f, 0.97f), Keyframe.ofFloat(1f, 1f)));
+        animator5.setDuration(1000);
+        animator5.setInterpolator(PathInterpolatorCompat.create(0.22f, 0.61f, 0.36f, 1f));
+
+        ObjectAnimator animator6 = ObjectAnimator.ofPropertyValuesHolder(button, PropertyValuesHolder.ofKeyframe(View.ALPHA, Keyframe.ofFloat(0f, 0f), Keyframe.ofFloat(0.6f, 1f), Keyframe.ofFloat(1f, 1f)));
+        animator6.setDuration(1000);
+        animator6.setInterpolator(PathInterpolatorCompat.create(0.22f, 0.61f, 0.36f, 1f));
+
+        AnimatorSet animatorSet3 = new AnimatorSet();
+        animatorSet3.playTogether(animator5, animator6);
+        animatorSet3.setTarget(button);
+
+        animatorSet3.start();
+    }
+
+
 }

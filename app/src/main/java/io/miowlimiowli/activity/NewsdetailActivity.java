@@ -7,6 +7,8 @@ package io.miowlimiowli.activity;
 import android.Manifest;
 import android.content.Intent;
 
+import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdStd;
 import io.miowlimiowli.R;
 import io.miowlimiowli.adapter.CommentAdapter;
 import io.miowlimiowli.fragment.CommentFragment;
@@ -87,8 +89,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private TextView commentTimeTextView;
 	private RecyclerView cmtRecyclerView;
 	private CommentAdapter cmtAdapter;
-	private VideoView videoView;
-
+	private JzvdStd videoView;
 	public static String NEWS_ID = "NEWS_ID";
 
 	public DisplayableNews news;
@@ -126,14 +127,16 @@ public class NewsdetailActivity extends AppCompatActivity {
 							.into(newsPhotoImageView);
 				}
 
-				if(!news.video_url.isEmpty()){
-					Uri uri = Uri.parse(news.video_url);
-					videoView.setVideoURI(uri);
+				if(news.video_url.length()>0){
+					videoView.setUp(news.video_url,news.title,JzvdStd.SCREEN_NORMAL);
+					if(!news.image_urls.isEmpty())
+						Glide.with(getApplicationContext()).load(news.image_urls.get(0)).into(videoView.thumbImageView);
+					else
+						Glide.with(getApplicationContext()).load("http://pic.sc.chinaz.com/files/pic/pic9/201601/apic18171.jpg").into(videoView.thumbImageView);
 				}
 				else{
-					String url = "https://vjs.zencdn.net/v/oceans.mp4";
-					Uri uri = Uri.parse(url);
-					videoView.setVideoURI(uri);
+					videoView.setVisibility(View.GONE);
+
 				}
 
 				news.setIsread(true);
@@ -166,6 +169,21 @@ public class NewsdetailActivity extends AppCompatActivity {
 		this.init();
 		mSpeaker = new SpeechUtil(this);
 	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		Jzvd.releaseAllVideos();
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (Jzvd.backPress()) {
+			return;
+		}
+		super.onBackPressed();
+	}
+
 
 	private void init() {
 		speaking = false;
@@ -249,6 +267,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 
 		initPermission();
 	}
+
 
 	public void onSpeakButtonPressed(){
 		mSpeaker.speak("你好");

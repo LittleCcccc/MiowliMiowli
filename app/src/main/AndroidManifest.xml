@@ -96,6 +96,8 @@
 		<activity
 			android:label="@string/newsdetail_activity_title"
 			android:name=".activity.NewsdetailActivity"
+			android:configChanges="orientation|screenSize|keyboardHidden"
+			android:screenOrientation="portrait"
 			android:theme="@style/NewsdetailActivityTheme"/>
 	
 		<activity
@@ -103,6 +105,13 @@
 			android:name=".activity.TwoActivity"
 			android:theme="@style/TwoActivityTheme">
 		</activity>
+
+		<activity
+			android:label=""
+			android:name=".activity.ChartActivity">
+		</activity>
+
+
 		<meta-data
 			android:name="android.app.default_searchable"
 			android:value=".activity.SearchActivity" />
