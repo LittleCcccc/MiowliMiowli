@@ -23,7 +23,6 @@ import java.util.List;
 
 import io.miowlimiowli.R;
 import io.miowlimiowli.manager.DisplayableNews;
-import io.miowlimiowli.manager.Manager;
 
 
 public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -81,14 +80,13 @@ public class NewsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			String time = formatter.format(date);
 			cell.setTime(news.publisher_name + " " + time + " " + news.readcount + "阅读" + " " + news.likecount + "喜爱");
-			if(Manager.getInstance().nopic || news.image_urls.isEmpty())
-				cell.newsPhotoImageView.setVisibility(View.GONE);
-			else{
+			if (!news.image_urls.isEmpty()) {
 				url = news.image_urls.get(0);
 				Glide.with(viewHolder.itemView.getContext())
 						.load(url)
 						.apply(new RequestOptions().dontTransform().placeholder(R.drawable.placeholder))
 						.into(((CellViewHolder) viewHolder).newsPhotoImageView);
+
 			}
 			if (news.isread)
 				cell.newsTitleTextView.setTextColor(mContext.getResources().getColor(R.color.black_light));

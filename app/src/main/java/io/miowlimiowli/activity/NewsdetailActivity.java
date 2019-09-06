@@ -4,6 +4,7 @@
 
 package io.miowlimiowli.activity;
 
+import android.Manifest;
 import android.content.Intent;
 
 import io.miowlimiowli.R;
@@ -12,12 +13,12 @@ import io.miowlimiowli.fragment.CommentFragment;
 import io.miowlimiowli.manager.DisplayableComment;
 import io.miowlimiowli.manager.DisplayableNews;
 import io.miowlimiowli.manager.Manager;
-import io.miowlimiowli.others.Speech;
+import io.miowlimiowli.others.SpeechUtil;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
-import android.view.View;
+import android.content.pm.PackageManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -31,6 +32,8 @@ import android.widget.ImageView;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,16 +52,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static android.view.View.GONE;
-
 
 public class NewsdetailActivity extends AppCompatActivity {
 
 	private TextView readcountTextView;
 	private ImageButton commentButton;
 	private EditText commentEditTextView;
-	private Button speakButton;
-
 	public static Intent newIntent(Context context) {
 	
 		// Fill the created intent with the data you want to be passed to this Activity when it's opened.
@@ -81,9 +80,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private TextView commentTimeTextView;
 	private RecyclerView cmtRecyclerView;
 	private CommentAdapter cmtAdapter;
-
-	private Speech mSpeaker;
-
+	private Button speakButton;
 	public static String NEWS_ID = "NEWS_ID";
 
 	public DisplayableNews news;
@@ -91,6 +88,9 @@ public class NewsdetailActivity extends AppCompatActivity {
 
 	public boolean favorite;
 	public boolean star;
+
+	private SpeechUtil mSpeaker;
+	private boolean speaking;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -110,9 +110,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 				String time = formatter.format(date);
 				timeTextView.setText(time);
-				if(Manager.getInstance().nopic || news.image_urls.isEmpty())
-					newsPhotoImageView.setVisibility(GONE);
-				else{
+				if (!news.image_urls.isEmpty()) {
 					String url = news.image_urls.get(0);
 					Glide.with(NewsdetailActivity.this)
 							.load(url)
@@ -121,9 +119,6 @@ public class NewsdetailActivity extends AppCompatActivity {
 				}
 
 				news.setIsread(true);
-
-				mSpeaker.setContent("123,Hello,Boys and girls.");
-
 				readcountTextView.setText(news.readcount.toString() + "阅读");
 
 				favorite = news.isfavorite;
@@ -136,6 +131,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 					starButton.setImageResource(R.drawable.star_icon);
 				else
 					starButton.setImageResource(R.drawable.star_border_icon);
+
 			}
 		});
 		Single<List<DisplayableComment>> commentSingle = Manager.getInstance().fetch_comment_by_news_id(news_id);
@@ -150,26 +146,11 @@ public class NewsdetailActivity extends AppCompatActivity {
 		//String news_picture_url = getIntent().getStringExtra(NEWS_PICTURE_URL);
 		this.setContentView(R.layout.newsdetail_activity);
 		this.init();
-		mSpeaker = new Speech(this,  null);
-		mSpeaker.setStateChangeListener(() -> {
-			switch (mSpeaker.getState()) {
-				case stoped:
-					speakButton.setSelected(false);
-					break;
-				case reading:
-					speakButton.setSelected(true);
-					break;
-				default:
-					break;
-			}
-		});
+		mSpeaker = new SpeechUtil(this);
 	}
 
 	private void init() {
-
-		speakButton = this.findViewById(R.id.read_button);
-		speakButton.setOnClickListener((View view) -> onSpeech());
-
+		speaking = false;
 		LinearLayoutManager llm = new LinearLayoutManager(this);
 		llm.setOrientation(LinearLayoutManager.VERTICAL);
 		cmtRecyclerView = this.findViewById(R.id.comment_recycler_view);
@@ -235,23 +216,58 @@ public class NewsdetailActivity extends AppCompatActivity {
 		
 		// Configure commentTime component
 		commentTimeTextView = this.findViewById(R.id.comment_time_text_view);
+
+		speakButton = this.findViewById(R.id.speak_button);
+		speakButton.setOnClickListener((view)->{
+			onSpeakButtonPressed();
+		});
+
+		initPermission();
 	}
 
-	private void onSpeech() {
+	public void onSpeakButtonPressed(){
+		mSpeaker.speak("你好");
 		if (news != null && mSpeaker != null) {
-			switch (mSpeaker.getState()) {
-				case ready:
-					mSpeaker.start();
-					break;
-				case reading:
-					mSpeaker.stop();
-					break;
-				default:
-					break;
+			if(!speaking){
+				speaking = true;
+				mSpeaker.speak(news.title);
+				mSpeaker.speak(news.content.substring(0,100));
+			}
+			else{
+				speaking=!speaking;
+				mSpeaker.pause();
 			}
 		}
 	}
 
+
+	private void initPermission() {
+		String[] permissions = {
+				Manifest.permission.INTERNET,
+				Manifest.permission.ACCESS_NETWORK_STATE,
+				Manifest.permission.MODIFY_AUDIO_SETTINGS,
+				Manifest.permission.WRITE_EXTERNAL_STORAGE,
+				Manifest.permission.WRITE_SETTINGS,
+				Manifest.permission.READ_PHONE_STATE,
+				Manifest.permission.ACCESS_WIFI_STATE,
+				Manifest.permission.CHANGE_WIFI_STATE
+		};
+
+		ArrayList<String> toApplyList = new ArrayList<String>();
+
+		for (String perm : permissions) {
+			if (PackageManager.PERMISSION_GRANTED != ContextCompat.checkSelfPermission(this, perm)) {
+				toApplyList.add(perm);
+				// 进入到这里代表没有权限.
+			}
+		}
+		String[] tmpList = new String[toApplyList.size()];
+		if (!toApplyList.isEmpty()) {
+			ActivityCompat.requestPermissions(this, toApplyList.toArray(tmpList), 123);
+		}
+
+	}
+	
 	public void onShareButtonPressed() {
 		showShareDialog();
 	}
@@ -262,6 +278,13 @@ public class NewsdetailActivity extends AppCompatActivity {
 		if(!news.image_urls.isEmpty())
 			testBean.setImgUrl(news.image_urls.get(0));
 		ShareUtil.showShareDialog(this, testBean, ShareConstant.REQUEST_CODE);
+	}
+
+	public void startShare() {
+		ShareEntity testBean = new ShareEntity("我是标题", "我是内容，描述内容。");
+		testBean.setUrl("https://www.baidu.com"); //分享链接
+		testBean.setImgUrl("https://www.baidu.com/img/bd_logo1.png");
+		ShareUtil.startShare(this, ShareConstant.SHARE_CHANNEL_QQ, testBean, ShareConstant.REQUEST_CODE);
 	}
 	
 	public void onStarButtonPressed() {

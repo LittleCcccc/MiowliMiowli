@@ -49,8 +49,6 @@ public class Manager {
         return cat[position-1];
     }
 
-    public boolean nopic = false;
-
     public static Manager getInstance() {
         return manager;
     }
@@ -300,10 +298,6 @@ public class Manager {
     }
 
     public void setCat_list(List<String> list){user.setCat_list(list);}
-
-    public void setNopic(boolean b){
-        nopic = b;
-    }
 
     private Context context;
 

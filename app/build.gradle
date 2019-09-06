@@ -21,21 +21,22 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
     sourceSets{
         main{
             jniLibs.srcDirs = ['libs']
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     useLibrary 'android.test.mock'
 }
 
 dependencies {
+
     implementation('com.xyzlf.share:sharesdk:0.0.11') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
@@ -47,6 +48,7 @@ dependencies {
     implementation 'com.github.nuptboyzhb.lib.uikit:superswiperefreshlayout:1.0.0'
 
     // Jar libs
+    implementation fileTree(exclude: '*.bak', dir: 'libs')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Support libs
@@ -105,5 +107,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'pub.devrel:easypermissions:3.0.0'
     implementation 'com.github.yalantis:ucrop:2.2.3'
-    api files('libs/Msc.jar')
+    implementation files('libs/com.baidu.tts_2.3.2.20180713_6101c2a.jar')
 }

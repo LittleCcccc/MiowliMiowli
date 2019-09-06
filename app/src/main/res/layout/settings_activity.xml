@@ -239,13 +239,15 @@
 						android:id="@+id/nopicture_switch"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_marginRight="16dp"
-						android:checked="false"
+						android:layout_marginEnd="@dimen/settings_activity_nopicture_switch_margin_end"
+						android:checked="true"
 						android:theme="@style/SettingsActivityNopictureSwitchTheme"
-						android:thumbTint="@color/main_light"
+						android:thumbTint="@color/settings_activity_nopicture_switch_thumb_tint"
 						app:layout_constraintBottom_toBottomOf="parent"
 						app:layout_constraintRight_toRightOf="parent"
-						app:layout_constraintTop_toTopOf="parent" />
+						app:layout_constraintTop_toTopOf="parent"
+						tools:layout_editor_absoluteX="304dp"
+						tools:layout_editor_absoluteY="14dp" />
 				</androidx.constraintlayout.widget.ConstraintLayout>
 
 				<androidx.constraintlayout.widget.ConstraintLayout
@@ -274,16 +276,18 @@
 						tools:layout_editor_absoluteY="20dp" />
 
 					<Switch
-						android:id="@+id/nightmode_switch"
+						android:id="@+id/darkmode_switch"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:layout_marginRight="16dp"
-						android:checked="false"
+						android:layout_marginEnd="@dimen/settings_activity_darkmode_switch_margin_end"
+						android:checked="true"
 						android:theme="@style/SettingsActivityDarkmodeSwitchTheme"
-						android:thumbTint="@color/main_light"
+						android:thumbTint="@color/settings_activity_darkmode_switch_thumb_tint"
 						app:layout_constraintBottom_toBottomOf="parent"
 						app:layout_constraintRight_toRightOf="parent"
-						app:layout_constraintTop_toTopOf="parent" />
+						app:layout_constraintTop_toTopOf="parent"
+						tools:layout_editor_absoluteX="304dp"
+						tools:layout_editor_absoluteY="14dp" />
 				</androidx.constraintlayout.widget.ConstraintLayout>
 
 				<androidx.constraintlayout.widget.ConstraintLayout
