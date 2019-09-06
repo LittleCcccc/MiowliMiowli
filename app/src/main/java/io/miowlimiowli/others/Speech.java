@@ -56,6 +56,7 @@ public class Speech
         mySynthesizer.setParameter(SpeechConstant.VOICE_NAME,"xiaoyan");
         mySynthesizer.setParameter(SpeechConstant.PITCH,"50");
         mySynthesizer.setParameter(SpeechConstant.VOLUME,"50");
+        mySynthesizer.setParameter(SpeechConstant.LANGUAGE,"zhongwen");
     }
     public void setContent(String text_){
         text = text_;
