@@ -19,6 +19,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -40,6 +43,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -58,6 +62,9 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private TextView readcountTextView;
 	private ImageButton commentButton;
 	private EditText commentEditTextView;
+	private ImageButton speakButton;
+	private ImageButton stopButton;
+
 	public static Intent newIntent(Context context) {
 	
 		// Fill the created intent with the data you want to be passed to this Activity when it's opened.
@@ -80,7 +87,8 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private TextView commentTimeTextView;
 	private RecyclerView cmtRecyclerView;
 	private CommentAdapter cmtAdapter;
-	private Button speakButton;
+	private VideoView videoView;
+
 	public static String NEWS_ID = "NEWS_ID";
 
 	public DisplayableNews news;
@@ -116,6 +124,16 @@ public class NewsdetailActivity extends AppCompatActivity {
 							.load(url)
 							.apply(new RequestOptions().dontTransform().placeholder(R.drawable.placeholder))
 							.into(newsPhotoImageView);
+				}
+
+				if(!news.video_url.isEmpty()){
+					Uri uri = Uri.parse(news.video_url);
+					videoView.setVideoURI(uri);
+				}
+				else{
+					String url = "https://vjs.zencdn.net/v/oceans.mp4";
+					Uri uri = Uri.parse(url);
+					videoView.setVideoURI(uri);
 				}
 
 				news.setIsread(true);
@@ -217,9 +235,16 @@ public class NewsdetailActivity extends AppCompatActivity {
 		// Configure commentTime component
 		commentTimeTextView = this.findViewById(R.id.comment_time_text_view);
 
+		videoView = this.findViewById(R.id.videoView);
+
 		speakButton = this.findViewById(R.id.speak_button);
 		speakButton.setOnClickListener((view)->{
 			onSpeakButtonPressed();
+		});
+
+		stopButton = this.findViewById(R.id.stop_button);
+		stopButton.setOnClickListener((view)->{
+			onStopButtonPressed();
 		});
 
 		initPermission();
@@ -227,17 +252,16 @@ public class NewsdetailActivity extends AppCompatActivity {
 
 	public void onSpeakButtonPressed(){
 		mSpeaker.speak("你好");
-		if (news != null && mSpeaker != null) {
-			if(!speaking){
-				speaking = true;
-				mSpeaker.speak(news.title);
-				mSpeaker.speak(news.content.substring(0,100));
-			}
-			else{
-				speaking=!speaking;
-				mSpeaker.pause();
-			}
-		}
+		mSpeaker.speak(news.title);
+		int len = news.content.length();
+		int i = len/500;
+		for(int j=0;j<i;j++)
+			mSpeaker.speak(news.content.substring(j*500,(j+1)*500));
+		mSpeaker.speak(news.content.substring(i*500,len));
+	}
+
+	public void onStopButtonPressed(){
+		mSpeaker.stop();
 	}
 
 
@@ -320,5 +344,8 @@ public class NewsdetailActivity extends AppCompatActivity {
 			System.out.println(cmt.content);
 			cmtAdapter.appendData(list);
 		});
+		commentEditTextView.setText("");
+		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 }
