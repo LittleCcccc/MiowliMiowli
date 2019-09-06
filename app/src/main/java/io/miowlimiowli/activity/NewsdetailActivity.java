@@ -215,7 +215,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 	}
 
 	public void showShareDialog() {
-		String abst = news.content.substring(0,20)+ "..." ;
+		String abst = news.title + "\n" + news.content.substring(0,50)+ "..." ;
 		ShareEntity testBean = new ShareEntity(news.title, abst);
 		if(!news.image_urls.isEmpty())
 			testBean.setImgUrl(news.image_urls.get(0));
