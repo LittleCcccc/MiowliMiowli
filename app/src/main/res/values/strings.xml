@@ -2,7 +2,11 @@
 	
 	<!-- Project level resources -->
 	<string name="app_name">MiowliMiowli</string>
-	
+
+
+	<string name="weixin_key">123</string>
+	<string name="tencent_qq_appid">123</string>
+
 	<!-- WelcomeActivity -->
 	<string name="welcome_activity_title"></string>
 	<string name="welcome_activity_titlechinese_text_view_text">喵哩喵哩新闻</string>

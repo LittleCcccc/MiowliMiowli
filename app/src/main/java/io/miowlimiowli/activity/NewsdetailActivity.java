@@ -215,9 +215,10 @@ public class NewsdetailActivity extends AppCompatActivity {
 	}
 
 	public void showShareDialog() {
-		ShareEntity testBean = new ShareEntity("我是标题", "我是内容，描述内容。");
-		testBean.setUrl("https://www.baidu.com"); //分享链接
-		testBean.setImgUrl("https://www.baidu.com/img/bd_logo1.png");
+		String abst = news.content.substring(0,20)+ "..." ;
+		ShareEntity testBean = new ShareEntity(news.title, abst);
+		if(!news.image_urls.isEmpty())
+			testBean.setImgUrl(news.image_urls.get(0));
 		ShareUtil.showShareDialog(this, testBean, ShareConstant.REQUEST_CODE);
 	}
 
