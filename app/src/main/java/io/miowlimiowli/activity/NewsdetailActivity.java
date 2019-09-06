@@ -46,6 +46,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static android.view.View.GONE;
+
 
 public class NewsdetailActivity extends AppCompatActivity {
 
@@ -101,13 +103,17 @@ public class NewsdetailActivity extends AppCompatActivity {
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 				String time = formatter.format(date);
 				timeTextView.setText(time);
-				if (!news.image_urls.isEmpty()) {
+				if(Manager.getInstance().nopic || news.image_urls.isEmpty())
+					newsPhotoImageView.setVisibility(GONE);
+				else{
 					String url = news.image_urls.get(0);
 					Glide.with(NewsdetailActivity.this)
 							.load(url)
 							.apply(new RequestOptions().dontTransform().placeholder(R.drawable.placeholder))
 							.into(newsPhotoImageView);
 				}
+
+
 
 				news.setIsread(true);
 				readcountTextView.setText(news.readcount.toString() + "阅读");
@@ -205,9 +211,6 @@ public class NewsdetailActivity extends AppCompatActivity {
 		
 		// Configure commentTime component
 		commentTimeTextView = this.findViewById(R.id.comment_time_text_view);
-
-
-	
 	}
 	
 	public void onShareButtonPressed() {
@@ -220,13 +223,6 @@ public class NewsdetailActivity extends AppCompatActivity {
 		if(!news.image_urls.isEmpty())
 			testBean.setImgUrl(news.image_urls.get(0));
 		ShareUtil.showShareDialog(this, testBean, ShareConstant.REQUEST_CODE);
-	}
-
-	public void startShare() {
-		ShareEntity testBean = new ShareEntity("我是标题", "我是内容，描述内容。");
-		testBean.setUrl("https://www.baidu.com"); //分享链接
-		testBean.setImgUrl("https://www.baidu.com/img/bd_logo1.png");
-		ShareUtil.startShare(this, ShareConstant.SHARE_CHANNEL_QQ, testBean, ShareConstant.REQUEST_CODE);
 	}
 	
 	public void onStarButtonPressed() {

@@ -6,8 +6,11 @@ package io.miowlimiowli.activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
+
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.InputType;
@@ -21,6 +24,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import io.miowlimiowli.R;
+
+import android.widget.Switch;
 import android.widget.TextView;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -60,6 +65,8 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 	private Button logoutButton;
 	private TextView mynameTextView;
 	private TextView mymailTextView;
+	private Switch nightmodeSwitch;
+	private Switch nopicSwitch;
 
 	private boolean vip;
 	@Override
@@ -153,10 +160,39 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 });
 		mymailTextView = this.findViewById(R.id.mail_text_view);
 		mynameTextView = this.findViewById(R.id.name_text_view);
-		
+
+		nopicSwitch = this.findViewById(R.id.nopicture_switch);
+		nopicSwitch.setChecked(false);
+		nopicSwitch.setOnClickListener((view)->{
+			this.onNopicChanged();
+		});
+
+		nightmodeSwitch = this.findViewById(R.id.nightmode_switch);
+		nightmodeSwitch.setChecked(false);
+		nightmodeSwitch.setOnClickListener((view)->{
+			this.onNightModeChanged();
+		});
+
 		this.setupToolbar();
 	}
-	
+
+	public void onNopicChanged(){
+		boolean nopic = nopicSwitch.isChecked();
+		Manager.getInstance().setNopic(nopic);
+		recreate();
+	}
+
+	public void onNightModeChanged(){
+		int currentMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+		if(currentMode!=Configuration.UI_MODE_NIGHT_YES){
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+		}
+		else{
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+		}
+		recreate();
+	}
+
 	public void setupToolbar() {
 	
 		setSupportActionBar(toolbar);
