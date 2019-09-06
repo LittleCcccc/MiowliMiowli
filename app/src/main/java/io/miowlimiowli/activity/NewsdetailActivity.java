@@ -12,10 +12,13 @@ import io.miowlimiowli.fragment.CommentFragment;
 import io.miowlimiowli.manager.DisplayableComment;
 import io.miowlimiowli.manager.DisplayableNews;
 import io.miowlimiowli.manager.Manager;
+import io.miowlimiowli.others.Speech;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,6 +57,8 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private TextView readcountTextView;
 	private ImageButton commentButton;
 	private EditText commentEditTextView;
+	private Button speakButton;
+
 	public static Intent newIntent(Context context) {
 	
 		// Fill the created intent with the data you want to be passed to this Activity when it's opened.
@@ -76,6 +81,8 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private TextView commentTimeTextView;
 	private RecyclerView cmtRecyclerView;
 	private CommentAdapter cmtAdapter;
+
+	private Speech mSpeaker;
 
 	public static String NEWS_ID = "NEWS_ID";
 
@@ -113,9 +120,10 @@ public class NewsdetailActivity extends AppCompatActivity {
 							.into(newsPhotoImageView);
 				}
 
-
-
 				news.setIsread(true);
+
+				mSpeaker.setContent(news.title+"。"+news.content);
+
 				readcountTextView.setText(news.readcount.toString() + "阅读");
 
 				favorite = news.isfavorite;
@@ -142,9 +150,25 @@ public class NewsdetailActivity extends AppCompatActivity {
 		//String news_picture_url = getIntent().getStringExtra(NEWS_PICTURE_URL);
 		this.setContentView(R.layout.newsdetail_activity);
 		this.init();
+		mSpeaker = new Speech(this,  null);
+		mSpeaker.setStateChangeListener(() -> {
+			switch (mSpeaker.getState()) {
+				case stoped:
+					speakButton.setSelected(false);
+					break;
+				case reading:
+					speakButton.setSelected(true);
+					break;
+				default:
+					break;
+			}
+		});
 	}
 
 	private void init() {
+
+		speakButton = this.findViewById(R.id.read_button);
+		speakButton.setOnClickListener((View view) -> onSpeech());
 
 		LinearLayoutManager llm = new LinearLayoutManager(this);
 		llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -212,7 +236,22 @@ public class NewsdetailActivity extends AppCompatActivity {
 		// Configure commentTime component
 		commentTimeTextView = this.findViewById(R.id.comment_time_text_view);
 	}
-	
+
+	private void onSpeech() {
+		if (news != null && mSpeaker != null) {
+			switch (mSpeaker.getState()) {
+				case ready:
+					mSpeaker.start();
+					break;
+				case reading:
+					mSpeaker.stop();
+					break;
+				default:
+					break;
+			}
+		}
+	}
+
 	public void onShareButtonPressed() {
 		showShareDialog();
 	}

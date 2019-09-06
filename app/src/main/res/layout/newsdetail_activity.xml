@@ -214,4 +214,13 @@
 		</androidx.core.widget.NestedScrollView>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
+	<Button
+		android:id="@+id/read_button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginEnd="16dp"
+		android:text="Button"
+		app:layout_constraintEnd_toEndOf="parent"
+		tools:layout_editor_absoluteY="4dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
