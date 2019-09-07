@@ -9,9 +9,9 @@ import android.hardware.SensorManager;
 public class SensorManagerHelper implements SensorEventListener {
 
     // 速度阈值，当摇晃速度达到这值后产生作用
-    private final int SPEED_SHRESHOLD = 5;
+    private final int SPEED_SHRESHOLD = 4000;
     // 两次检测的时间间隔
-    private final int UPTATE_INTERVAL_TIME = 10000;
+    private final int UPTATE_INTERVAL_TIME = 70;
     // 传感器管理器
     private SensorManager sensorManager;
     // 传感器
