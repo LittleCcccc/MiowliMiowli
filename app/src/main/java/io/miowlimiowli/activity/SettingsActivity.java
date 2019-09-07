@@ -4,17 +4,25 @@
 
 package io.miowlimiowli.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
+import android.app.UiModeManager;
 import android.content.Context;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Handler;
 import android.text.InputType;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -68,6 +76,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 	private Switch nightmodeSwitch;
 	private Switch nopicSwitch;
 	private boolean vip;
+	private boolean isNightMode = false;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	
@@ -183,29 +192,54 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 		this.setupToolbar();
 	}
 
+
 	public void onNopicChanged(){
 		boolean nopic = nopicSwitch.isChecked();
 		Manager.getInstance().setNopic(nopic);
 		recreate();
 	}
 
-	public void onNightModeChanged(){
+	public boolean isNightMode(){
 		int currentMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-		if(currentMode!=Configuration.UI_MODE_NIGHT_YES){
-			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-		}
-		else{
-			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-		}
-		recreate();
+		if(currentMode==Configuration.UI_MODE_NIGHT_YES)
+			return true;
+		else
+			return false;
 	}
 
+
+	public void onNightModeChanged(){
+		/*
+		if(!isNightMode)
+			getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+		else
+			getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+
+		 */
+		UiModeManager uiManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
+		if (isNightMode()) {
+			uiManager.enableCarMode(0);
+			uiManager.setNightMode(UiModeManager.MODE_NIGHT_YES);
+		} else {
+			uiManager.disableCarMode(0);
+			uiManager.setNightMode(UiModeManager.MODE_NIGHT_NO);
+		}
+		//Intent intent = new Intent(SettingsActivity.this,SettingsActivity.class);
+		//SettingsActivity.this.startActivity(intent);
+		//overridePendingTransition(R.anim.in_anim, R.anim.out_anim);
+		//SettingsActivity.this.finish();
+		//recreate();
+
+	}
+
+
 	public void setupToolbar() {
-	
+
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
-		
+
 		// Additional Toolbar setup code can go here.
 	}
 

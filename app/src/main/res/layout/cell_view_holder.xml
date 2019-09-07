@@ -40,7 +40,7 @@
             android:alpha="1"
             android:gravity="start"
             android:text="@string/cell_view_holder_news_time_text_view_text"
-            android:textColor="@color/darker_grey"
+            android:textColor="@color/text_grey"
             android:textSize="@dimen/cell_view_holder_news_time_text_view_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

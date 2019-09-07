@@ -21,6 +21,7 @@
 	<color name="middle_grey">#F4F2F4</color>
 	<color name="dark_grey">#E1E1E1</color>
 	<color name="darker_grey">#B0B0B0</color>
+	<color name="text_grey">#B0B0B0</color>
 	<color name="dark_blue">#040C16</color>
 	<color name="orange">#F78462</color>
 	<color name="red">#E73D3B</color>

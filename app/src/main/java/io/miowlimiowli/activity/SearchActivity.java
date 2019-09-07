@@ -12,6 +12,8 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.Date;
+
 import io.miowlimiowli.R;
 import io.miowlimiowli.others.MySuggestionProvider;
 import io.miowlimiowli.fragment.NewsListFragment;
@@ -101,12 +103,9 @@ public class SearchActivity extends AppCompatActivity {
         suggestions.clearHistory();
     }
 
-
     @Override
     public void onNewIntent(Intent intent){
         super.onNewIntent(intent);
         handleIntent(intent);
     }
-
-
 }
