@@ -162,6 +162,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 		}
 
 		sensorHelper = new SensorManagerHelper(this);
+		sensorHelper.start();
 		sensorHelper.setOnShakeListener(() -> onNextNewsButtonPressed());
 
 	}
@@ -255,6 +256,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 	protected void onPause() {
 		super.onPause();
 		Jzvd.releaseAllVideos();
+		sensorHelper.stop();
 	}
 
 	@Override
