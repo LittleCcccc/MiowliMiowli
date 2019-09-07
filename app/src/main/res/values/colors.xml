@@ -26,7 +26,7 @@
 	<color name="red">#E73D3B</color>
 	<color name="purple">#BD4CBE</color>
 	<color name="black_grey">#E1242424</color>
-	<color name="black_light">#555555</color>
+	<color name="black_light">#666666</color>
 
 	<!-- WelcomeActivity -->
 	<color name="welcome_activity_welcome_constraint_layout_background_color">@color/white</color>

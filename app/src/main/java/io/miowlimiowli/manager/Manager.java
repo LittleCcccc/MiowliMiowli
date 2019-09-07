@@ -57,6 +57,12 @@ public class Manager {
         return cat[position-1];
     }
 
+    public boolean nopic = false;
+    public void setNopic(boolean b){
+        nopic = b;
+    }
+
+
     public static Manager getInstance() {
         return manager;
     }
@@ -141,6 +147,33 @@ public class Manager {
                 return ret;
             }
         }).flatMapIterable((item)->item)
+                .map(item ->{
+                    newses.put(item.id, item);
+                    return item;
+                })
+                .map(DisplayableNews::new)
+                .map(new WrapDisplayableNews())
+                .toList().subscribeOn(Schedulers.io()).observeOn((AndroidSchedulers.mainThread()));
+    }
+
+    /**
+     * 获取时间范围内的新闻
+     * @param size 一页数量
+     * @param page 第几页的新闻
+     * @param begin 开始时间
+     * @param end 截至时间
+     * @param category 种类
+     * @param keyword 关键词
+     * @return
+     */
+    public Single<List<DisplayableNews>> fetch_news_by_all(final int size, final int page,  final Date begin,final Date end,final String category, final String keyword) {
+        return Flowable.fromCallable(()->{
+            try {
+                return RawNews.fetch_news_from_server(size, page, begin, end, keyword, category);
+            }catch (Exception e){
+                return new ArrayList<RawNews>();
+            }
+        }).flatMapIterable(item -> item)
                 .map(item ->{
                     newses.put(item.id, item);
                     return item;
