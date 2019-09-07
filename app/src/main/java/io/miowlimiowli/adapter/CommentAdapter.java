@@ -52,7 +52,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         DisplayableComment comment = mComment.get(position);
         final CommentAdapter.CellViewHolder cell = (CommentAdapter.CellViewHolder) viewHolder;
-        cell.setTitle(comment.username);
+        cell.setTitle(comment.user.nickname);
         String url="";
         Date date = comment.publish_date;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss");

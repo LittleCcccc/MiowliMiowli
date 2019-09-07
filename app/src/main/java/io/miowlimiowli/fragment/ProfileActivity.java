@@ -159,7 +159,7 @@ public class ProfileActivity extends Fragment {
 			}
 			Drawable drawable = Drawable.createFromStream(inputStream, uri.toString() );
 			avatarImageView.setImageDrawable(drawable);
-			Manager.getInstance().getUser().setAvator(drawable);
+			Manager.getInstance().getUser().setAvator(getContext(), drawable);
 		} else if (resultCode == UCrop.RESULT_ERROR) {
 			final Throwable cropError = UCrop.getError(data);
 		}

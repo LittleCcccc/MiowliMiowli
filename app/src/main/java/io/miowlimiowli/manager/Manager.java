@@ -26,6 +26,8 @@ import io.miowlimiowli.exceptions.UsernameEmptyError;
 import io.miowlimiowli.manager.sql.SqlComment;
 import io.miowlimiowli.manager.sql.SqlId;
 import io.miowlimiowli.manager.sql.SqlNews;
+import io.miowlimiowli.manager.sql.SqlUser;
+import io.reactivex.Observable;
 import io.reactivex.functions.Function;
 
 import io.miowlimiowli.exceptions.UsernameAlreadExistError;
@@ -44,7 +46,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 public class Manager {
 
     private static Manager manager = new Manager();
-    private static List<String>  cat_list;
+    public static List<String>  cat_list;
     private Manager() {
         cat_list = new ArrayList<>();
         for(int i=0;i<cat.length;i++)
@@ -97,13 +99,22 @@ public class Manager {
      * @throws UsernameAlreadExistError 注册失败（用户重名）抛出异常
      */
     public void register(final String username, final String email, final String password) throws UsernameAlreadExistError, UsernameEmptyError {
+        try {
+            init_thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if (users.containsKey(username))
             throw new UsernameAlreadExistError();
         if(username.isEmpty())
             throw new UsernameEmptyError();
         User user = new User(username, email, password);
         user.cat_list = new ArrayList<>(cat_list);
-        user.avator = context.getResources().getDrawable(R.drawable.logo, null);
+        user.setAvator(context, context.getResources().getDrawable(R.drawable.logo, null));
+        SqlUser sqlUser = new SqlUser(user);
+        Observable.just("suck")
+                .subscribeOn(Schedulers.io())
+                .subscribe((item)->{db.SqlUserDao().insert(sqlUser);});
         users.put(username, user);
     }
 
@@ -339,6 +350,25 @@ public class Manager {
             return news;
         }
     }
+
+
+    public AppDatabase db ;
+    private Context context;
+    Thread init_thread;
+    Runnable init_userdata = ()->{
+        for(SqlUser user : db.SqlUserDao().getall()){
+            users.put(user.username, new User(user));
+        }
+        String[] files = context.fileList();
+        for(String filename: files){
+            if(filename.endsWith(".png")){
+                String username = filename.substring(0, filename.length() - 4);
+                System.out.println(filename);
+                System.out.println(context.getFilesDir().getAbsolutePath() + filename);
+                users.get(username).avator = new BitmapDrawable(context.getResources(),BitmapFactory.decodeFile(context.getFilesDir().getAbsolutePath() + "/" + filename));
+            }
+        }
+    };
     /**
      * 此函数只允许在启动时调用一次
      * @param context Application Context
@@ -361,8 +391,11 @@ public class Manager {
             System.out.println("error in read from local file");
             e.printStackTrace();
         }
+
         db  = Room.databaseBuilder(context,
                 AppDatabase.class,"mydatabase").build();
+        init_thread = new Thread(init_userdata);
+        init_thread.start();
     }
 
     /**
@@ -374,7 +407,7 @@ public class Manager {
 
     public void setCat_list(List<String> list){user.setCat_list(list);}
 
-    private Context context;
 
-    private AppDatabase db ;
+
+
 }
