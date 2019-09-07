@@ -251,7 +251,11 @@ public class NewsdetailActivity extends AppCompatActivity {
 	}
 
 	 */
-
+    @Override
+    protected void onResume(){
+        super.onResume();
+        sensorHelper.start();
+    }
 	@Override
 	protected void onPause() {
 		super.onPause();
