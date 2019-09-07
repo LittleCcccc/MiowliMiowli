@@ -140,6 +140,10 @@ public class SpeechUtil implements SpeechSynthesizerListener {
                 SpeechSynthesizer.AUDIO_BITRATE_AMR_15K85);//音频比特率，各音频格式支持的比特率详见随后常量声明
     }
 
+    public void setVoice(int i){
+        speechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, Integer.toString(i));//发音人，目前支持女声(0)和男声(1)
+    }
+
     public void setStereoVolume(float leftVolume, float rightVolume) {
         speechSynthesizer.setStereoVolume(leftVolume, rightVolume);
     }

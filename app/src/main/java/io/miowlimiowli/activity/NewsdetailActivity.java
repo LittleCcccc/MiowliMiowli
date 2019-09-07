@@ -69,12 +69,18 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private ImageButton speakButton;
 	private ImageButton stopButton;
 	private SensorManagerHelper sensorHelper;
+
+	private int voice = 0;
 	public static Intent newIntent(Context context) {
 	
 		// Fill the created intent with the data you want to be passed to this Activity when it's opened.
 		return new Intent(context, NewsdetailActivity.class);
 	}
-	
+
+	private ImageButton girl;
+	private ImageButton male;
+	private ImageButton female;
+
 	private Toolbar toolbar;
 	private SearchView writeCommentSearchView;
 	private ImageButton shareButton;
@@ -357,8 +363,45 @@ public class NewsdetailActivity extends AppCompatActivity {
 			onNextNewsButtonPressed();
 		});
 
+		male = this.findViewById(R.id.male);
+		male.setOnClickListener((view)->{
+			onMalePressed();
+		});
+
+		female = this.findViewById(R.id.female);
+		female.setOnClickListener((view)->{
+			onFemalePressed();
+		});
+
+		girl = this.findViewById(R.id.girl);
+		girl.setOnClickListener((view)->{
+			onGirlPressed();
+		});
+
 		initPermission();
 	}
+
+
+	private void onGirlPressed() {
+    	mSpeaker.setVoice(4);
+	}
+
+	private void onFemalePressed() {
+    	if(voice == 0)
+    		mSpeaker.setVoice(5);
+    	else
+	    	mSpeaker.setVoice(0);
+	}
+
+	private void onMalePressed() {
+    	if(voice == 3)
+			mSpeaker.setVoice(2);
+    	else if(voice ==2)
+    		mSpeaker.setVoice(1);
+    	else
+	    	mSpeaker.setVoice(3);
+	}
+
 	public void onNextNewsButtonPressed(){
 	    try {
             news = Manager.getInstance().nextNews();

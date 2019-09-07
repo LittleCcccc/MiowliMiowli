@@ -227,23 +227,58 @@
 		</androidx.core.widget.NestedScrollView>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
-	<ImageButton
-		android:id="@+id/speak_button"
-		android:layout_width="43dp"
-		android:layout_height="43dp"
-		android:background="?attr/selectableItemBackground"
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="wrap_content"
+		android:layout_height="40dp"
+		android:layout_marginStart="8dp"
+		android:layout_marginTop="4dp"
+		android:alpha="0.4"
+		android:background="@drawable/type_button_ripple"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		app:srcCompat="@drawable/ear" />
+		app:layout_constraintTop_toTopOf="parent">
 
-	<ImageButton
-		android:id="@+id/stop_button"
-		android:layout_width="43dp"
-		android:layout_height="43dp"
-		android:background="?attr/selectableItemBackground"
-		app:layout_constraintStart_toEndOf="@+id/speak_button"
-		app:layout_constraintTop_toTopOf="parent"
-		app:srcCompat="@drawable/stop" />
+
+		<ImageButton
+			android:id="@+id/girl"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:background="?attr/selectableItemBackground"
+			app:layout_constraintStart_toEndOf="@id/male"
+			app:srcCompat="@drawable/girl" />
+
+		<ImageButton
+			android:id="@+id/male"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:background="?attr/selectableItemBackground"
+			app:layout_constraintStart_toEndOf="@id/female"
+			app:srcCompat="@drawable/man" />
+
+		<ImageButton
+			android:id="@+id/female"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:background="?attr/selectableItemBackground"
+			app:layout_constraintStart_toEndOf="@id/stop_button"
+			app:srcCompat="@drawable/woman" />
+
+		<ImageButton
+			android:id="@+id/stop_button"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:background="?attr/selectableItemBackground"
+			app:layout_constraintStart_toEndOf="@id/speak_button"
+			app:srcCompat="@drawable/stop" />
+
+		<ImageButton
+			android:id="@+id/speak_button"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:layout_marginStart="8dp"
+			android:background="?attr/selectableItemBackground"
+			app:layout_constraintStart_toStartOf="parent"
+			app:srcCompat="@drawable/read" />
+	</androidx.constraintlayout.widget.ConstraintLayout>
 
 	<ImageButton
 		android:id="@+id/nextNewsButton"
