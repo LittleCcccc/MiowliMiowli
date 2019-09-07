@@ -6,18 +6,26 @@ import android.graphics.drawable.BitmapDrawable;
 
 import androidx.room.*;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.reactivestreams.Publisher;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.concurrent.Callable;
 
 import io.miowlimiowli.R;
 import io.miowlimiowli.exceptions.UsernameEmptyError;
 import io.miowlimiowli.manager.sql.SqlComment;
+import io.miowlimiowli.manager.sql.SqlId;
+import io.miowlimiowli.manager.sql.SqlNews;
 import io.reactivex.functions.Function;
 
 import io.miowlimiowli.exceptions.UsernameAlreadExistError;
@@ -109,11 +117,30 @@ public class Manager {
     public Single<List<DisplayableNews>> FetchDisplayableNewsbyCategoryandKeyword(final int size, final int page,  final String category, final String keyword) {
         return Flowable.fromCallable(()->{
             try {
-                return RawNews.fetch_news_from_server(size, page, null, null, keyword, category);
+                List<RawNews> list =  RawNews.fetch_news_from_server(size, page, null, null, keyword, category);
+                for(RawNews news : list){
+                    db.SqlNewsDao().insert(new SqlNews(news));
+                }
+                return list;
             }catch (Exception e){
-                return new ArrayList<RawNews>();
+                //离线时，从本地获取新闻
+                System.out.println("offline mode");
+                System.out.println(category + keyword + size + (page - 1) * size);
+                List<SqlId> list = db.SqlNewsDao().query_by_category(category, size, (page - 1) * size);
+                System.out.println(db.SqlNewsDao().getAll().size());
+                System.out.println(list.size());
+                List<RawNews> ret = new ArrayList<>();
+                for(SqlId id: list){
+                    if(newses.get(id.news_id) == null) {
+                        System.out.println("null Get");
+                        System.out.println(id.news_id);
+                    }
+                    ret.add(newses.get(id.news_id));
+                    //System.out.println(newses.get(id.news_id).title);
+                }
+                return ret;
             }
-        }).flatMapIterable(item -> item)
+        }).flatMapIterable((item)->item)
                 .map(item ->{
                     newses.put(item.id, item);
                     return item;
@@ -285,9 +312,24 @@ public class Manager {
      */
     public void setContext(Context context) {
         this.context = context;
-        //TODO:inmemory_for_test
-        db  = Room.inMemoryDatabaseBuilder(context,
-                AppDatabase.class).build();
+        RawNews.context = context;
+        try {
+            InputStream in = context.openFileInput("news.json");
+            Scanner scanner = new Scanner(in);
+            while(scanner.hasNext()){
+                String str = scanner.nextLine();
+                if(str.equals(""))
+                    continue;
+                JSONObject obj = new JSONObject(str);
+                RawNews news = new RawNews(obj);
+                newses.put(news.id, news);
+            }
+        } catch (FileNotFoundException | JSONException | ParseException e) {
+            System.out.println("error in read from local file");
+            e.printStackTrace();
+        }
+        db  = Room.databaseBuilder(context,
+                AppDatabase.class,"mydatabase").build();
     }
 
     /**

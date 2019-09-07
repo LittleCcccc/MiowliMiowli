@@ -1,8 +1,5 @@
 package io.miowlimiowli.manager.sql;
 
-import android.app.Instrumentation;
-import android.test.mock.MockContext;
-
 import androidx.room.Room;
 import androidx.test.platform.app.InstrumentationRegistry;
 
@@ -19,14 +16,14 @@ public class SqlUserandNewsDaoTest {
         AppDatabase db = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getInstrumentation().getContext(),
         AppDatabase.class).build();
         SqlNews news = new SqlNews();
-        news.id = "1";
+        news.news_id = "1";
         db.SqlNewsDao().insert(news);
 
         news = new SqlNews();
-        news.id = "2";
+        news.news_id = "2";
         db.SqlNewsDao().insert(news);
         news = new SqlNews();
-        news.id = "3";
+        news.news_id = "3";
         db.SqlNewsDao().insert(news);
 
         SqlUserandNews s = new SqlUserandNews();

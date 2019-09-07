@@ -51,7 +51,7 @@ public class RecommendActivity extends Fragment {
 	}
 
 	public void init() {
-		//newsListFragment = this.getView().findViewById(R.id.news_list_fragment);
+		//newsListFragment = this.getView().findViewById(R.news_id.news_list_fragment);
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		NewsListFragment fragment = NewsListFragment.newInstance("体育","");

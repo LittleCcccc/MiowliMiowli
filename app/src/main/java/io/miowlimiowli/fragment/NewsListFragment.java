@@ -48,15 +48,12 @@ public class NewsListFragment extends BaseListFragment {
 
         Single<List<DisplayableNews>> single = null;
         single = Manager.getInstance().FetchDisplayableNewsbyCategoryandKeyword(mPageSize,mPageNo,mCategory,mKeyword);
-        Disposable d = single.subscribe(new Consumer<List<DisplayableNews>>() {
-            @Override
-            public void accept(List<DisplayableNews> displayableNews) throws Exception {
-                if(mPageNo==1)
-                    setNewsList(displayableNews);
-                else
-                    appendNewsList(displayableNews);
-                callback.run();
-            }
+        Disposable d = single.subscribe(displayableNews -> {
+            if(mPageNo==1)
+                setNewsList(displayableNews);
+            else
+                appendNewsList(displayableNews);
+            callback.run();
         });
 
     }
