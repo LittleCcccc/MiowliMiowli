@@ -196,7 +196,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 	public void onNopicChanged(){
 		boolean nopic = nopicSwitch.isChecked();
 		Manager.getInstance().setNopic(nopic);
-		recreate();
 	}
 
 	public boolean isNightMode(){
@@ -209,27 +208,14 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 
 
 	public void onNightModeChanged(){
-		/*
-		if(!isNightMode)
-			getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-		else
-			getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-
-		 */
 		UiModeManager uiManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
-		if (isNightMode()) {
-			uiManager.enableCarMode(0);
+		if (!isNightMode()) {
+			//uiManager.enableCarMode(0);
 			uiManager.setNightMode(UiModeManager.MODE_NIGHT_YES);
 		} else {
-			uiManager.disableCarMode(0);
+			//uiManager.disableCarMode(0);
 			uiManager.setNightMode(UiModeManager.MODE_NIGHT_NO);
 		}
-		//Intent intent = new Intent(SettingsActivity.this,SettingsActivity.class);
-		//SettingsActivity.this.startActivity(intent);
-		//overridePendingTransition(R.anim.in_anim, R.anim.out_anim);
-		//SettingsActivity.this.finish();
-		//recreate();
 
 	}
 
