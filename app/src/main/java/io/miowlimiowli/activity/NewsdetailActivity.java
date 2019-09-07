@@ -156,8 +156,9 @@ public class NewsdetailActivity extends AppCompatActivity {
 			starButton.setImageResource(R.drawable.star_border_icon);
 		mSpeaker = new SpeechUtil(this);
 
+
 		if(Manager.getInstance().isLastNews()){
-			nextNewsButton.setVisibility(View.GONE);
+			//nextNewsButton.setVisibility(View.GONE);
 		}
 
 		sensorHelper = new SensorManagerHelper(this);
@@ -353,15 +354,17 @@ public class NewsdetailActivity extends AppCompatActivity {
 		initPermission();
 	}
 	public void onNextNewsButtonPressed(){
-		if(Manager.getInstance().isLastNews())
-			return;
-		news = Manager.getInstance().nextNews();
-		Intent intent = new Intent(NewsdetailActivity.this, NewsdetailActivity.class);
-		NewsdetailActivity.this.startActivity(intent);
-		overridePendingTransition(R.anim.in_anim, R.anim.out_anim);
-		NewsdetailActivity.this.finish();
+	    try {
+            news = Manager.getInstance().nextNews();
+            Intent intent = new Intent(NewsdetailActivity.this, NewsdetailActivity.class);
+            NewsdetailActivity.this.startActivity(intent);
+            overridePendingTransition(R.anim.in_anim, R.anim.out_anim);
+            NewsdetailActivity.this.finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	}
+    }
 
 	public void onSpeakButtonPressed(){
 		mSpeaker.speak("你好");

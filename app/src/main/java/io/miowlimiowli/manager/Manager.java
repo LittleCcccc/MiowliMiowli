@@ -59,19 +59,25 @@ public class Manager {
     public int newsposi;
     public BaseListFragment listFragment;
     public DisplayableNews news;
-    public DisplayableNews nextNews(){
+    public DisplayableNews nextNews() throws Exception{
         System.out.println("现在的posi为"+newsposi);
-        newsposi += 1;
+        System.out.println("列表长度为"+listFragment.getmNews().size());
         news = listFragment.getmNews().get(newsposi);
+        newsposi += 1;
         return news;
     }
     public boolean isLastNews(){
         if(newsposi >= listFragment.getmNews().size())
         {
             if(listFragment instanceof NewsListFragment)
+            {
                 listFragment.requireMoreNews(()->{});
+            }
             if(newsposi>=listFragment.getmNews().size())
+            {
+                System.out.println("没有新闻了！");
                 return true;
+            }
         }
         return false;
     }
