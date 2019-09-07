@@ -15,18 +15,18 @@
     <color name="material_bottom_sheet_title">#85FFFFFF</color>
     <color name="material_bottom_sheet_item">#21FFFFFF</color>
     <!-- main color-->
-    <color name="white">#000000</color>
-    <color name="main_light">#00A2A4</color>
+    <color name="white">#1E1E1E</color>
+    <color name="main_light">#FF6D6B</color>
     <color name="black">#FFFFFF</color>
-    <color name="main_dark">#269891</color>
-    <color name="light_grey">#090909</color>
-    <color name="middle_grey">#0B0D0B</color>
-    <color name="dark_grey">#1E1E1E</color>
-    <color name="darker_grey">#4F4F4F</color>
+    <color name="main_dark">#D9676E</color>
+    <color name="light_grey">#101010</color>
+    <color name="middle_grey">#0D0D0D</color>
+    <color name="dark_grey">#060606</color>
+    <color name="darker_grey">#0E0E0E</color>
     <color name="dark_blue">#FBF3E9</color>
-    <color name="orange">#187B9D</color>
-    <color name="red">#18C2C4</color>
-    <color name="purple">#42B341</color>
+    <color name="orange">#F78462</color>
+    <color name="red">#E73D3B</color>
+    <color name="purple">#BD4CBE</color>
 
     <!-- WelcomeActivity -->
     <color name="welcome_activity_welcome_constraint_layout_background_color">@color/white</color>

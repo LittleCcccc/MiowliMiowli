@@ -42,10 +42,11 @@
 
 		<ImageButton
 			android:id="@+id/more_type_button"
-			android:layout_width="50dp"
+			android:layout_width="30dp"
 			android:layout_height="50dp"
-			android:backgroundTint="#83FFFFFF"
-			android:backgroundTintMode="src_over"
+			android:alpha="0.6"
+			android:backgroundTint="@color/white"
+			android:backgroundTintMode="multiply"
 			android:scaleType="fitXY"
 			android:src="@drawable/menu_icon"
 			app:layout_constraintEnd_toEndOf="parent"

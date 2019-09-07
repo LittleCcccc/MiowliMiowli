@@ -1,8 +1,10 @@
 package io.miowlimiowli.manager;
 
+import java.security.Key;
 import java.util.Date;
 import java.util.List;
 
+import io.miowlimiowli.manager.data.Keyword;
 import io.miowlimiowli.manager.data.RawNews;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
@@ -21,6 +23,8 @@ public class DisplayableNews {
     public Integer readcount;
     public Integer favoritecount;
     public String video_url;
+    public List<Keyword> keywords;
+    public String catagory;
     public DisplayableNews(final RawNews news){
         this.title = news.title;
         this.content = news.content;
@@ -29,6 +33,8 @@ public class DisplayableNews {
         this.publisher_name = news.publisher;
         this.publish_time = news.publishtime;
         this.video_url = news.video_url;
+        this.keywords = news.keywords;
+        this.catagory = news.catagory;
         publisher = PublishSubject.create();
     }
 

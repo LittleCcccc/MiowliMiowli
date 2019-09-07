@@ -109,7 +109,9 @@ public class NewsdetailActivity extends AppCompatActivity {
 
 		String news_id = getIntent().getStringExtra(NEWS_ID);
 		Single<DisplayableNews> single = Manager.getInstance().fetch_news_by_news_id(news_id);
-		Disposable d = single.subscribe(new Consumer<DisplayableNews>() {
+		Disposable d = single.subscribe(
+				new Consumer<DisplayableNews>()
+				{
 			@Override
 			public void accept(DisplayableNews displayableNews) throws Exception {
 				news=displayableNews;
@@ -120,12 +122,18 @@ public class NewsdetailActivity extends AppCompatActivity {
 				String time = formatter.format(date);
 				timeTextView.setText(time);
 				if (!news.image_urls.isEmpty()) {
-					String url = news.image_urls.get(0);
-					Glide.with(NewsdetailActivity.this)
-							.load(url)
-							.apply(new RequestOptions().dontTransform().placeholder(R.drawable.placeholder))
-							.into(newsPhotoImageView);
+					if (Manager.getInstance().nopic || news.image_urls.isEmpty())
+						newsPhotoImageView.setVisibility(View.GONE);
+					else {
+						String url = news.image_urls.get(0);
+						Glide.with(NewsdetailActivity.this)
+								.load(url)
+								.apply(new RequestOptions().dontTransform().placeholder(R.drawable.placeholder))
+								.into(newsPhotoImageView);
+					}
 				}
+				else
+					newsPhotoImageView.setVisibility(View.GONE);
 
 				if(news.video_url.length()>0){
 					videoView.setUp(news.video_url,news.title,JzvdStd.SCREEN_NORMAL);
@@ -136,7 +144,6 @@ public class NewsdetailActivity extends AppCompatActivity {
 				}
 				else{
 					videoView.setVisibility(View.GONE);
-
 				}
 
 				news.setIsread(true);
@@ -153,21 +160,25 @@ public class NewsdetailActivity extends AppCompatActivity {
 				else
 					starButton.setImageResource(R.drawable.star_border_icon);
 
-			}
-		});
+
+
+			 }});
 		Single<List<DisplayableComment>> commentSingle = Manager.getInstance().fetch_comment_by_news_id(news_id);
-		Disposable dw = commentSingle.subscribe(new Consumer<List<DisplayableComment>>() {
+		Disposable dw = commentSingle.subscribe(
+				new Consumer<List<DisplayableComment>>() {
 		   @Override
 		   public void accept(List<DisplayableComment> displayableComments) throws Exception {
 			   cmtAdapter.setData(displayableComments);
 		   }
-		});
+		}
+		);
 
 
 		//String news_picture_url = getIntent().getStringExtra(NEWS_PICTURE_URL);
 		this.setContentView(R.layout.newsdetail_activity);
 		this.init();
 		mSpeaker = new SpeechUtil(this);
+
 	}
 
 	@Override
