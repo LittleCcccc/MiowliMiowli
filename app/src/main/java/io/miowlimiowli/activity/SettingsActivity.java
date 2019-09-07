@@ -234,7 +234,7 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 			}
 			Drawable drawable = Drawable.createFromStream(inputStream, uri.toString() );
 			avatarImageView.setImageDrawable(drawable);
-			Manager.getInstance().getUser().setAvator(drawable);
+			Manager.getInstance().getUser().setAvator(this,drawable);
 		} else if (resultCode == UCrop.RESULT_ERROR) {
 			final Throwable cropError = UCrop.getError(data);
 		}
