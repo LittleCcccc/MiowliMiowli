@@ -48,6 +48,8 @@ public class NewsListFragment extends BaseListFragment {
 
         Single<List<DisplayableNews>> single = null;
         single = Manager.getInstance().FetchDisplayableNewsbyCategoryandKeyword(mPageSize,mPageNo,mCategory,mKeyword);
+        if(mCategory.equals("推荐"))
+            single = Manager.getInstance().fetch_recommend_news();
         Disposable d = single.subscribe(displayableNews -> {
             if(mPageNo==1)
                 setNewsList(displayableNews);

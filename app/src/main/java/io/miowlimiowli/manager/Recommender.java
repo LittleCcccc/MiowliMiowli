@@ -17,27 +17,28 @@ import java.util.Map;
 
 import io.miowlimiowli.activity.CollectionActivity;
 import io.miowlimiowli.manager.data.Keyword;
+import io.miowlimiowli.manager.data.RawNews;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 import static java.lang.Math.sqrt;
 
-public class RecManager {
+public class Recommender {
 
-    private double readWordWeight = 1;
-    private double favorateWordWeight = 40;
-    private double classWeight = 200;
-    private class WordVec {
+    private static double readWordWeight = 1;
+    private static double favorateWordWeight = 40;
+    private static double classWeight = 200;
+    private static class WordVec {
         Map<String,Double> vec;
         public WordVec(){
             vec = new HashMap<>();
         }
-        public WordVec(DisplayableNews news){
+        public WordVec(RawNews news){
             this();
             addVec(news,1,200);
         }
-        public void addVec(DisplayableNews news,double wordWeight,double classWeight){
+        public void addVec(RawNews news,double wordWeight,double classWeight){
             List<Keyword> ls = news.keywords;
             for(Keyword word:ls){
                 if(!vec.containsKey(word.keyword))
@@ -65,7 +66,7 @@ public class RecManager {
      * @param b 文本向量
      * @return 余弦相似度
      */
-    private double similarity(WordVec a, WordVec b){
+    private static double similarity(WordVec a, WordVec b){
         double rst = 0.0;
         for(String key:b.vec.keySet()){
             if(a.vec.containsKey(key))
@@ -82,28 +83,28 @@ public class RecManager {
      * @param favoriteNews 收藏新闻列表
      * @return 推荐新闻列表
      */
-    public List<DisplayableNews> fetch_recommand_list(List<DisplayableNews> recentNews,List<DisplayableNews> readNews,List<DisplayableNews> favoriteNews){
-        List<DisplayableNews> rst = new ArrayList<>();
+    public static List<RawNews> fetch_recommand_list(List<RawNews> recentNews,List<RawNews> readNews,List<RawNews> favoriteNews){
+        List<RawNews> rst = new ArrayList<>();
         WordVec userVec = new WordVec();
-        for(DisplayableNews news : readNews){
+        for(RawNews news : readNews){
             userVec.addVec(news,readWordWeight,classWeight);
         }
-        for(DisplayableNews news:favoriteNews){
+        for(RawNews news:favoriteNews){
             userVec.addVec(news,favorateWordWeight,classWeight);
         }
-        List<Pair<Double,DisplayableNews>> sortedList = new ArrayList<>();
-        for(DisplayableNews news:recentNews){
+        List<Pair<Double,RawNews>> sortedList = new ArrayList<>();
+        for(RawNews news:recentNews){
             WordVec wordVec = new WordVec(news);
             double dist = similarity(userVec,wordVec);
-            sortedList.add(new Pair<Double, DisplayableNews>(dist,news));
+            sortedList.add(new Pair<Double, RawNews>(dist,news));
         }
-        Collections.sort(sortedList, new Comparator<Pair<Double, DisplayableNews>>() {
+        Collections.sort(sortedList, new Comparator<Pair<Double, RawNews>>() {
             @Override
-            public int compare(Pair<Double, DisplayableNews> o1, Pair<Double, DisplayableNews> o2) {
+            public int compare(Pair<Double, RawNews> o1, Pair<Double, RawNews> o2) {
                 return o1.first.compareTo(o2.first);
             }
         });
-        for(Pair<Double,DisplayableNews> pair : sortedList){
+        for(Pair<Double,RawNews> pair : sortedList){
             rst.add(pair.second);
         }
         return rst;

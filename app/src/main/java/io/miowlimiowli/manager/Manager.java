@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import org.reactivestreams.Publisher;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -165,6 +166,42 @@ public class Manager {
                 .map(DisplayableNews::new)
                 .map(new WrapDisplayableNews())
                 .toList().subscribeOn(Schedulers.io()).observeOn((AndroidSchedulers.mainThread()));
+    }
+
+    /**
+     * @return 推荐新闻列表
+     */
+    public Single<List<DisplayableNews>> fetch_recommend_news(){
+        return Flowable.fromCallable(()-> {
+            try {
+                List<RawNews> list =  RawNews.fetch_news_from_server(100, 1, null, null, "", "");
+                List<SqlId> idread = db.SqlUserandNewsDao().getReadListByUsername(user.username);
+                List<RawNews> readlist = new ArrayList<>();
+                for(SqlId id : idread){
+                    readlist.add(newses.get(id.news_id));
+                }
+                List<SqlId> idfavorite = db.SqlUserandNewsDao().getFavoriteListByUsername(user.username);
+                List<RawNews> favoritelist = new ArrayList<>();
+                for(SqlId id : idfavorite){
+                    favoritelist.add(newses.get(id.news_id));
+                }
+
+                if(idfavorite.size() == 0 && idread.size() == 0)
+                    return list;
+
+                return Recommender.fetch_recommand_list(list, readlist, favoritelist);
+            } catch (JSONException | ParseException | IOException e) {
+                return new ArrayList<RawNews>();
+            }
+        }).flatMapIterable((item)->item)
+                .map(item ->{
+                    newses.put(item.id, item);
+                    return item;
+                })
+                .map(DisplayableNews::new)
+                .map(new WrapDisplayableNews())
+                .toList()
+                .subscribeOn(Schedulers.io()).observeOn((AndroidSchedulers.mainThread()));
     }
 
     /**
