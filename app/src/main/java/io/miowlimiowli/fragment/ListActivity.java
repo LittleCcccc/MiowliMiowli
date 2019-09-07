@@ -36,6 +36,7 @@ public class ListActivity extends Fragment implements ListActivityTypeButtonShee
 	private String mKeyword = "";
 	private List<String> mCategories = new ArrayList<>();
 
+
 	public void setKeyword(String keyword){
 		mKeyword = keyword;
 		newsPagerAdaptor.notifyDataSetChanged();

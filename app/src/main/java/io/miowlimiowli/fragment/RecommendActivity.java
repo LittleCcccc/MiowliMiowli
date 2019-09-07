@@ -65,32 +65,6 @@ public class RecommendActivity extends Fragment {
 			//System.out.println(ret);
 			this.onSearchButtonPressed();
 		});
-
-//		searchButton.setOnLongClickListener(new View.OnLongClickListener(){
-//			@Override
-//			public boolean onLongClick(View v) {
-//				v.setOnTouchListener(new View.OnTouchListener() {
-//					@Override
-//					public boolean onTouch(View view, MotionEvent event) {
-//						switch (event.getActionMasked()) {
-//							case MotionEvent.ACTION_MOVE:
-//								view.setX(event.getRawX() - 120);
-//								view.setY(event.getRawY() - 425);
-//								break;
-//							case MotionEvent.ACTION_UP:
-//								view.setOnTouchListener(null);
-//								break;
-//							default:
-//								break;
-//						}
-//						return true;
-//					}
-//				});
-//				return true;
-//			}
-//		});
-
-
 }
 
 	private void onSearchButtonPressed() {
