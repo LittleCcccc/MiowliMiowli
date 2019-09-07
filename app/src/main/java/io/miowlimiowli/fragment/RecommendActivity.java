@@ -54,6 +54,9 @@ public class RecommendActivity extends Fragment {
 		//newsListFragment = this.getView().findViewById(R.news_id.news_list_fragment);
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		/**
+		 * 在这里写新闻推荐
+		 */
 		NewsListFragment fragment = NewsListFragment.newInstance("体育","");
 		fragmentTransaction.add(R.id.news_list_layout,fragment);
 		fragmentTransaction.commit();
@@ -65,32 +68,6 @@ public class RecommendActivity extends Fragment {
 			//System.out.println(ret);
 			this.onSearchButtonPressed();
 		});
-
-//		searchButton.setOnLongClickListener(new View.OnLongClickListener(){
-//			@Override
-//			public boolean onLongClick(View v) {
-//				v.setOnTouchListener(new View.OnTouchListener() {
-//					@Override
-//					public boolean onTouch(View view, MotionEvent event) {
-//						switch (event.getActionMasked()) {
-//							case MotionEvent.ACTION_MOVE:
-//								view.setX(event.getRawX() - 120);
-//								view.setY(event.getRawY() - 425);
-//								break;
-//							case MotionEvent.ACTION_UP:
-//								view.setOnTouchListener(null);
-//								break;
-//							default:
-//								break;
-//						}
-//						return true;
-//					}
-//				});
-//				return true;
-//			}
-//		});
-
-
 }
 
 	private void onSearchButtonPressed() {

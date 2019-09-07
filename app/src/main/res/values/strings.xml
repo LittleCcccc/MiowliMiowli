@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation">
 	
 	<!-- Project level resources -->
-	<string name="app_name">MiowliMiowli</string>
+	<string name="app_name">喵哩喵哩新闻</string>
 
 
 	<string name="weixin_key">123</string>

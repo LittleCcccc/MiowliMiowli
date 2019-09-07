@@ -13,10 +13,8 @@ import io.reactivex.functions.Consumer;
 
 public class NewsListFragment extends BaseListFragment {
 
-
     private String mKeyword="";
     private String mCategory;
-
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -34,14 +32,7 @@ public class NewsListFragment extends BaseListFragment {
         return fragment;
     }
 
-    public void setNewsList(List<DisplayableNews> list)
-    {
-        newsListAdapter.setData(list);
-    }
 
-    public void appendNewsList(List<DisplayableNews> list){
-        newsListAdapter.appendData(list);
-    }
 
     @Override
     public void fetchNews(Runnable callback){

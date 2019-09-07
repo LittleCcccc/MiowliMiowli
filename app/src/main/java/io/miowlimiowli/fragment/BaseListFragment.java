@@ -26,6 +26,7 @@ import io.miowlimiowli.activity.NewsdetailActivity;
 import io.miowlimiowli.activity.SearchActivity;
 import io.miowlimiowli.adapter.NewsListAdapter;
 import io.miowlimiowli.manager.DisplayableNews;
+import io.miowlimiowli.manager.Manager;
 import io.miowlimiowli.others.VerticalSpaceItemDecoration;
 
 abstract public class BaseListFragment extends Fragment {
@@ -38,7 +39,6 @@ abstract public class BaseListFragment extends Fragment {
     protected RecyclerView.LayoutManager mLayoutManager;
     protected int mPageSize = 10;
     protected int mPageNo = 1;
-
     // Header View
     private ProgressBar progressBar;
     private TextView textView;
@@ -159,7 +159,7 @@ abstract public class BaseListFragment extends Fragment {
         newsListAdapter = new NewsListAdapter(getContext());
         newsListAdapter.setNewsClickListener((View itemView,int position)->{
             DisplayableNews news=newsListAdapter.getNews(position);
-            startNewsDetails(news);
+            startNewsDetails(news,position);
         });
 
 
@@ -186,9 +186,15 @@ abstract public class BaseListFragment extends Fragment {
     }
 
 
+    public void appendNewsList(List<DisplayableNews> list){
+        newsListAdapter.appendData(list);
+        mNews.addAll(list);
+    }
+
     public void setNewsList(List<DisplayableNews> list)
     {
         newsListAdapter.setData(list);
+        mNews.addAll(list);
     }
 
     abstract public void fetchNews(Runnable callback);
@@ -203,11 +209,18 @@ abstract public class BaseListFragment extends Fragment {
         fetchNews(callback);
     }
 
-    public void startNewsDetails(DisplayableNews news)
+    public void startNewsDetails(DisplayableNews news,int position)
     {
         Intent intent = new Intent(this.getContext(),NewsdetailActivity.class);
-        intent.putExtra(NewsdetailActivity.NEWS_ID,news.id);
+        //intent.putExtra(NewsdetailActivity.NEWS_ID,news.id);
+        Manager.getInstance().newsposi = position;
+        Manager.getInstance().listFragment = this;
+        Manager.getInstance().news = news;
         startActivity(intent);
+    }
+
+    public List<DisplayableNews> getmNews(){
+        return mNews;
     }
 
 }

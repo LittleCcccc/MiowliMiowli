@@ -216,16 +216,13 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 			//uiManager.disableCarMode(0);
 			uiManager.setNightMode(UiModeManager.MODE_NIGHT_NO);
 		}
-
 	}
 
 
 	public void setupToolbar() {
-
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 		// Additional Toolbar setup code can go here.
 	}
 

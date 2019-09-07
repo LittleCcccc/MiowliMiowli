@@ -23,6 +23,8 @@ import java.util.concurrent.Callable;
 
 import io.miowlimiowli.R;
 import io.miowlimiowli.exceptions.UsernameEmptyError;
+import io.miowlimiowli.fragment.BaseListFragment;
+import io.miowlimiowli.fragment.NewsListFragment;
 import io.miowlimiowli.manager.sql.SqlComment;
 import io.miowlimiowli.manager.sql.SqlId;
 import io.miowlimiowli.manager.sql.SqlNews;
@@ -51,6 +53,26 @@ public class Manager {
         cat_list = new ArrayList<>();
         for(int i=0;i<cat.length;i++)
             cat_list.add(cat[i]);
+    }
+
+    public int newsposi;
+    public BaseListFragment listFragment;
+    public DisplayableNews news;
+    public DisplayableNews nextNews(){
+        System.out.println("现在的posi为"+newsposi);
+        newsposi += 1;
+        news = listFragment.getmNews().get(newsposi);
+        return news;
+    }
+    public boolean isLastNews(){
+        if(newsposi >= listFragment.getmNews().size())
+        {
+            if(listFragment instanceof NewsListFragment)
+                listFragment.requireMoreNews(()->{});
+            if(newsposi>=listFragment.getmNews().size())
+                return true;
+        }
+        return false;
     }
 
     public String[] cat = {"科技","社会","体育","娱乐","汽车","教育","文化","健康","军事","财经"};

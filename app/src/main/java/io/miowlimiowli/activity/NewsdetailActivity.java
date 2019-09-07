@@ -15,6 +15,7 @@ import io.miowlimiowli.fragment.CommentFragment;
 import io.miowlimiowli.manager.DisplayableComment;
 import io.miowlimiowli.manager.DisplayableNews;
 import io.miowlimiowli.manager.Manager;
+import io.miowlimiowli.others.SensorManagerHelper;
 import io.miowlimiowli.others.SpeechUtil;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
@@ -52,6 +53,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.xyzlf.share.library.bean.ShareEntity;
 import com.xyzlf.share.library.interfaces.ShareConstant;
 import com.xyzlf.share.library.util.ShareUtil;
+import com.xyzlf.share.library.util.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -66,7 +68,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private EditText commentEditTextView;
 	private ImageButton speakButton;
 	private ImageButton stopButton;
-
+	private SensorManagerHelper sensorHelper;
 	public static Intent newIntent(Context context) {
 	
 		// Fill the created intent with the data you want to be passed to this Activity when it's opened.
@@ -90,7 +92,8 @@ public class NewsdetailActivity extends AppCompatActivity {
 	private RecyclerView cmtRecyclerView;
 	private CommentAdapter cmtAdapter;
 	private JzvdStd videoView;
-	public static String NEWS_ID = "NEWS_ID";
+	private ImageButton nextNewsButton;
+	//public static String NEWS_ID = "NEWS_ID";
 
 	public DisplayableNews news;
 	public boolean newserror;
@@ -100,7 +103,68 @@ public class NewsdetailActivity extends AppCompatActivity {
 
 	private SpeechUtil mSpeaker;
 	private boolean speaking;
-	
+
+	@Override
+	public void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		this.setContentView(R.layout.newsdetail_activity);
+		news = Manager.getInstance().news;
+		init();
+		titleTextView.setText(news.title);
+		contentTextView.setText(news.content);
+		Date date = news.publish_time;
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String time = formatter.format(date);
+		timeTextView.setText(time);
+		if (!news.image_urls.isEmpty()) {
+			if (Manager.getInstance().nopic || news.image_urls.isEmpty())
+				newsPhotoImageView.setVisibility(View.GONE);
+			else {
+				String url = news.image_urls.get(0);
+				Glide.with(this)
+						.load(url)
+						.apply(new RequestOptions().dontTransform().placeholder(R.drawable.placeholder))
+						.into(newsPhotoImageView);
+			}
+		}
+		else
+			newsPhotoImageView.setVisibility(View.GONE);
+
+		if(news.video_url.length()>0){
+			videoView.setUp(news.video_url,news.title,JzvdStd.SCREEN_NORMAL);
+			if(!news.image_urls.isEmpty())
+				Glide.with(this).load(news.image_urls.get(0)).into(videoView.thumbImageView);
+			else
+				Glide.with(this).load("http://pic.sc.chinaz.com/files/pic/pic9/201601/apic18171.jpg").into(videoView.thumbImageView);
+		}
+		else{
+			videoView.setVisibility(View.GONE);
+		}
+
+		news.setIsread(true);
+		readcountTextView.setText(news.readcount + "阅读  "+news.likecount+"点赞");
+
+		favorite = news.isfavorite;
+		star = news.islike;
+		if(favorite)
+			collectButton.setImageResource(R.drawable.favorate_icon);
+		else
+			collectButton.setImageResource(R.drawable.favorate_border_icon);
+		if(star)
+			starButton.setImageResource(R.drawable.star_icon);
+		else
+			starButton.setImageResource(R.drawable.star_border_icon);
+		mSpeaker = new SpeechUtil(this);
+
+		if(Manager.getInstance().isLastNews()){
+			nextNewsButton.setVisibility(View.GONE);
+		}
+
+		sensorHelper = new SensorManagerHelper(this);
+		sensorHelper.setOnShakeListener(() -> onNextNewsButtonPressed());
+
+	}
+	/*
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	
@@ -174,12 +238,17 @@ public class NewsdetailActivity extends AppCompatActivity {
 		);
 
 
+
+
+
 		//String news_picture_url = getIntent().getStringExtra(NEWS_PICTURE_URL);
 		this.setContentView(R.layout.newsdetail_activity);
 		this.init();
 		mSpeaker = new SpeechUtil(this);
 
 	}
+
+	 */
 
 	@Override
 	protected void onPause() {
@@ -276,9 +345,23 @@ public class NewsdetailActivity extends AppCompatActivity {
 			onStopButtonPressed();
 		});
 
+		nextNewsButton = this.findViewById(R.id.nextNewsButton);
+		nextNewsButton.setOnClickListener((view)->{
+			onNextNewsButtonPressed();
+		});
+
 		initPermission();
 	}
+	public void onNextNewsButtonPressed(){
+		if(Manager.getInstance().isLastNews())
+			return;
+		news = Manager.getInstance().nextNews();
+		Intent intent = new Intent(NewsdetailActivity.this, NewsdetailActivity.class);
+		NewsdetailActivity.this.startActivity(intent);
+		overridePendingTransition(R.anim.in_anim, R.anim.out_anim);
+		NewsdetailActivity.this.finish();
 
+	}
 
 	public void onSpeakButtonPressed(){
 		mSpeaker.speak("你好");
