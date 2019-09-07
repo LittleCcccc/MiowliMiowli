@@ -202,6 +202,7 @@ abstract public class BaseListFragment extends Fragment {
     public void requireMoreNews(Runnable callback){
         mPageNo++;
         fetchNews(callback);
+        System.out.println("require more news");
     }
 
     public void refreshNews(Runnable callback){
