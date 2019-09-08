@@ -12,6 +12,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="@dimen/signup_activity_sign_up_text_view_margin_top"
+		android:fontFamily="@font/fzltxh"
 		android:gravity="center"
 		android:letterSpacing="-0.05"
 		android:text="@string/signup_activity_sign_up_text_view_text"
@@ -19,24 +20,21 @@
 		android:textSize="@dimen/signup_activity_sign_up_text_view_text_size"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toTopOf="parent"
-		tools:layout_editor_absoluteX="147dp"
-		tools:layout_editor_absoluteY="89dp"/>
+		app:layout_constraintTop_toTopOf="parent" />
 
 	<TextView
 		android:id="@+id/welcome_text_view"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="@dimen/signup_activity_welcome_text_view_margin_top"
+		android:fontFamily="@font/fzltxh"
 		android:gravity="center"
 		android:text="@string/signup_activity_welcome_text_view_text"
 		android:textColor="@color/signup_activity_welcome_text_view_text_color"
 		android:textSize="@dimen/signup_activity_welcome_text_view_text_size"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toRightOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/sign_up_text_view"
-		tools:layout_editor_absoluteX="126dp"
-		tools:layout_editor_absoluteY="159dp"/>
+		app:layout_constraintTop_toBottomOf="@+id/sign_up_text_view" />
 
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/sign_up_fields_constraint_layout"
@@ -52,15 +50,16 @@
 		app:layout_constraintTop_toBottomOf="@+id/welcome_text_view"
 		tools:layout_editor_absoluteX="20dp"
 		tools:layout_editor_absoluteY="273dp">
-	
+
 		<EditText
 			android:id="@+id/signup_username_edit_text"
 			android:layout_width="0dp"
 			android:layout_height="@dimen/signup_activity_signup_nickname_edit_text_height"
-			android:layout_marginEnd="@dimen/signup_activity_signup_nickname_edit_text_margin_end"
-			android:layout_marginStart="@dimen/signup_activity_signup_nickname_edit_text_margin_start"
+			android:layout_marginLeft="16dp"
 			android:layout_marginTop="@dimen/signup_activity_signup_nickname_edit_text_margin_top"
+			android:layout_marginRight="16dp"
 			android:background="@color/signup_activity_signup_nickname_edit_text_background_color"
+			android:fontFamily="@font/fzltxh"
 			android:gravity="start|center_vertical"
 			android:hint="@string/signup_activity_signup_nickname_edit_text_hint"
 			android:inputType="textVisiblePassword|textNoSuggestions"
@@ -71,9 +70,7 @@
 			app:layout_constraintHorizontal_weight="0.9"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			tools:layout_editor_absoluteX="15dp"
-			tools:layout_editor_absoluteY="14dp"/>
+			app:layout_constraintTop_toTopOf="parent" />
 	
 		<View
 			android:id="@+id/separator_constraint_layout"
@@ -88,15 +85,16 @@
 			app:layout_constraintTop_toBottomOf="@+id/signup_username_edit_text"
 			tools:layout_editor_absoluteX="0dp"
 			tools:layout_editor_absoluteY="50dp"/>
-	
+
 		<EditText
 			android:id="@+id/signup_mail_edit_text"
 			android:layout_width="0dp"
 			android:layout_height="@dimen/signup_activity_signup_space_edit_text_height"
-			android:layout_marginEnd="@dimen/signup_activity_signup_space_edit_text_margin_end"
-			android:layout_marginStart="@dimen/signup_activity_signup_space_edit_text_margin_start"
+			android:layout_marginLeft="16dp"
 			android:layout_marginTop="@dimen/signup_activity_signup_space_edit_text_margin_top"
+			android:layout_marginRight="16dp"
 			android:background="@color/signup_activity_signup_space_edit_text_background_color"
+			android:fontFamily="@font/fzltxh"
 			android:gravity="start|center_vertical"
 			android:hint="@string/signup_activity_signup_space_edit_text_hint"
 			android:inputType="textEmailAddress"
@@ -107,9 +105,7 @@
 			app:layout_constraintHorizontal_weight="0.9"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/separator_constraint_layout"
-			tools:layout_editor_absoluteX="15dp"
-			tools:layout_editor_absoluteY="65dp"/>
+			app:layout_constraintTop_toBottomOf="@+id/separator_constraint_layout" />
 	
 		<View
 			android:id="@+id/separator_two_constraint_layout"
@@ -124,15 +120,15 @@
 			app:layout_constraintTop_toBottomOf="@+id/signup_mail_edit_text"
 			tools:layout_editor_absoluteX="0dp"
 			tools:layout_editor_absoluteY="101dp"/>
-	
+
 		<EditText
 			android:id="@+id/signup_password_edit_text"
 			android:layout_width="0dp"
 			android:layout_height="@dimen/signup_activity_signup_password_edit_text_height"
-			android:layout_marginEnd="@dimen/signup_activity_signup_password_edit_text_margin_end"
-			android:layout_marginStart="@dimen/signup_activity_signup_password_edit_text_margin_start"
+			android:layout_marginLeft="16dp"
 			android:layout_marginTop="@dimen/signup_activity_signup_password_edit_text_margin_top"
 			android:background="@color/signup_activity_signup_password_edit_text_background_color"
+			android:fontFamily="@font/fzltxh"
 			android:gravity="start|center_vertical"
 			android:hint="@string/signup_activity_signup_password_edit_text_hint"
 			android:inputType="textPassword"
@@ -143,9 +139,7 @@
 			app:layout_constraintHorizontal_weight="0.9"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toBottomOf="@+id/separator_two_constraint_layout"
-			tools:layout_editor_absoluteX="15dp"
-			tools:layout_editor_absoluteY="116dp"/>
+			app:layout_constraintTop_toBottomOf="@+id/separator_two_constraint_layout" />
 	</androidx.constraintlayout.widget.ConstraintLayout>
 
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -166,15 +160,15 @@
 			android:id="@+id/i_agree_with_interga_text_view"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_marginLeft="8dp"
+			android:fontFamily="@font/fzltxh"
 			android:gravity="start"
 			android:text="@string/signup_activity_i_agree_with_interga_text_view_text"
 			android:textColor="@color/signup_activity_i_agree_with_interga_text_view_text_color"
 			android:textSize="@dimen/signup_activity_i_agree_with_interga_text_view_text_size"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintLeft_toLeftOf="parent"
-			app:layout_constraintTop_toTopOf="parent"
-			tools:layout_editor_absoluteX="0dp"
-			tools:layout_editor_absoluteY="7dp"/>
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<Switch
 			android:id="@+id/agree_switch"
@@ -213,6 +207,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="@dimen/signup_activity_sign_up_button_image_padding"
+			android:fontFamily="@font/fzltxh"
 			android:gravity="center"
 			android:text="@string/signup_activity_sign_up_button_text"
 			android:textColor="@color/signup_activity_sign_up_button_text_color"
@@ -229,7 +224,7 @@
 		app:layout_constraintRight_toRightOf="parent"
 		tools:layout_editor_absoluteX="62dp"
 		tools:layout_editor_absoluteY="629dp">
-	
+
 		<TextView
 			android:id="@+id/already_gave_up_your_text_view"
 			android:layout_width="wrap_content"
@@ -238,19 +233,21 @@
 			android:layout_marginStart="@dimen/signup_activity_already_gave_up_your_text_view_margin_start"
 			android:gravity="center"
 			android:text="@string/signup_activity_already_gave_up_your_text_view_text"
+			android:fontFamily="@font/fzltxh"
 			android:textColor="@color/signup_activity_already_gave_up_your_text_view_text_color"
 			android:textSize="@dimen/signup_activity_already_gave_up_your_text_view_text_size"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintLeft_toLeftOf="parent"
 			tools:layout_editor_absoluteX="54dp"
 			tools:layout_editor_absoluteY="0dp"/>
-	
+
 		<Button
 			android:id="@+id/log_in_button"
 			android:layout_width="@dimen/signup_activity_log_in_button_width"
 			android:layout_height="@dimen/signup_activity_log_in_button_height"
 			android:layout_marginBottom="@dimen/signup_activity_log_in_button_margin_bottom"
 			android:layout_marginEnd="@dimen/signup_activity_log_in_button_margin_end"
+			android:fontFamily="@font/fzltxh"
 			android:background="?attr/selectableItemBackground"
 			android:gravity="center"
 			android:text="@string/signup_activity_log_in_button_text"

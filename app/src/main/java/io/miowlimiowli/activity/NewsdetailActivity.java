@@ -136,7 +136,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 		}
 		else
 			newsPhotoImageView.setVisibility(View.GONE);
-		news.video_url = "https://vjs.zencdn.net/v/oceans.mp4";
+		//news.video_url = "https://vjs.zencdn.net/v/oceans.mp4";
 		if(news.video_url.length()>0){
 			videoView.setUp(news.video_url,news.title,JzvdStd.SCREEN_NORMAL);
 			if(!news.image_urls.isEmpty())

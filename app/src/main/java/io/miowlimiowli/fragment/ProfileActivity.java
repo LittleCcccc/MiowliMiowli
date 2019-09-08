@@ -242,13 +242,6 @@ public class ProfileActivity extends Fragment {
 	this.onSettingsButtonPressed();
 });
 
-		catButton= this.getView().findViewById(R.id.catButton);
-		catButton.setOnClickListener((view) -> {
-			this.onCatButtonPressed();});
-	}
-
-	private void onCatButtonPressed() {
-		this.getActivity().startActivity(ChartActivity.newIntent(this.getContext()));
 	}
 
 	private void startSettingsActivity() {

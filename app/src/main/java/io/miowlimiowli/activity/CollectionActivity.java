@@ -17,8 +17,13 @@ import io.miowlimiowli.fragment.CommentListFragment;
 import io.miowlimiowli.fragment.HistoryListFragment;
 
 import com.google.android.material.tabs.TabLayout;
+
+import android.graphics.Typeface;
 import android.view.MenuItem;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,6 +63,23 @@ public class CollectionActivity extends AppCompatActivity {
 		collectionPagerAdapter = new CollectionPagerAdapter(getSupportFragmentManager(),fragments);
 		viewPager.setAdapter(collectionPagerAdapter);
 		viewPager.setCurrentItem(Integer.parseInt(pos));
+		//changeTabsFont();
+
+	}
+
+	private void changeTabsFont() {
+		ViewGroup vg = (ViewGroup) mTabLayout.getChildAt(0);
+		int tabsCount = vg.getChildCount();
+		for (int j = 0; j < tabsCount; j++) {
+			ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+			int tabChildsCount = vgTab.getChildCount();
+			for (int i = 0; i < tabChildsCount; i++) {
+				View tabViewChild = vgTab.getChildAt(i);
+				if (tabViewChild instanceof TextView) {
+					((TextView) tabViewChild).setTypeface(getResources().getFont(R.font.fzltxh), Typeface.NORMAL);
+				}
+			}
+		}
 	}
 
 	@Override

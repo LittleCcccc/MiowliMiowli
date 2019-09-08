@@ -37,7 +37,8 @@
             android:textColor="@color/newsdetail_activity_comment_name_text_view_text_color"
             android:textSize="@dimen/newsdetail_activity_comment_name_text_view_text_size"
             app:layout_constraintStart_toEndOf="@+id/comment_avatar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:fontFamily="@font/fzltxh" />
 
         <TextView
             android:id="@+id/comment_content_text_view"
@@ -45,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="7dp"
+            android:fontFamily="@font/fzltxh"
             android:gravity="start"
             android:text="@string/newsdetail_activity_comment_content_text_view_text"
             android:textColor="@color/newsdetail_activity_comment_content_text_view_text_color"
@@ -60,6 +62,7 @@
             android:layout_marginTop="11dp"
             android:layout_marginBottom="8dp"
             android:alpha="0.4"
+            android:fontFamily="@font/fzltxh"
             android:gravity="start"
             android:text="@string/newsdetail_activity_comment_time_text_view_text"
             android:textColor="@color/newsdetail_activity_comment_time_text_view_text_color"

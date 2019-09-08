@@ -108,11 +108,6 @@
 			android:theme="@style/TwoActivityTheme">
 		</activity>
 
-		<activity
-			android:label=""
-			android:name=".activity.ChartActivity">
-		</activity>
-
 
 		<meta-data
 			android:name="android.app.default_searchable"

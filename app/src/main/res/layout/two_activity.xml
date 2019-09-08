@@ -19,7 +19,7 @@
 		android:id="@+id/bottom_navigation_bar"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:background="@color/two_activity_bottom_navigation_bar_background_color"
+		android:background="@color/white"
 		app:itemIconTint="@color/menu_select"
 		app:itemTextColor="@color/menu_select"
 		app:layout_constraintBottom_toBottomOf="parent"

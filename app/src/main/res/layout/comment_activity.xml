@@ -29,7 +29,8 @@
 				android:outlineAmbientShadowColor="@color/main_light"
 				app:tabIndicatorColor="@color/main_light"
 				app:tabSelectedTextColor="@color/main_light"
-				app:tabTextColor="@color/material_bottom_sheet_item" />
+				app:tabTextColor="@color/material_bottom_sheet_item"
+				/>
 		</androidx.viewpager.widget.ViewPager>
 
 	</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,19 +4,19 @@
 
 	<item
 		android:id="@+id/recommend_activity_menu_item"
-		android:icon="@drawable/active_icon_7"
+		android:icon="@drawable/recommand"
 		android:title="@string/recommend_activity_menu_item_title"
-		app:showAsAction="ifRoom"/>
+		app:showAsAction="ifRoom" />
 
 	<item
 		android:id="@+id/list_activity_menu_item"
-		android:icon="@drawable/active_icon_3"
+		android:icon="@drawable/news"
 		android:title="@string/list_activity_menu_item_title"
-		app:showAsAction="ifRoom"/>
+		app:showAsAction="ifRoom" />
 
 	<item
 		android:id="@+id/profile_activity_menu_item"
-		android:icon="@drawable/active_icon_6"
+		android:icon="@drawable/user"
 		android:title="@string/profile_activity_menu_item_title"
-		app:showAsAction="ifRoom"/>
+		app:showAsAction="ifRoom" />
 </menu>
