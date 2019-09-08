@@ -10,7 +10,7 @@
 	<!-- WelcomeActivity -->
 	<string name="welcome_activity_title"></string>
 	<string name="welcome_activity_titlechinese_text_view_text">喵哩喵哩新闻</string>
-	<string name="welcome_activity_miowlimiowli_news_app_text_view_text">Miowlimiowli News App</string>
+	<string name="welcome_activity_miowlimiowli_news_app_text_view_text">MEOWLIMEOWLI NEWS APP</string>
 	<string name="welcome_activity_sign_up_button_text">注册</string>
 	<string name="welcome_activity_log_in_button_text">登陆</string>
 	<string name="welcome_activity_littleredgrey_studio_text_view_text">© 2019 LittleRedGrey Studio</string>
@@ -75,7 +75,7 @@
 	<string name="settings_activity_mail_text_view_text">邮箱</string>
 	<string name="settings_activity_mymail_button_text">tardis~spacemail.io</string>
 	<string name="settings_activity_clearcache_button_text">清除缓存</string>
-	<string name="settings_activity_cache_button_text">51.2M</string>
+	<string name="settings_activity_cache_button_text">清除</string>
 	<string name="settings_activity_nopicture_text_view_text">省流量模式</string>
 	<string name="settings_activity_darkmode_text_view_text">夜间模式</string>
 	<string name="settings_activity_label_text_view_text">会员免广告</string>

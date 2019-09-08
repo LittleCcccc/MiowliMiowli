@@ -36,9 +36,9 @@ public class SpeechUtil implements SpeechSynthesizerListener {
     private Activity activity;
     private TtsMode ttsMode = TtsMode.ONLINE;
 
-    public SpeechUtil(Context context) {
+    public SpeechUtil(Context context,int voice) {
         this.context = activity;
-        init(context);
+        init(context,voice);
     }
     /**
      * 初始化合成相关组件
@@ -46,7 +46,7 @@ public class SpeechUtil implements SpeechSynthesizerListener {
      * @author JPH
      * @date 2015-4-14 下午1:36:53
      */
-    private void init(Context context) {
+    private void init(Context context,int voice) {
         speechSynthesizer = SpeechSynthesizer.getInstance();
         // 此处需要将setApiKey方法的两个参数替换为你在百度开发者中心注册应用所得到的apiKey和secretKey
         speechSynthesizer.setAppId(appId);
@@ -55,7 +55,7 @@ public class SpeechUtil implements SpeechSynthesizerListener {
         speechSynthesizer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         speechSynthesizer.initTts(TtsMode.ONLINE);
 //		activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        setParams();
+        setParams(voice);
     }
 
     private void initPermission() {
@@ -127,10 +127,10 @@ public class SpeechUtil implements SpeechSynthesizerListener {
      * @author JPH
      * @date 2015-4-14 下午1:45:11
      */
-    private void setParams() {
+    private void setParams(int voice) {
         // 5. 以下setParam 参数选填。不填写则默认值生效
         // 设置在线发声音人： 0 普通女声（默认） 1 普通男声 2 特别男声 3 情感男声<度逍遥> 4 情感儿童声<度丫丫>
-        speechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "0");//发音人，目前支持女声(0)和男声(1)
+        speechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, Integer.toString(voice));//发音人，目前支持女声(0)和男声(1)
         speechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "9");//音量，取值范围[0, 9]，数值越大，音量越大
         speechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEED, "5");//朗读语速，取值范围[0, 9]，数值越大，语速越快
         speechSynthesizer.setParam(SpeechSynthesizer.PARAM_PITCH, "5");//音调，取值范围[0, 9]，数值越大，音量越高

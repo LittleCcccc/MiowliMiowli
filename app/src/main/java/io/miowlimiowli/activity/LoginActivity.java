@@ -87,6 +87,9 @@ public class LoginActivity extends AppCompatActivity {
 	this.onLoginPressed();
 });
 
+		inputNicknameEditText.setText("littlec");
+		inputPasswordEditText.setText("qqqqqq");
+
 		this.setupToolbar();
 	}
 	

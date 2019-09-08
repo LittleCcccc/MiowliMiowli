@@ -108,7 +108,8 @@ public class NewsdetailActivity extends AppCompatActivity {
 	public boolean star;
 
 	private SpeechUtil mSpeaker;
-	private boolean speaking;
+	private boolean speaking = false;
+	private boolean hasstart = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -129,13 +130,13 @@ public class NewsdetailActivity extends AppCompatActivity {
 				String url = news.image_urls.get(0);
 				Glide.with(this)
 						.load(url)
-						.apply(new RequestOptions().dontTransform().placeholder(R.drawable.placeholder))
+						//.apply(new RequestOptions().dontTransform().placeholder(R.drawable.placeholder))
 						.into(newsPhotoImageView);
 			}
 		}
 		else
 			newsPhotoImageView.setVisibility(View.GONE);
-
+		news.video_url = "https://vjs.zencdn.net/v/oceans.mp4";
 		if(news.video_url.length()>0){
 			videoView.setUp(news.video_url,news.title,JzvdStd.SCREEN_NORMAL);
 			if(!news.image_urls.isEmpty())
@@ -160,7 +161,7 @@ public class NewsdetailActivity extends AppCompatActivity {
 			starButton.setImageResource(R.drawable.star_icon);
 		else
 			starButton.setImageResource(R.drawable.star_border_icon);
-		mSpeaker = new SpeechUtil(this);
+		mSpeaker = new SpeechUtil(this,0);
 
 
 		if(Manager.getInstance().isLastNews()){
@@ -267,6 +268,14 @@ public class NewsdetailActivity extends AppCompatActivity {
 		super.onPause();
 		Jzvd.releaseAllVideos();
 		sensorHelper.stop();
+		stop();
+	}
+
+	public void stop(){
+		mSpeaker.stop();
+		hasstart= false;
+		speaking = false;
+		speakButton.setImageResource(R.drawable.read);
 	}
 
 	@Override
@@ -284,6 +293,9 @@ public class NewsdetailActivity extends AppCompatActivity {
 		llm.setOrientation(LinearLayoutManager.VERTICAL);
 		cmtRecyclerView = this.findViewById(R.id.comment_recycler_view);
 		cmtAdapter = new CommentAdapter(this);
+		Manager.getInstance().fetch_comment_by_news_id(news.id).subscribe((item)->{
+			cmtAdapter.setData(item);
+		});
 
 		cmtRecyclerView.setLayoutManager(llm);
 		cmtRecyclerView.setAdapter(cmtAdapter);
@@ -383,23 +395,26 @@ public class NewsdetailActivity extends AppCompatActivity {
 
 
 	private void onGirlPressed() {
-    	mSpeaker.setVoice(4);
+		stop();
+    	mSpeaker = new SpeechUtil(this,4);
 	}
 
 	private void onFemalePressed() {
+		stop();
     	if(voice == 0)
-    		mSpeaker.setVoice(5);
+			mSpeaker = new SpeechUtil(this,5);
     	else
-	    	mSpeaker.setVoice(0);
+			mSpeaker = new SpeechUtil(this,0);
 	}
 
 	private void onMalePressed() {
+		stop();
     	if(voice == 3)
-			mSpeaker.setVoice(2);
+			mSpeaker = new SpeechUtil(this,2);
     	else if(voice ==2)
-    		mSpeaker.setVoice(1);
+			mSpeaker = new SpeechUtil(this,1);
     	else
-	    	mSpeaker.setVoice(3);
+			mSpeaker = new SpeechUtil(this,3);
 	}
 
 	public void onNextNewsButtonPressed(){
@@ -416,17 +431,34 @@ public class NewsdetailActivity extends AppCompatActivity {
     }
 
 	public void onSpeakButtonPressed(){
-		mSpeaker.speak("你好");
-		mSpeaker.speak(news.title);
-		int len = news.content.length();
-		int i = len/500;
-		for(int j=0;j<i;j++)
-			mSpeaker.speak(news.content.substring(j*500,(j+1)*500));
-		mSpeaker.speak(news.content.substring(i*500,len));
+    	if(!speaking){
+    		if(!hasstart){
+				mSpeaker.speak("你好");
+				mSpeaker.speak(news.title);
+				int len = news.content.length();
+				int i = len/500;
+				for(int j=0;j<i;j++)
+					mSpeaker.speak(news.content.substring(j*500,(j+1)*500));
+				mSpeaker.speak(news.content.substring(i*500,len));
+				hasstart = true;
+			}
+    		else{
+    			mSpeaker.resume();
+			}
+
+			speakButton.setImageResource(R.drawable.pause);
+			speaking = true;
+		}
+    	else{
+    		mSpeaker.pause();
+    		speaking = false;
+    		speakButton.setImageResource(R.drawable.read);
+		}
+
 	}
 
 	public void onStopButtonPressed(){
-		mSpeaker.stop();
+		stop();
 	}
 
 

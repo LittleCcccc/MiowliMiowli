@@ -50,6 +50,8 @@ import io.miowlimiowli.manager.Manager;
 
 
 public class SettingsActivity extends AppCompatActivity implements SettingsActivityVipButtonSheet.BottomSheetListener {
+	private Button cache_button;
+
 	@Override
 	public void onButtonClicked(String text) {
 		if(text.equals("Yes"))
@@ -189,9 +191,47 @@ public class SettingsActivity extends AppCompatActivity implements SettingsActiv
 			this.onNightModeChanged();
 		});
 
+
+		cache_button = this.findViewById(R.id.cache_button);
+		cache_button.setOnClickListener((view) -> {
+			this.onCache_buttonPressed();
+		});
+
+
+
+
 		this.setupToolbar();
 	}
 
+
+
+	private void onCache_buttonPressed() {
+		deleteCache(this);
+
+	}
+
+	public static void deleteCache(Context context) {
+		try {
+			File dir = context.getCacheDir();
+			deleteDir(dir);
+		} catch (Exception e) {}
+	}
+	public static boolean deleteDir(File dir) {
+		if (dir != null && dir.isDirectory()) {
+			String[] children = dir.list();
+			for (int i = 0; i < children.length; i++) {
+				boolean success = deleteDir(new File(dir, children[i]));
+				if (!success) {
+					return false;
+				}
+			}
+			return dir.delete();
+		} else if(dir!= null && dir.isFile()) {
+			return dir.delete();
+		} else {
+			return false;
+		}
+	}
 
 	public void onNopicChanged(){
 		boolean nopic = nopicSwitch.isChecked();

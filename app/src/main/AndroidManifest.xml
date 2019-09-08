@@ -19,7 +19,8 @@
 		android:icon="@drawable/logo"
 		android:label="@string/app_name"
 		android:supportsRtl="true"
-		android:theme="@style/AppTheme">
+		android:theme="@style/AppTheme"
+		>
 		<provider android:name="io.miowlimiowli.others.MySuggestionProvider"
 			android:authorities="io.miowlimiowli.others.MySuggestionProvider" />
 
@@ -97,12 +98,13 @@
 			android:label="@string/newsdetail_activity_title"
 			android:name=".activity.NewsdetailActivity"
 			android:configChanges="orientation|screenSize|keyboardHidden"
-			android:screenOrientation="portrait"
+			android:screenOrientation="sensor"
 			android:theme="@style/NewsdetailActivityTheme"/>
 	
 		<activity
 			android:label="@string/two_activity_title"
 			android:name=".activity.TwoActivity"
+			android:screenOrientation="sensor"
 			android:theme="@style/TwoActivityTheme">
 		</activity>
 

@@ -114,8 +114,8 @@ public class SignupActivity extends AppCompatActivity {
 
 
 		// default user
-		signupUsernameEditText.setText("q");
-		signupMailEditText.setText("q@q.qq");
+		signupUsernameEditText.setText("littlec");
+		signupMailEditText.setText("tyc16@qq.com");
 		signupPasswordEditText.setText("qqqqqq");
 		agreeSwitch.setChecked(true);
 
