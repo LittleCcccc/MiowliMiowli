@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/font_sfnstext"
+            android:fontFamily="@font/fzltxh"
             android:gravity="start"
             android:lineSpacingMultiplier="1.18"
             android:text="@string/newsdetail_activity_comment_name_text_view_text"
